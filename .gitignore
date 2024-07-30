@@ -1,0 +1,5 @@
+# We add files here to exclude them from being added to the repository.
+# You can add any files here that you don't want added to the public repository.
+
+
+.env
