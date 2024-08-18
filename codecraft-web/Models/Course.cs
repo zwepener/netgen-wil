@@ -14,6 +14,8 @@ namespace codecraft_web.Models
         [Required]
         public short DurationHours { get; set; }
         [DataType(DataType.DateTime)]
+        public List<CourseCategory> Categories { get; } = [];
+        public List<Instructor> Instructors { get; } = [];
         public DateTime CreatedAt { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime UpdatedAt { get; set; }
