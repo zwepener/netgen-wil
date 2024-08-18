@@ -1,8 +1,11 @@
-using codecraft_web.Data;
+﻿using codecraft_web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<codecraft_webDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("codecraft_webDBContext") ?? throw new InvalidOperationException("Connection string 'codecraft_webDBContext' not found.")));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
