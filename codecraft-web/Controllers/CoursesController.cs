@@ -26,7 +26,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: Courses/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace codecraft_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Duration,CreatedAt,UpdatedAt")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,DurationHours,CreatedAt,UpdatedAt")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: Courses/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace codecraft_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Description,Duration,CreatedAt,UpdatedAt")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,DurationHours,CreatedAt,UpdatedAt")] Course course)
         {
             if (id != course.Id)
             {
@@ -117,7 +117,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: Courses/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace codecraft_web.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Course.FindAsync(id);
             if (course != null)
@@ -149,7 +149,7 @@ namespace codecraft_web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(long id)
+        private bool CourseExists(int id)
         {
             return _context.Course.Any(e => e.Id == id);
         }

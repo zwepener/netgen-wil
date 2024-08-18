@@ -12,7 +12,7 @@ namespace codecraft_web.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public short Duration { get; set; }
+        public short DurationHours { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; }
         [DataType(DataType.DateTime)]
