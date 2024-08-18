@@ -7,10 +7,10 @@ namespace codecraft_web.Models
     public class Student
     {
         [Key]
-        public int Id { get; set; } // BIGINT
+        public int Id { get; set; }
         [Required, MinLength(8), MaxLength(32)]
         public string Username { get; set; }
-        [Required, DataType(DataType.Password), MinLength(8)]
+        [Required, DataType(DataType.Password)]
         public string Password { get; set; }
         [Required, MaxLength(64)]
         public string FirstName { get; set; }
