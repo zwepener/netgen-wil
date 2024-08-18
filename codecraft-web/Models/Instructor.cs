@@ -34,8 +34,9 @@ namespace codecraft_web.Models
         [Required]
         public sbyte ExperienceYears { get; set; }
         [DataType(DataType.DateTime)]
-        public DateTime CreatedAt { get; set; } // TIMESTAMP
+        public List<Course> Courses { get; } = [];
+        public DateTime CreatedAt { get; set; }
         [DataType(DataType.DateTime)]
-        public DateTime UpdatedAt { get; set; } // TIMESTAMP
+        public DateTime UpdatedAt { get; set; }
     }
 }
