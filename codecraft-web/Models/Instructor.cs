@@ -9,7 +9,7 @@ namespace codecraft_web.Models
         public int Id { get; set; }
         [Required, MinLength(8), MaxLength(32)]
         public string Username { get; set; }
-        [Required, DataType(DataType.Password), MinLength(8)]
+        [Required, DataType(DataType.Password)]
         public string Password { get; set; }
         [Required, MaxLength(64)]
         public string FirstName { get; set; }
@@ -32,7 +32,7 @@ namespace codecraft_web.Models
         [Required, MaxLength(64)]
         public string Experties { get; set; }
         [Required]
-        public int Experience { get; set; }
+        public sbyte ExperienceYears { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } // TIMESTAMP
         [DataType(DataType.DateTime)]
