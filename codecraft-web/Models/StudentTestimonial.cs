@@ -9,7 +9,7 @@ namespace codecraft_web.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(Student))]
-        public string StudentId { get; set; }
+        public int StudentId { get; set; }
         [Required, MaxLength(255)]
         public string Comment { get; set; }
         [DataType(DataType.DateTime)]
