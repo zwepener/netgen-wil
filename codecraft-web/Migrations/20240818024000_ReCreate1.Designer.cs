@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using codecraft_web.Data;
 
@@ -11,9 +12,11 @@ using codecraft_web.Data;
 namespace codecraft_web.Migrations
 {
     [DbContext(typeof(codecraft_webDBContext))]
-    partial class codecraft_webDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240818024000_ReCreate1")]
+    partial class ReCreate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
