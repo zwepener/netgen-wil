@@ -7,11 +7,11 @@ namespace codecraft_web.Models
     public class Enrollment
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [ForeignKey(nameof(Student))]
-        public long StudentId { get; set; }
+        public int StudentId { get; set; }
         [ForeignKey(nameof(Course))]
-        public long CourseId { get; set; }
+        public int CourseId { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; }
     }
