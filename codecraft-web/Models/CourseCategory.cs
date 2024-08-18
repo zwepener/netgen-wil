@@ -10,6 +10,7 @@ namespace codecraft_web.Models
         [Required, MaxLength(32)]
         public string Name { get; set; }
         [DataType(DataType.DateTime)]
+        public List<Course> Courses { get; } = [];
         public DateTime CreatedAt { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime UpdatedAt { get; set; }

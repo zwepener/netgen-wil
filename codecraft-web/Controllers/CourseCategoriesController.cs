@@ -26,7 +26,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: CourseCategories/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: CourseCategories/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace codecraft_web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,CreatedAt,UpdatedAt")] CourseCategory courseCategory)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CreatedAt,UpdatedAt")] CourseCategory courseCategory)
         {
             if (id != courseCategory.Id)
             {
@@ -117,7 +117,7 @@ namespace codecraft_web.Controllers
         }
 
         // GET: CourseCategories/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace codecraft_web.Controllers
         // POST: CourseCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var courseCategory = await _context.CourseCategory.FindAsync(id);
             if (courseCategory != null)
@@ -149,7 +149,7 @@ namespace codecraft_web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseCategoryExists(long id)
+        private bool CourseCategoryExists(int id)
         {
             return _context.CourseCategory.Any(e => e.Id == id);
         }
