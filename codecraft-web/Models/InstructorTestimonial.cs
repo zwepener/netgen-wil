@@ -9,9 +9,9 @@ namespace codecraft_web.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(Instructor))]
-        public long InstructorId { get; set; }
+        public int InstructorId { get; set; }
         [ForeignKey(nameof(Student))]
-        public long StudentId { get; set; }
+        public int StudentId { get; set; }
         [Required, MaxLength(255)]
         public string Comment { get; set; }
         [DataType(DataType.DateTime)]
