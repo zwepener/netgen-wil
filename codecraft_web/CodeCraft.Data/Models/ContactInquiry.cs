@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Web.Models
+namespace CodeCraft.Data.Models
 {
     /// <summary>
     /// Represents a contact inquiry entity instance.
@@ -17,7 +16,8 @@ namespace CodeCraft.Web.Models
         /// <summary>
         /// The contact email address of the person than created the inquiry.
         /// </summary>
-        [DataType(DataType.EmailAddress), MaxLength(320)]
+        [MaxLength(320)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; } = null!;
         /// <summary>
         /// The message content of the inquiry.

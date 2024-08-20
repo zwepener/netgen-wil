@@ -1,4 +1,4 @@
-﻿@model CodeCraft.Web.Models.InstructorTestimonial
+﻿@model CodeCraft.Data.Models.InstructorTestimonial
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,16 +12,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InstructorId)
+            @Html.DisplayNameFor(model => model.Instructor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InstructorId)
+            @Html.DisplayFor(model => model.Instructor.Experties)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentId)
+            @Html.DisplayNameFor(model => model.Student)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentId)
+            @Html.DisplayFor(model => model.Student.FirstName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Comment)

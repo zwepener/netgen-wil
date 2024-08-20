@@ -1,4 +1,4 @@
-﻿@model CodeCraft.Web.Models.StudentTestimonial
+﻿@model CodeCraft.Data.Models.StudentTestimonial
 
 @{
     ViewData["Title"] = "Create";
@@ -14,8 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StudentId" class="control-label"></label>
-                <input asp-for="StudentId" class="form-control" />
-                <span asp-validation-for="StudentId" class="text-danger"></span>
+                <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CourseId" class="control-label"></label>

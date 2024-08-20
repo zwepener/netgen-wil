@@ -1,4 +1,4 @@
-using CodeCraft.Web.Models;
+using CodeCraft.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

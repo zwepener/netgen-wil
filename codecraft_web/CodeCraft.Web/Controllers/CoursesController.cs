@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CodeCraft.Web.Data;
-using CodeCraft.Web.Models;
+using CodeCraft.Data;
+using CodeCraft.Data.Models;
 
 namespace CodeCraft.Web.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly CodeCraftDbContext _context;
 
-        public CoursesController(ApplicationDbContext context)
+        public CoursesController(CodeCraftDbContext context)
         {
             _context = context;
         }
@@ -26,7 +26,7 @@ namespace CodeCraft.Web.Controllers
         }
 
         // GET: Courses/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,7 +34,7 @@ namespace CodeCraft.Web.Controllers
             }
 
             var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Name == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (course == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace CodeCraft.Web.Controllers
         }
 
         // GET: Courses/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,9 +86,9 @@ namespace CodeCraft.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Description,Duration,UpdatedAt,CreatedAt")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Duration,UpdatedAt,CreatedAt")] Course course)
         {
-            if (id != course.Name)
+            if (id != course.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CodeCraft.Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseExists(course.Name))
+                    if (!CourseExists(course.Id))
                     {
                         return NotFound();
                     }
@@ -117,7 +117,7 @@ namespace CodeCraft.Web.Controllers
         }
 
         // GET: Courses/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -125,7 +125,7 @@ namespace CodeCraft.Web.Controllers
             }
 
             var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Name == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (course == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace CodeCraft.Web.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var course = await _context.Course.FindAsync(id);
             if (course != null)
@@ -149,9 +149,9 @@ namespace CodeCraft.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(string id)
+        private bool CourseExists(int id)
         {
-            return _context.Course.Any(e => e.Name == id);
+            return _context.Course.Any(e => e.Id == id);
         }
     }
 }

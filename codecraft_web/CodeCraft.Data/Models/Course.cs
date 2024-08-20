@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Web.Models
+namespace CodeCraft.Data.Models
 {
     /// <summary>
     /// Represents a course entity instance.
@@ -36,6 +35,10 @@ namespace CodeCraft.Web.Models
         /// The list of instructors that are qualified to teach this course.
         /// </summary>
         public List<Instructor> Instructors { get; } = [];
+        /// <summary>
+        /// A list of students that are enrolled in this course.
+        /// </summary>
+        public List<Student> Students { get; } = [];
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>

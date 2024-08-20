@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Web.Models
+namespace CodeCraft.Data.Models
 {
     /// <summary>
-    /// Represents an enrollment entity instance.
+    /// Represents a student testimonial entity instance.
     /// </summary>
-    public class Enrollment
+    public class StudentTestimonial
     {
         /// <summary>
         /// The id of this entity.
@@ -15,15 +14,24 @@ namespace CodeCraft.Web.Models
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// The enrolled student's student id.
+        /// The student id of the student this testimonial belongs to.
         /// </summary>
         public int StudentId { get; set; }
         public Student Student { get; set; } = null!;
         /// <summary>
-        /// The enrollment course's course id.
+        /// The course id of the course this testimonial is directed at.
         /// </summary>
         public int CourseId { get; set; }
-        public Course Course { get; set; } = null!;
+        /// <summary>
+        /// The comment made by the student towards the course.
+        /// </summary>
+        [MaxLength(255)]
+        public string Comment { get; set; } = null!;
+        /// <summary>
+        /// The date and time this entity was last updated.
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public DateTime UpdatedAt { get; set; }
         /// <summary>
         /// The date and time this entity was created.
         /// </summary>

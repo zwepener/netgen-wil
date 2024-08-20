@@ -3,14 +3,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CodeCraft.Web.Data.Migrations
+namespace CodeCraft.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class RefineModels1 : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "AspNetIdentity");
+
             migrationBuilder.CreateTable(
                 name: "ContactInquiry",
                 columns: table => new
@@ -59,6 +62,94 @@ namespace CodeCraft.Web.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Role",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Role", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseCourseCategory",
+                columns: table => new
+                {
+                    CategoriesId = table.Column<int>(type: "int", nullable: false),
+                    CoursesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseCourseCategory", x => new { x.CategoriesId, x.CoursesId });
+                    table.ForeignKey(
+                        name: "FK_CourseCourseCategory_CourseCategory_CategoriesId",
+                        column: x => x.CategoriesId,
+                        principalTable: "CourseCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CourseCourseCategory_Course_CoursesId",
+                        column: x => x.CoursesId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleClaims",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoleClaims_Role_RoleId",
+                        column: x => x.RoleId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Instructor",
                 columns: table => new
                 {
@@ -80,6 +171,7 @@ namespace CodeCraft.Web.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Instructor_User_UserId",
                         column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -105,31 +197,102 @@ namespace CodeCraft.Web.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Student_User_UserId",
                         column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseCourseCategory",
+                name: "UserClaims",
+                schema: "AspNetIdentity",
                 columns: table => new
                 {
-                    CategoriesId = table.Column<int>(type: "int", nullable: false),
-                    CoursesId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseCourseCategory", x => new { x.CategoriesId, x.CoursesId });
+                    table.PrimaryKey("PK_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CourseCourseCategory_CourseCategory_CategoriesId",
-                        column: x => x.CategoriesId,
-                        principalTable: "CourseCategory",
+                        name: "FK_UserClaims_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserLogins",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_UserLogins_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRoles",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Role_RoleId",
+                        column: x => x.RoleId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseCourseCategory_Course_CoursesId",
-                        column: x => x.CoursesId,
-                        principalTable: "Course",
+                        name: "FK_UserRoles_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTokens",
+                schema: "AspNetIdentity",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_UserTokens_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -159,27 +322,24 @@ namespace CodeCraft.Web.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enrollment",
+                name: "CourseStudent",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CoursesId = table.Column<int>(type: "int", nullable: false),
+                    StudentsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollment", x => x.Id);
+                    table.PrimaryKey("PK_CourseStudent", x => new { x.CoursesId, x.StudentsId });
                     table.ForeignKey(
-                        name: "FK_Enrollment_Course_CourseId",
-                        column: x => x.CourseId,
+                        name: "FK_CourseStudent_Course_CoursesId",
+                        column: x => x.CoursesId,
                         principalTable: "Course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Enrollment_Student_StudentId",
-                        column: x => x.StudentId,
+                        name: "FK_CourseStudent_Student_StudentsId",
+                        column: x => x.StudentsId,
                         principalTable: "Student",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -205,13 +365,13 @@ namespace CodeCraft.Web.Data.Migrations
                         column: x => x.InstructorId,
                         principalTable: "Instructor",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_InstructorTestimonial_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,14 +408,9 @@ namespace CodeCraft.Web.Data.Migrations
                 column: "InstructorsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_CourseId",
-                table: "Enrollment",
-                column: "CourseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_StudentId",
-                table: "Enrollment",
-                column: "StudentId");
+                name: "IX_CourseStudent_StudentsId",
+                table: "CourseStudent",
+                column: "StudentsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Instructor_UserId",
@@ -273,6 +428,20 @@ namespace CodeCraft.Web.Data.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                schema: "AspNetIdentity",
+                table: "Role",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleClaims_RoleId",
+                schema: "AspNetIdentity",
+                table: "RoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Student_UserId",
                 table: "Student",
                 column: "UserId");
@@ -281,6 +450,38 @@ namespace CodeCraft.Web.Data.Migrations
                 name: "IX_StudentTestimonial_StudentId",
                 table: "StudentTestimonial",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                schema: "AspNetIdentity",
+                table: "User",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                schema: "AspNetIdentity",
+                table: "User",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserClaims_UserId",
+                schema: "AspNetIdentity",
+                table: "UserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLogins_UserId",
+                schema: "AspNetIdentity",
+                table: "UserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_RoleId",
+                schema: "AspNetIdentity",
+                table: "UserRoles",
+                column: "RoleId");
         }
 
         /// <inheritdoc />
@@ -296,13 +497,33 @@ namespace CodeCraft.Web.Data.Migrations
                 name: "CourseInstructor");
 
             migrationBuilder.DropTable(
-                name: "Enrollment");
+                name: "CourseStudent");
 
             migrationBuilder.DropTable(
                 name: "InstructorTestimonial");
 
             migrationBuilder.DropTable(
+                name: "RoleClaims",
+                schema: "AspNetIdentity");
+
+            migrationBuilder.DropTable(
                 name: "StudentTestimonial");
+
+            migrationBuilder.DropTable(
+                name: "UserClaims",
+                schema: "AspNetIdentity");
+
+            migrationBuilder.DropTable(
+                name: "UserLogins",
+                schema: "AspNetIdentity");
+
+            migrationBuilder.DropTable(
+                name: "UserRoles",
+                schema: "AspNetIdentity");
+
+            migrationBuilder.DropTable(
+                name: "UserTokens",
+                schema: "AspNetIdentity");
 
             migrationBuilder.DropTable(
                 name: "CourseCategory");
@@ -315,6 +536,14 @@ namespace CodeCraft.Web.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Role",
+                schema: "AspNetIdentity");
+
+            migrationBuilder.DropTable(
+                name: "User",
+                schema: "AspNetIdentity");
         }
     }
 }

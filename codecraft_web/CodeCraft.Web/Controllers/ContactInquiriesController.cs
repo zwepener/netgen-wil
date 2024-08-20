@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CodeCraft.Web.Data;
-using CodeCraft.Web.Models;
+using CodeCraft.Data;
+using CodeCraft.Data.Models;
 
 namespace CodeCraft.Web.Controllers
 {
     public class ContactInquiriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly CodeCraftDbContext _context;
 
-        public ContactInquiriesController(ApplicationDbContext context)
+        public ContactInquiriesController(CodeCraftDbContext context)
         {
             _context = context;
         }

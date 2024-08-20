@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CodeCraft.Web.Models.InstructorTestimonial>
+﻿@model IEnumerable<CodeCraft.Data.Models.InstructorTestimonial>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.InstructorId)
+                @Html.DisplayNameFor(model => model.Instructor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
+                @Html.DisplayNameFor(model => model.Student)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
@@ -34,10 +34,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.InstructorId)
+                @Html.DisplayFor(modelItem => item.Instructor.Experties)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)

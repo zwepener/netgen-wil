@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CodeCraft.Web.Data;
-using CodeCraft.Web.Models;
+using CodeCraft.Data;
+using CodeCraft.Data.Models;
 
 namespace CodeCraft.Web.Controllers
 {
     public class InstructorsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly CodeCraftDbContext _context;
 
-        public InstructorsController(ApplicationDbContext context)
+        public InstructorsController(CodeCraftDbContext context)
         {
             _context = context;
         }
@@ -22,7 +22,8 @@ namespace CodeCraft.Web.Controllers
         // GET: Instructors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Instructor.ToListAsync());
+            var codeCraftDbContext = _context.Instructor.Include(i => i.User);
+            return View(await codeCraftDbContext.ToListAsync());
         }
 
         // GET: Instructors/Details/5
@@ -34,6 +35,7 @@ namespace CodeCraft.Web.Controllers
             }
 
             var instructor = await _context.Instructor
+                .Include(i => i.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (instructor == null)
             {
@@ -46,6 +48,7 @@ namespace CodeCraft.Web.Controllers
         // GET: Instructors/Create
         public IActionResult Create()
         {
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace CodeCraft.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", instructor.UserId);
             return View(instructor);
         }
 
@@ -78,6 +82,7 @@ namespace CodeCraft.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", instructor.UserId);
             return View(instructor);
         }
 
@@ -113,6 +118,7 @@ namespace CodeCraft.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", instructor.UserId);
             return View(instructor);
         }
 
@@ -125,6 +131,7 @@ namespace CodeCraft.Web.Controllers
             }
 
             var instructor = await _context.Instructor
+                .Include(i => i.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (instructor == null)
             {

@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Web.Models
+namespace CodeCraft.Data.Models
 {
     /// <summary>
     /// Represents an instructor testimonial entity instance.

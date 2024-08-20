@@ -1,4 +1,4 @@
-namespace CodeCraft.Web.Models
+namespace CodeCraft.Data.Models
 {
     public class ErrorViewModel
     {
