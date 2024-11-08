@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "My Courses";
+}
+
+@section Styles {
+    <link href="~/css/courses.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <h1>My Courses</h1>
+        <div class="profile-icon">
+            <img src="~/assets/profile-icon.png"
+                 alt="Profile Icon"
+                 class="small-profile-icon" />
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="courses-section">
+        <h2>Currently Enrolled Courses</h2>
+        <div class="courses">
+            <div class="course-card animate">
+                <h3>Course Name 1</h3>
+                <p>Instructor: Jane Doe</p>
+                <p>Monday & Wednesday</p>
+                <p>8:00 AM - 11:30 AM</p>
+            </div>
+            <div class="course-card animate">
+                <h3>Course Name 2</h3>
+                <p>Instructor: John Doe</p>
+                <p>Tuesday & Thursday</p>
+                <p>9:00 AM - 11:30 AM</p>
+            </div>
+            <!-- Add more courses as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Right Sidebar -->
+<div class="right-sidebar">
+    <div class="calendar">
+        <h2>August 2024</h2>
+        <div id="calendar"></div>
+    </div>
+    <div class="assignments">
+        <h2>Upcoming Assignments</h2>
+        <ul>
+            <li class="animate">
+                <h4>Assignment 1</h4>
+                <p>Due Date: August 28, 2024</p>
+            </li>
+            <li class="animate">
+                <h4>Assignment 2</h4>
+                <p>Due Date: September 2, 2024</p>
+            </li>
+        </ul>
+    </div>
+</div>

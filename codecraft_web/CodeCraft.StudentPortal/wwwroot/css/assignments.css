@@ -1,0 +1,180 @@
+/* General styling for the page */
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #00012a;
+  color: #010101;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #00012a;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 20px;
+  color: #f9f6f1;
+  background-color: #00012a;
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background-color: #00012a;
+  color: #f9f6f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.sidebar .logo {
+  margin-bottom: auto; /* Pushes the logo to the top */
+}
+
+.sidebar ul.nav {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px; /* Added margin at the bottom */
+  align-self: flex-start; /* Ensures the navigation stays at the bottom */
+}
+
+.sidebar ul.nav li {
+  margin: 20px 0;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar ul.nav li:hover {
+  color: #f3ca16;
+}
+
+/* Ensures the navigation menu is at the bottom left */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Moves the nav menu to the bottom */
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #6bd425;
+  font-size: 2rem;
+}
+
+.profile-pic-main {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Assignments Section */
+.assignments-section h2 {
+  color: #f58a07;
+  margin-bottom: 20px;
+}
+
+.assignments-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.assignment-card {
+  background-color: #f3ca16;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  text-align: left;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.assignment-card:hover {
+  transform: scale(1.05);
+}
+
+.assignment-card h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.assignment-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.view-details {
+  background-color: #6bd425;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.view-details:hover {
+  background-color: #f58a07;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  background-color: #00012a;
+  padding: 20px;
+}
+
+.calendar {
+  background-color: #f3ca16;
+  color: #00012a;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .assignments-grid {
+    flex-direction: column;
+  }
+
+  .assignment-card {
+    width: 100%;
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .assignments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .assignment-card {
+    width: 45%;
+  }
+}

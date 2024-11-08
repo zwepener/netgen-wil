@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+@section Styles {
+    <link href="~/css/dashboard.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <h1>Welcome back [StudentName]</h1>
+        <div class="profile-icon">
+            <img src="~/assets/profile-icon.png" alt="Profile Icon" />
+        </div>
+    </div>
+
+    <!-- Enrolled Courses -->
+    <div class="courses-section">
+        <h2>Enrolled Courses</h2>
+        <div class="courses">
+            <div class="course-card animate">
+                <h3>Introduction to Python Programming - PRP411</h3>
+                <p>Jane Doe</p>
+                <p>Monday & Wednesday</p>
+                <p>8:00 AM - 11:30 AM</p>
+            </div>
+            <div class="course-card animate">
+                <h3>Beginner Java Programming - JD522</h3>
+                <p>Michael Anson</p>
+                <p>Tuesday & Thursday</p>
+                <p>9:00 AM - 11:30 AM</p>
+            </div>
+            <div class="course-card animate">
+                <h3>Business Programming - PRG522</h3>
+                <p>John Doe</p>
+                <p>Monday</p>
+                <p>1:00 PM - 3:30 PM</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam/Quiz Board -->
+    <div class="exam-board">
+        <h2>Exam/Quiz Board</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Theory/Practical</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Python Summative Exam</td>
+                    <td>PRP411</td>
+                    <td>09/09/2024</td>
+                    <td>9:00 AM</td>
+                    <td>3 Hours</td>
+                    <td>Practical</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Right Sidebar (Assignments and Real-Time Calendar) -->
+<div class="right-sidebar">
+    <div class="calendar">
+        <h2>August 2024</h2>
+        <div id="calendar"></div>
+    </div>
+    <div class="assignments">
+        <h2>Assignments</h2>
+        <ul>
+            <li class="animate">
+                <h4>Introduction to Python Programming</h4>
+                <p>Due Date: August 28, 2024</p>
+            </li>
+            <li class="animate">
+                <h4>Business Programming</h4>
+                <p>Due Date: August 30, 2024</p>
+            </li>
+            <li class="animate">
+                <h4>Beginner Java Programming</h4>
+                <p>Due Date: September 2, 2024</p>
+            </li>
+        </ul>
+    </div>
+</div>

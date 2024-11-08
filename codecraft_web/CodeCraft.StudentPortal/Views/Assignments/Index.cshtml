@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Assignments";
+}
+
+@section Styles {
+    <link href="~/css/assignments.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <h1>Assignments</h1>
+        <div class="profile-icon">
+            <img src="~/assets/profile-icon.png"
+                 alt="Profile Icon"
+                 class="profile-pic-main" />
+        </div>
+    </div>
+
+    <!-- Assignments Section -->
+    <div class="assignments-section">
+        <h2>Upcoming Assignments</h2>
+        <div class="assignments-grid">
+            <!-- Each assignment as a card -->
+            <div class="assignment-card">
+                <h4>Introduction to Python Programming</h4>
+                <p>Due Date: August 28, 2024</p>
+                <button class="view-details">View Details</button>
+            </div>
+            <div class="assignment-card">
+                <h4>Business Programming</h4>
+                <p>Due Date: August 30, 2024</p>
+                <button class="view-details">View Details</button>
+            </div>
+            <div class="assignment-card">
+                <h4>Beginner Java Programming</h4>
+                <p>Due Date: September 2, 2024</p>
+                <button class="view-details">View Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Right Sidebar -->
+<div class="right-sidebar">
+    <div class="calendar">
+        <h2>August 2024</h2>
+        <div id="calendar"></div>
+    </div>
+</div>
