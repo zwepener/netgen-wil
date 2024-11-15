@@ -3,9 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Database", "CodeCraft.Database\CodeCraft.Database.csproj", "{FED37971-825B-4E81-93B1-BADDF14CE06E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Data", "CodeCraft.Data\CodeCraft.Data.csproj", "{FB590774-CC4F-4801-80E4-923403B7D2C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.StudentPortal", "CodeCraft.StudentPortal\CodeCraft.StudentPortal.csproj", "{51F459B8-4B84-4E9E-9EEE-7ABFD7885F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Web.StudentPortal", "CodeCraft.Web.StudentPortal\CodeCraft.Web.StudentPortal.csproj", "{F33BE0C3-643E-493E-AA3E-80B8F02DF241}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.AdminPortal", "CodeCraft.Web.AdminPortal\CodeCraft.Web.AdminPortal.csproj", "{42C65969-B716-4998-AE50-9F12C60B9DE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.InstructorPortal", "CodeCraft.Web.InstructorPortal\CodeCraft.Web.InstructorPortal.csproj", "{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.PublicPortal", "CodeCraft.Web.PublicPortal\CodeCraft.Web.PublicPortal.csproj", "{EE8CF483-C331-41D2-9009-762524118BBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +31,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FED37971-825B-4E81-93B1-BADDF14CE06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FED37971-825B-4E81-93B1-BADDF14CE06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FED37971-825B-4E81-93B1-BADDF14CE06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FED37971-825B-4E81-93B1-BADDF14CE06E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51F459B8-4B84-4E9E-9EEE-7ABFD7885F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51F459B8-4B84-4E9E-9EEE-7ABFD7885F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51F459B8-4B84-4E9E-9EEE-7ABFD7885F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51F459B8-4B84-4E9E-9EEE-7ABFD7885F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE8CF483-C331-41D2-9009-762524118BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE8CF483-C331-41D2-9009-762524118BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE8CF483-C331-41D2-9009-762524118BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE8CF483-C331-41D2-9009-762524118BBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
