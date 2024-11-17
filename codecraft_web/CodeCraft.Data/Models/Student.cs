@@ -18,7 +18,7 @@ namespace CodeCraft.Data.Models
         /// The user id of the student.
         /// </summary>
         public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
+        public IdentityUser? User { get; set; }
         /// <summary>
         /// The first name of the student.
         /// </summary>
@@ -38,7 +38,7 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// A list of courses that the student is enrolled in.
         /// </summary>
-        public List<Course>? Courses { get; } = [];
+        public List<Course> Courses { get; } = [];
         /// <summary>
         /// The date of birth of the student.
         /// </summary>
