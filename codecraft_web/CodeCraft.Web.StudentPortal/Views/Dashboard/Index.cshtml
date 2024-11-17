@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Student
+
+@{
     ViewData["Title"] = "Student Dashboard";
 }
 
@@ -9,7 +11,7 @@
 <!-- Main Content -->
 <div class="main-content">
     <div class="header">
-        <h1>Welcome back [StudentName]</h1>
+        <h1>Welcome back @Model.FirstName @Model.LastName!</h1>
         <div class="profile-icon">
             <img src="~/assets/profile-icon.png" alt="Profile Icon" />
         </div>
