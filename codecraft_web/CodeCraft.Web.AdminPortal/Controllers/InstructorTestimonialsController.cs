@@ -1,11 +1,13 @@
 ﻿using CodeCraft.Data;
 using CodeCraft.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodeCraft.Web.AdminPortal.Controllers
 {
+    [Authorize]
     public class InstructorTestimonialsController : Controller
     {
         private readonly CodeCraftDbContext _context;

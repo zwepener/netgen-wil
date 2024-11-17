@@ -13,6 +13,7 @@ namespace CodeCraft.Data.Models
         /// This property can be used to uniquely identify this entity.
         /// </summary>
         [Key]
+        [Display(Name = "Inquiry ID")]
         public int Id { get; set; }
         /// <summary>
         /// The contact email address of the person than created the inquiry.
@@ -27,6 +28,7 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The date and time this entity was created.
         /// </summary>
+        [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
     }

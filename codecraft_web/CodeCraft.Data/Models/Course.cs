@@ -13,6 +13,7 @@ namespace CodeCraft.Data.Models
         /// This property can be used to uniquely identify this entity.
         /// </summary>
         [Key]
+        [Display(Name = "Course ID")]
         public int Id { get; set; }
         /// <summary>
         /// The name of the course.
@@ -43,11 +44,13 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
+        [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
         /// <summary>
         /// The date and time this entity was created.
         /// </summary>
+        [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
     }

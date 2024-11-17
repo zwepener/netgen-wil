@@ -7,12 +7,16 @@ namespace CodeCraft.Data.Models
     public class Admin
     {
         [Key]
+        [Display(Name = "Admin ID")]
         public int Id { get; set; }
         [Required]
-        public string UserId { get; set; }
+        [Display(Name = "User ID")]
+        public string UserId { get; set; } = null!;
         public IdentityUser? User { get; set; }
+        [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
+        [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
     }
