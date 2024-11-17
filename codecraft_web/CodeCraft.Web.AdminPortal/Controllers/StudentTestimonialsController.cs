@@ -18,7 +18,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: StudentTestimonials
         public async Task<IActionResult> Index()
         {
-            var codeCraftDbContext = _context.StudentTestimonial.Include(s => s.Student);
+            var codeCraftDbContext = _context.StudentTestimonial.Include(s => s.Course).Include(s => s.Student);
             return View(await codeCraftDbContext.ToListAsync());
         }
 
@@ -31,6 +31,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             }
 
             var studentTestimonial = await _context.StudentTestimonial
+                .Include(s => s.Course)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (studentTestimonial == null)
@@ -44,7 +45,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: StudentTestimonials/Create
         public IActionResult Create()
         {
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName");
+            ViewData["CourseId"] = new SelectList(_context.Course, "Id", "Id");
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id");
             return View();
         }
 
@@ -61,7 +63,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", studentTestimonial.StudentId);
+            ViewData["CourseId"] = new SelectList(_context.Course, "Id", "Id", studentTestimonial.CourseId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", studentTestimonial.StudentId);
             return View(studentTestimonial);
         }
 
@@ -78,7 +81,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", studentTestimonial.StudentId);
+            ViewData["CourseId"] = new SelectList(_context.Course, "Id", "Id", studentTestimonial.CourseId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", studentTestimonial.StudentId);
             return View(studentTestimonial);
         }
 
@@ -114,7 +118,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", studentTestimonial.StudentId);
+            ViewData["CourseId"] = new SelectList(_context.Course, "Id", "Id", studentTestimonial.CourseId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", studentTestimonial.StudentId);
             return View(studentTestimonial);
         }
 
@@ -127,6 +132,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             }
 
             var studentTestimonial = await _context.StudentTestimonial
+                .Include(s => s.Course)
                 .Include(s => s.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (studentTestimonial == null)

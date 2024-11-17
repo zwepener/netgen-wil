@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -145,6 +144,28 @@ namespace CodeCraft.Data.Migrations
                         column: x => x.RoleId,
                         principalSchema: "AspNetIdentity",
                         principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Admin",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admin", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Admin_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "AspNetIdentity",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -390,12 +411,24 @@ namespace CodeCraft.Data.Migrations
                 {
                     table.PrimaryKey("PK_StudentTestimonial", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_StudentTestimonial_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_StudentTestimonial_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admin_UserId",
+                table: "Admin",
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseCourseCategory_CoursesId",
@@ -415,7 +448,8 @@ namespace CodeCraft.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Instructor_UserId",
                 table: "Instructor",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstructorTestimonial_InstructorId",
@@ -444,7 +478,13 @@ namespace CodeCraft.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Student_UserId",
                 table: "Student",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentTestimonial_CourseId",
+                table: "StudentTestimonial",
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentTestimonial_StudentId",
@@ -488,6 +528,9 @@ namespace CodeCraft.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Admin");
+
+            migrationBuilder.DropTable(
                 name: "ContactInquiry");
 
             migrationBuilder.DropTable(
@@ -529,10 +572,10 @@ namespace CodeCraft.Data.Migrations
                 name: "CourseCategory");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Instructor");
 
             migrationBuilder.DropTable(
-                name: "Instructor");
+                name: "Course");
 
             migrationBuilder.DropTable(
                 name: "Student");

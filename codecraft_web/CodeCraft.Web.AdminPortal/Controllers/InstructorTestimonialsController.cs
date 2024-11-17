@@ -45,8 +45,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: InstructorTestimonials/Create
         public IActionResult Create()
         {
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Experties");
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName");
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id");
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id");
             return View();
         }
 
@@ -63,8 +63,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Experties", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", instructorTestimonial.StudentId);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
             return View(instructorTestimonial);
         }
 
@@ -81,8 +81,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 return NotFound();
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Experties", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", instructorTestimonial.StudentId);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
             return View(instructorTestimonial);
         }
 
@@ -118,8 +118,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Experties", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "FirstName", instructorTestimonial.StudentId);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
             return View(instructorTestimonial);
         }
 

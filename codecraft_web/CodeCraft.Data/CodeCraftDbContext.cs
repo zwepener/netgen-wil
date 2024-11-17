@@ -53,98 +53,125 @@ namespace CodeCraft.Data
 
             builder
                 .Entity<ContactInquiry>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<Course>()
-                .Property(entity => entity.UpdatedAt)
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<Course>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<CourseCategory>()
-                .Property(entity => entity.UpdatedAt)
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<CourseCategory>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<Instructor>()
-                .Property(entity => entity.UpdatedAt)
+                .HasIndex(e => e.UserId)
+                .IsUnique();
+
+            builder
+                .Entity<Instructor>()
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<Instructor>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<InstructorTestimonial>()
-                .Property(entity => entity.UpdatedAt)
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<InstructorTestimonial>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<InstructorTestimonial>()
-                .HasOne(t => t.Student)
+                .HasOne(e => e.Student)
                 .WithMany()
                 .HasForeignKey(t => t.StudentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<InstructorTestimonial>()
-                .HasOne(t => t.Instructor)
+                .HasOne(e => e.Instructor)
                 .WithMany()
                 .HasForeignKey(t => t.InstructorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<Student>()
-                .Property(entity => entity.UpdatedAt)
+                .HasIndex(e => e.UserId)
+                .IsUnique();
+
+            builder
+                .Entity<Student>()
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<Student>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<StudentTestimonial>()
-                .Property(entity => entity.UpdatedAt)
+                .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
                 .Entity<StudentTestimonial>()
-                .Property(entity => entity.CreatedAt)
+                .Property(e => e.CreatedAt)
+                .HasDefaultValueSql("GETDATE()");
+
+            builder
+                .Entity<Admin>()
+                .HasIndex(e => e.UserId)
+                .IsUnique();
+
+            builder
+                .Entity<Admin>()
+                .Property(e => e.UpdatedAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValueSql("GETDATE()");
+
+            builder
+                .Entity<Admin>()
+                .Property(e => e.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
         }
 
-        public DbSet<CodeCraft.Data.Models.ContactInquiry> ContactInquiry { get; set; } = default!;
-        public DbSet<CodeCraft.Data.Models.Course> Course { get; set; } = default!;
-        public DbSet<CodeCraft.Data.Models.CourseCategory> CourseCategory { get; set; } = default!;
-        public DbSet<CodeCraft.Data.Models.Instructor> Instructor { get; set; } = default!;
-        public DbSet<CodeCraft.Data.Models.InstructorTestimonial> InstructorTestimonial { get; set; } =
+        public DbSet<ContactInquiry> ContactInquiry { get; set; } = default!;
+        public DbSet<Course> Course { get; set; } = default!;
+        public DbSet<CourseCategory> CourseCategory { get; set; } = default!;
+        public DbSet<Instructor> Instructor { get; set; } = default!;
+        public DbSet<InstructorTestimonial> InstructorTestimonial { get; set; } =
             default!;
-        public DbSet<CodeCraft.Data.Models.Student> Student { get; set; } = default!;
-        public DbSet<CodeCraft.Data.Models.StudentTestimonial> StudentTestimonial { get; set; } =
+        public DbSet<Student> Student { get; set; } = default!;
+        public DbSet<StudentTestimonial> StudentTestimonial { get; set; } =
             default!;
+        public DbSet<Admin> Admin { get; set; } = default!;
     }
 }

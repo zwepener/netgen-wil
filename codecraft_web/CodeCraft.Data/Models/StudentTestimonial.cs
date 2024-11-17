@@ -12,16 +12,20 @@ namespace CodeCraft.Data.Models
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
         /// The student id of the student this testimonial belongs to.
         /// </summary>
+        [Required]
         public int StudentId { get; set; }
         public Student? Student { get; set; }
         /// <summary>
         /// The course id of the course this testimonial is directed at.
         /// </summary>
+        [Required]
         public int CourseId { get; set; }
+        public Course? Course { get; set; }
         /// <summary>
         /// The comment made by the student towards the course.
         /// </summary>

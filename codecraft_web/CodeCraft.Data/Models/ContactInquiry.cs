@@ -12,6 +12,7 @@ namespace CodeCraft.Data.Models
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
         /// The contact email address of the person than created the inquiry.

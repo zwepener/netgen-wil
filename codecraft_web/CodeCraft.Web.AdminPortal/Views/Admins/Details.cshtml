@@ -1,4 +1,4 @@
-﻿@model CodeCraft.Data.Models.StudentTestimonial
+﻿@model CodeCraft.Data.Models.Admin
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,14 @@
 <h1>Details</h1>
 
 <div>
-    <h4>StudentTestimonial</h4>
+    <h4>Admin</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Student)
+            @Html.DisplayNameFor(model => model.User)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Course)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Course.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
+            @Html.DisplayFor(model => model.User.Id)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.UpdatedAt)

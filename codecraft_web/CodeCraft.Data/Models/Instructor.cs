@@ -13,10 +13,12 @@ namespace CodeCraft.Data.Models
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
         /// The user id of the instructor.
         /// </summary>
+        [Required]
         public string UserId { get; set; } = null!;
         public IdentityUser? User { get; set; }
         /// <summary>
