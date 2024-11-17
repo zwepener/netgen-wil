@@ -38,7 +38,7 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// A list of courses that the student is enrolled in.
         /// </summary>
-        public List<Course> Courses { get; } = [];
+        public List<Course>? Courses { get; } = [];
         /// <summary>
         /// The date of birth of the student.
         /// </summary>
