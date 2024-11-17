@@ -17,7 +17,7 @@ namespace CodeCraft.Data.Models
         /// The student id of the student this testimonial belongs to.
         /// </summary>
         public int StudentId { get; set; }
-        public Student Student { get; set; } = null!;
+        public Student? Student { get; set; }
         /// <summary>
         /// The course id of the course this testimonial is directed at.
         /// </summary>

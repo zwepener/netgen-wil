@@ -18,7 +18,7 @@ namespace CodeCraft.Data.Models
         /// The user id of the instructor.
         /// </summary>
         public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
+        public IdentityUser? User { get; set; }
         /// <summary>
         /// The first name of the instructor.
         /// </summary>

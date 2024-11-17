@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeCraft.Data.Migrations
 {
     [DbContext(typeof(CodeCraftDbContext))]
-    [Migration("20241117124520_InitialCreate")]
+    [Migration("20241117130043_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

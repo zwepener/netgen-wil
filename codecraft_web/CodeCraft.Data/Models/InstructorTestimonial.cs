@@ -17,12 +17,12 @@ namespace CodeCraft.Data.Models
         /// The instructor id of the instructor this testimonial belongs to.
         /// </summary>
         public int InstructorId { get; set; }
-        public Instructor Instructor { get; set; } = null!;
+        public Instructor? Instructor { get; set; }
         /// <summary>
         /// The student id of the student this testimonial is directed at.
         /// </summary>
         public int StudentId { get; set; }
-        public Student Student { get; set; } = null!;
+        public Student? Student { get; set; } = null!;
         /// <summary>
         /// The comment of the instructor about the specified student.
         /// </summary>
