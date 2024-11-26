@@ -32,7 +32,8 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The comment made by the student towards the course.
         /// </summary>
-        [MaxLength(255)]
+        [Required]
+        [Display(Name = "Comment")]
         public string Comment { get; set; } = null!;
         /// <summary>
         /// The date and time this entity was last updated.
