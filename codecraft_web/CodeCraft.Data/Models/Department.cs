@@ -24,6 +24,9 @@ namespace CodeCraft.Data.Models
         [Required]
         [Display(Name = "Department Code")]
         public string Code { get; set; } = null!;
+        [Required]
+        [Display(Name = "Department Description")]
+        public string Description { get; set; } = null!;
         /// <summary>
         /// A list of courses that belong to this department.
         /// </summary>
