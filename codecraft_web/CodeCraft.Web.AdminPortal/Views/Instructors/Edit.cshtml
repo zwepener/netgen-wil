@@ -49,6 +49,21 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label asp-for="UserId" class="form-label">
+                                    User Account
+                                </label>
+                                <select asp-for="UserId" class="form-control">
+                                    @foreach (SelectListItem item in ViewBag.Users)
+                                    {
+                                        <option value="@item.Value" selected=@(Model.User!.Email == item.Text)>
+                                            @item.Text
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label asp-for="FirstName" class="form-label"></label>
                                 <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -74,7 +89,9 @@
                                 <select asp-for="Gender" class="form-control">
                                     @foreach (string gender in new List<string> { "Male", "Female" })
                                     {
-                                        <option value="@gender" selected=@(Model.Gender == gender)>@gender</option>
+                                        <option value="@gender" selected=@(Model.Gender == gender)>
+                                            @gender
+                                        </option>
                                     }
                                 </select>
                             </div>
