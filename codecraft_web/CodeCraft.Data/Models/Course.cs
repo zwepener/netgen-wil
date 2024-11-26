@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
@@ -18,21 +19,51 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The name of the course.
         /// </summary>
-        [MaxLength(32)]
+        [Required]
+        [Display(Name = "Course Name")]
         public string Name { get; set; } = null!;
+        [Required]
+        [Display(Name = "Course Code")]
+        public string Code { get; set; } = null!;
         /// <summary>
         /// The description of the course.
         /// </summary>
+        [Required]
+        [Display(Name = "Course Description")]
         public string Description { get; set; } = null!;
         /// <summary>
         /// The duration of the course.
-        /// Measured in <c>Hours</c>.
+        /// Must be suffixed with:
+        /// 'h' for 'hours', 'd' for 'days', 'm' for 'months', 'y' for 'years'.
         /// </summary>
-        public short Duration { get; set; }
+        [Required]
+        [Display(Name = "Course Duration")]
+        public string Duration { get; set; } = null!;
+        public string FormattedDuration
+        {
+            get
+            {
+                Dictionary<char, string> suffixes = [];
+                suffixes.Add('h', "Hour(s)");
+                suffixes.Add('d', "Day(s)");
+                suffixes.Add('m', "Month(s)");
+                suffixes.Add('y', "Year(s)");
+
+                string durInt = Duration[..^1];
+                char suffix = Duration.Substring(Duration.Length - 1, 1)[0];
+
+                return durInt + " " + suffixes[suffix];
+            }
+        }
+        [Required]
+        [Precision(18, 2)]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Course Price")]
+        public decimal Price { get; set; }
         /// <summary>
-        /// The list of categories this course belongs to.
+        /// The list of departments this course is apart of.
         /// </summary>
-        public List<CourseCategory> Categories { get; } = [];
+        public List<Department> Categories { get; } = [];
         /// <summary>
         /// The list of instructors that are qualified to teach this course.
         /// </summary>
@@ -41,6 +72,24 @@ namespace CodeCraft.Data.Models
         /// A list of students that are enrolled in this course.
         /// </summary>
         public List<Student> Students { get; } = [];
+        [Display(Name = "Student Count")]
+        public int StudentCount
+        {
+            get
+            {
+                return Students.Count;
+            }
+        }
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Application Open Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime ApplicationOpenDate { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Application Close Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime ApplicationCloseDate { get; set; }
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
