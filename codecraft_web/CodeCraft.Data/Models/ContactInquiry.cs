@@ -18,12 +18,15 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The contact email address of the person than created the inquiry.
         /// </summary>
-        [MaxLength(320)]
+        [Required]
+        [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; } = null!;
         /// <summary>
         /// The message content of the inquiry.
         /// </summary>
+        [Required]
+        [Display(Name = "Inquiry Message")]
         public string Message { get; set; } = null!;
         /// <summary>
         /// The date and time this entity was created.
