@@ -46,7 +46,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email");
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,MiddleName,LastName,DateOfBirth,UpdatedAt,CreatedAt")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,RegisterDate,UpdatedAt,CreatedAt")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", student.UserId);
+            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email", student.UserId);
             return View(student);
         }
 
@@ -80,7 +80,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", student.UserId);
+            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email", student.UserId);
             return View(student);
         }
 
@@ -89,7 +89,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,MiddleName,LastName,DateOfBirth,UpdatedAt,CreatedAt")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,RegisterDate,UpdatedAt,CreatedAt")] Student student)
         {
             if (id != student.Id)
             {
@@ -116,7 +116,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", student.UserId);
+            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email", student.UserId);
             return View(student);
         }
 
