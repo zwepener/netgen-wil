@@ -4,46 +4,132 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.css" />
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
+}
 
-<h4>Course</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Edit Course</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Dashboard" asp-action="Index">
+                    Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a asp-action="Index">
+                    Courses
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a asp-action="Edit" asp-route-id="@Model.Id">
+                    Edit
+                </a>
+            </li>
+        </ol>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Courses Details</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Name" class="form-label"></label>
+                                <input asp-for="Name" class="form-control" value="@Model.Name" />
+                                <span asp-validation-for="Name" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Code" class="form-label"></label>
+                                <input asp-for="Code" class="form-control" value="@Model.Code" />
+                                <span asp-validation-for="Code" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="form-label">
+                                </label>
+                                <textarea asp-for="Description" class="form-control" rows="5">
+                                    @Html.DisplayFor(model => model.Description)
+                                </textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Duration" class="form-label"></label>
+                                <input asp-for="Duration" class="form-control" value="@Model.Duration" />
+                                <span asp-validation-for="Duration" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Price" class="form-label"></label>
+                                <input asp-for="Price" asp-format="{0:C}" class="form-control" value="@Model.Price" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="ApplicationOpenDate" class="form-label"></label>
+                                <input asp-for="ApplicationOpenDate" class="datepicker form-control" value="@Model.ApplicationOpenDate" />
+                                <span asp-validation-for="ApplicationOpenDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="ApplicationCloseDate" class="form-label"></label>
+                                <input asp-for="ApplicationCloseDate" class="datepicker form-control" value="@Model.ApplicationCloseDate" />
+                                <span asp-validation-for="ApplicationCloseDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Course Photo (TODO)
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group fallback w-100">
+                                <label class="form-label d-block">Course Photo</label>
+                                <input type="file"
+                                       class="dropify"
+                                       data-default-file="" />
+                            </div>
+                        </div>
+                        -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/pickadate/picker.js"></script>
+    <script src="~/lib/pickadate/picker.time.js"></script>
+    <script src="~/lib/pickadate/picker.date.js"></script>
+
+    <script src="~/js/plugins-init/pickadate-init.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
