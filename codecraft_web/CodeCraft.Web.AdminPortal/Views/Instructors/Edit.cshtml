@@ -4,66 +4,138 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.css" />
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
+}
 
-<h4>Instructor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MiddleName" class="control-label"></label>
-                <input asp-for="MiddleName" class="form-control" />
-                <span asp-validation-for="MiddleName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Experties" class="control-label"></label>
-                <input asp-for="Experties" class="form-control" />
-                <span asp-validation-for="Experties" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Experience" class="control-label"></label>
-                <input asp-for="Experience" class="form-control" />
-                <span asp-validation-for="Experience" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Edit Instructor</h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Dashboard" asp-action="Index">
+                    Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a asp-action="Index">
+                    Instructors
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a asp-action="Edit" asp-route-id="@Model.Id">
+                    Edit
+                </a>
+            </li>
+        </ol>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Basic Info</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="form-label"></label>
+                                <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="LastName" class="form-label"></label>
+                                <input asp-for="LastName" class="form-control" value="@Model.LastName" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="HireDate" class="form-label"></label>
+                                <input asp-for="HireDate" class="datepicker form-control" value="@Model.HireDate" />
+                                <span asp-validation-for="HireDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Gender" class="form-label"></label>
+                                <select asp-for="Gender" class="form-control">
+                                    @foreach (string gender in new List<string> { "Male", "Female" })
+                                    {
+                                        <option value="@gender" selected=@(Model.Gender == gender)>@gender</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="DateOfBirth" class="form-label"></label>
+                                <input asp-for="DateOfBirth" class="datepicker form-control" value="@Model.DateOfBirth" />
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="PhysicalAddress" class="form-label"></label>
+                                <input asp-for="PhysicalAddress" class="form-control" value="@Model.PhysicalAddress" />
+                                <span asp-validation-for="PhysicalAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Education" class="form-label"></label>
+                                <input asp-for="Education" class="form-control" value="@Model.Education" />
+                                <span asp-validation-for="Education" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="HireDate" class="form-label"></label>
+                                <input asp-for="HireDate" class="datepicker form-control" value="@Model.HireDate" />
+                                <span asp-validation-for="HireDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Profile Picture (TODO)
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group fallback w-100">
+                                <input type="file"
+                                       class="dropify"
+                                       data-default-file="" />
+                            </div>
+                        </div>
+                        -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/pickadate/picker.js"></script>
+    <script src="~/lib/pickadate/picker.time.js"></script>
+    <script src="~/lib/pickadate/picker.date.js"></script>
+
+    <script src="~/js/plugins-init/pickadate-init.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
