@@ -26,13 +26,13 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The first name of the student.
         /// </summary>
-        [MaxLength(32)]
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; } = null!;
         /// <summary>
         /// The last name of the student.
         /// </summary>
-        [MaxLength(32)]
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; } = null!;
         [Display(Name = "Full Name")]
