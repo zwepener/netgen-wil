@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace CodeCraft.Web.AdminPortal.Controllers
 {
     [Authorize]
-    public class CourseCategoriesController : Controller
+    public class DepartmentsController : Controller
     {
         private readonly CodeCraftDbContext _context;
 
-        public CourseCategoriesController(CodeCraftDbContext context)
+        public DepartmentsController(CodeCraftDbContext context)
         {
             _context = context;
         }
@@ -19,7 +19,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: CourseCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CourseCategory.ToListAsync());
+            return View(await _context.Department.ToListAsync());
         }
 
         // GET: CourseCategories/Details/5
@@ -30,14 +30,14 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var courseCategory = await _context.CourseCategory
+            var department = await _context.Department
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (courseCategory == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return View(courseCategory);
+            return View(department);
         }
 
         // GET: CourseCategories/Create
@@ -51,15 +51,15 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,UpdatedAt,CreatedAt")] CourseCategory courseCategory)
+        public async Task<IActionResult> Create([Bind("Id,Name,Code,UpdatedAt,CreatedAt")] Department department)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(courseCategory);
+                _context.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseCategory);
+            return View(department);
         }
 
         // GET: CourseCategories/Edit/5
@@ -70,12 +70,12 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var courseCategory = await _context.CourseCategory.FindAsync(id);
-            if (courseCategory == null)
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
             {
                 return NotFound();
             }
-            return View(courseCategory);
+            return View(department);
         }
 
         // POST: CourseCategories/Edit/5
@@ -83,9 +83,9 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UpdatedAt,CreatedAt")] CourseCategory courseCategory)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Code,UpdatedAt,CreatedAt")] Department department)
         {
-            if (id != courseCategory.Id)
+            if (id != department.Id)
             {
                 return NotFound();
             }
@@ -94,12 +94,12 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 try
                 {
-                    _context.Update(courseCategory);
+                    _context.Update(department);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseCategoryExists(courseCategory.Id))
+                    if (!DepartmentExists(department.Id))
                     {
                         return NotFound();
                     }
@@ -110,7 +110,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseCategory);
+            return View(department);
         }
 
         // GET: CourseCategories/Delete/5
@@ -121,14 +121,14 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var courseCategory = await _context.CourseCategory
+            var department = await _context.Department
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (courseCategory == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return View(courseCategory);
+            return View(department);
         }
 
         // POST: CourseCategories/Delete/5
@@ -136,19 +136,19 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var courseCategory = await _context.CourseCategory.FindAsync(id);
-            if (courseCategory != null)
+            var department = await _context.Department.FindAsync(id);
+            if (department != null)
             {
-                _context.CourseCategory.Remove(courseCategory);
+                _context.Department.Remove(department);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseCategoryExists(int id)
+        private bool DepartmentExists(int id)
         {
-            return _context.CourseCategory.Any(e => e.Id == id);
+            return _context.Department.Any(e => e.Id == id);
         }
     }
 }
