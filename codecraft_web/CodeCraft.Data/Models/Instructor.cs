@@ -71,7 +71,7 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// A list of courses that this instructor is qualified to teach.
         /// </summary>
-        public List<Course> Courses { get; set; } = [];
+        public List<Course> Courses { get; } = [];
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
