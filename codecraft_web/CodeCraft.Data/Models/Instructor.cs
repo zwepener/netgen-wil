@@ -26,45 +26,60 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The first name of the instructor.
         /// </summary>
-        [MaxLength(32)]
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; } = null!;
         /// <summary>
-        /// The middle name of the instructor. Can be null.
-        /// </summary>
-        [MaxLength(32)]
-        [Display(Name = "Middle Name")]
-        public string? MiddleName { get; set; }
-        /// <summary>
         /// The last name of the instructor.
         /// </summary>
-        [MaxLength(32)]
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; } = null!;
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+        [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; } = null!;
         /// <summary>
         /// The date of birth of the instructor.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
-        public DateOnly DateOfBirth { get; set; }
-        /// <summary>
-        /// The field of experties this instructor specializes in.
-        /// </summary>
-        [MaxLength(32)]
-        [Display(Name = "Field of Experties")]
-        public string Experties { get; set; } = null!;
-        /// <summary>
-        /// The amount of experience this instructor of being an instructor.
-        /// Measured in <c>Years</c>.
-        /// </summary>
-        [Display(Name = "Years of Experience")]
-        public sbyte Experience { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DateOfBirth { get; set; }
+        [Display(Name = "Age")]
+        public int Age
+        {
+            get
+            {
+                return (new DateTime(1, 1, 1) + (DateTime.Today - DateOfBirth)).Year - 1;
+            }
+        }
+        [Required]
+        [Display(Name = "Physical Address")]
+        public string PhysicalAddress { get; set; } = null!;
+        [Required]
+        [Display(Name = "Education")]
+        public string Education { get; set; } = null!;
         /// <summary>
         /// A list of courses that this instructor is qualified to teach.
         /// </summary>
-        public List<Course> Courses { get; } = [];
+        public List<Course> Courses { get; set; } = [];
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Hired Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime HireDate { get; set; }
         [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
