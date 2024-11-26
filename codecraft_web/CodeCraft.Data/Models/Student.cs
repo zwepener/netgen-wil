@@ -30,18 +30,22 @@ namespace CodeCraft.Data.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; } = null!;
         /// <summary>
-        /// The middle name of the student.
-        /// Can be null.
-        /// </summary>
-        [MaxLength(32)]
-        [Display(Name = "Middle Name")]
-        public string? MiddleName { get; set; }
-        /// <summary>
         /// The last name of the student.
         /// </summary>
         [MaxLength(32)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; } = null!;
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+        [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; } = null!;
         /// <summary>
         /// A list of courses that the student is enrolled in.
         /// </summary>
@@ -49,8 +53,27 @@ namespace CodeCraft.Data.Models
         /// <summary>
         /// The date of birth of the student.
         /// </summary>
+        [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
-        public DateOnly DateOfBirth { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DateOfBirth { get; set; }
+        [Display(Name = "Age")]
+        public int Age
+        {
+            get
+            {
+                return (new DateTime(1, 1, 1) + (DateTime.Today - DateOfBirth)).Year - 1;
+            }
+        }
+        [Required]
+        [Display(Name = "Physical Address")]
+        public string PhysicalAddress { get; set; } = null!;
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Registration Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime RegisterDate { get; set; }
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
