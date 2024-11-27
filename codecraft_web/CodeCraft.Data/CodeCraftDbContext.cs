@@ -152,6 +152,12 @@ namespace CodeCraft.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder
+                .Entity<StudentCourse>()
+                .Property(e => e.CreatedAt)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("GETDATE()");
+
+            builder
                 .Entity<StudentTestimonial>()
                 .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
@@ -163,7 +169,7 @@ namespace CodeCraft.Data
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("GETDATE()");
         }
-        internal static void SetConstraints(ModelBuilder builder)
+        internal static void SetColumnConstraints(ModelBuilder builder)
         {
             builder
                 .Entity<Admin>()
@@ -219,7 +225,8 @@ namespace CodeCraft.Data
                 {
                     Id = 1,
                     Name = "Information Technology",
-                    Code = "IT"
+                    Code = "IT",
+                    Description = "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
                 }
             ];
 
@@ -284,9 +291,9 @@ namespace CodeCraft.Data
                     FirstName = "Instructor",
                     LastName = "Default",
                     Gender = "Male",
-                    DateOfBirth = new DateTime(2024, 6, 30),
+                    DateOfBirth = new DateTime(1970, 1, 1),
                     Education = "N/A",
-                    HireDate = new DateTime(2024, 6, 30),
+                    HireDate = new DateTime(2024, 1, 1),
                     PhysicalAddress = "N/A",
                 },
             ];
@@ -309,8 +316,7 @@ namespace CodeCraft.Data
                     FirstName = "Student",
                     LastName = "Default",
                     Gender = "Male",
-                    DateOfBirth = new DateTime(2024, 6, 30),
-                    RegisterDate = new DateTime(2024, 6, 30),
+                    DateOfBirth = new DateTime(2004, 3, 15),
                     PhysicalAddress = "N/A",
                 },
             ];
@@ -321,6 +327,9 @@ namespace CodeCraft.Data
                 {
                     CourseId = 1,
                     StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
                 }
             ];
 
@@ -371,7 +380,7 @@ namespace CodeCraft.Data
 
             Configurer.SetColumnDefaults(modelBuilder);
 
-            Configurer.SetConstraints(modelBuilder);
+            Configurer.SetColumnConstraints(modelBuilder);
 
             Configurer.SetEntitiesDeleteBehavior(modelBuilder);
 

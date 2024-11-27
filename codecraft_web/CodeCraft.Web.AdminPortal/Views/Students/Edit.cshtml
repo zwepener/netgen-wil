@@ -77,13 +77,6 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label asp-for="RegisterDate" class="form-label"></label>
-                                <input asp-for="RegisterDate" class="datepicker form-control" value="@Model.RegisterDate" />
-                                <span asp-validation-for="RegisterDate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
                                 <label asp-for="Gender" class="form-label"></label>
                                 <select asp-for="Gender" class="form-control">
                                     @foreach (string gender in new List<string> { "Male", "Female" }) {
@@ -108,13 +101,6 @@
                                     @Html.DisplayFor(model => model.PhysicalAddress)
                                 </textarea>
                                 <span asp-validation-for="PhysicalAddress" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="RegisterDate" class="form-label"></label>
-                                <input asp-for="RegisterDate" class="datepicker form-control" value="@Model.RegisterDate" />
-                                <span asp-validation-for="RegisterDate" class="text-danger"></span>
                             </div>
                         </div>
                         <!-- Profile Image

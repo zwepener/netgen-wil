@@ -69,11 +69,6 @@ namespace CodeCraft.Data.Models
         [Required]
         [Display(Name = "Physical Address")]
         public string PhysicalAddress { get; set; } = null!;
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Registration Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime RegisterDate { get; set; }
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>

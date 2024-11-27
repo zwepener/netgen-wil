@@ -34,6 +34,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
 
             var student = await _context.Student
                 .Include(s => s.User)
+                .Include(s => s.Courses)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
@@ -55,7 +56,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,RegisterDate,UpdatedAt,CreatedAt")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,UpdatedAt,CreatedAt")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +90,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,RegisterDate,UpdatedAt,CreatedAt")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,UpdatedAt,CreatedAt")] Student student)
         {
             if (id != student.Id)
             {
