@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>@ViewData["Title"] - CodeCraft Admin</title>
 
-        <link href="~/css/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
         @RenderSection("Styles", required: false)
     </head>
 
@@ -18,7 +18,9 @@
                         <div class="form-input-content text-center error-page">
                             @RenderBody()
                             <div>
-                                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">Back to Dashboard</a>
+                                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">
+                                    Back to Dashboard
+                                </a>
                             </div>
                         </div>
                     </div>

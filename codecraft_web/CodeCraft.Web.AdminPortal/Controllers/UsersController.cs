@@ -58,6 +58,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress")] User user)
         {
+            return StatusCode(503);
+
             if (id != user.Id)
             {
                 return NotFound();
