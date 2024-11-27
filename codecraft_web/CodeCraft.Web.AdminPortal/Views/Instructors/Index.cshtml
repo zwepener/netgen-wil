@@ -17,8 +17,7 @@
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a asp-controller="Dashboard"
-                   asp-action="Index">
+                <a asp-controller="Dashboard" asp-action="Index">
                     Dashboard
                 </a>
             </li>
@@ -38,83 +37,49 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <ul class="nav nav-pills mb-3">
-            <li class="nav-item">
-                <a href="#list-view"
-                   data-toggle="tab"
-                   class="nav-link btn-primary mr-1 show active">List View</a>
-            </li>
-            <li class="nav-item">
-                <a href="#grid-view"
-                   data-toggle="tab"
-                   class="nav-link btn-primary">Grid View</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-lg-12">
         <div class="row tab-content">
             <div id="list-view" class="tab-pane fade active show col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">All Instructors</h4>
-                        <a class="btn btn-primary"
-                           asp-action="Create">
-                            + Add new
+                        <a asp-action="Create" class="btn btn-primary">
+                            <i class="la la-plus-circle"></i> Add Instructor
                         </a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example3"
-                                   class="display"
-                                   style="min-width: 845px">
+                            <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
                                         <th>@Html.DisplayNameFor(model => model.FullName)</th>
-                                        <th>@Html.DisplayNameFor(model => model.Gender)</th>
-                                        <th>@Html.DisplayNameFor(model => model.Education)</th>
-                                        <th>@Html.DisplayNameFor(model => model.HireDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.User!.Email)</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (Instructor instructor in Model)
                                     {
                                         <tr>
                                             <td>
-                                                <img class="rounded-circle"
-                                                     width="35"
-                                                     src="~/images/profile/small/pic1.jpg"
-                                                     alt="" />
+                                                @Html.DisplayFor(modelItem => instructor.Id)
                                             </td>
                                             <td>
-                                                <a asp-action="Details" asp-route-id="@item.Id">
-                                                    @Html.DisplayFor(modelItem => item.FullName)
+                                                <a asp-action="Details" asp-route-id="@instructor.Id">
+                                                    @Html.DisplayFor(modelItem => instructor.FullName)
                                                 </a>
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Gender)
+                                                @Html.DisplayFor(modelItem => instructor.User!.Email)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Education)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.HireDate)
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary"
-                                                   asp-action="Details"
-                                                   asp-route-id="@item.Id">
+                                                <a asp-action="Details" asp-route-id="@instructor.Id" class="btn btn-sm btn-primary">
                                                     <i class="la la-eye"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-primary"
-                                                   asp-action="Edit"
-                                                   asp-route-id="@item.Id">
+                                                <a asp-action="Edit" asp-route-id="@instructor.Id" class="btn btn-sm btn-primary">
                                                     <i class="la la-pencil"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-danger"
-                                                   asp-action="Delete"
-                                                   asp-route-id="@item.Id">
+                                                <a asp-action="Delete" asp-route-id="@instructor.Id" class="btn btn-sm btn-danger">
                                                     <i class="la la-trash-o"></i>
                                                 </a>
                                             </td>
@@ -124,73 +89,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div id="grid-view" class="tab-pane fade col-lg-12">
-                <div class="row">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-profile">
-                                <div class="card-header justify-content-end pb-0">
-                                    <div class="dropdown">
-                                        <button class="btn btn-link"
-                                                type="button"
-                                                data-toggle="dropdown">
-                                            <span class="dropdown-dots fs--1"></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right border py-0">
-                                            <div class="py-2">
-                                                <a class="dropdown-item"
-                                                   asp-action="Edit"
-                                                   asp-route-id="@item.Id">
-                                                    Edit
-                                                </a>
-                                                <a class="dropdown-item text-danger"
-                                                   asp-action="Delete"
-                                                   asp-route-id="@item.Id">
-                                                    Delete
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-2">
-                                    <div class="text-center">
-                                        <div class="profile-photo">
-                                            <img src="~/images/profile/small/pic2.jpg"
-                                                 width="100"
-                                                 class="img-fluid rounded-circle"
-                                                 alt="" />
-                                        </div>
-                                        <h3 class="mt-4 mb-1">
-                                            @Html.DisplayFor(modelItem => item.FullName)
-                                        </h3>
-                                        <p class="text-muted">
-                                            @Html.DisplayFor(modelItem => item.Education)
-                                        </p>
-                                        <ul class="list-group mb-3 list-group-flush">
-                                            <li class="list-group-item px-0 d-flex justify-content-between">
-                                                <span class="mb-0">@Html.DisplayNameFor(model => model.Gender) :</span><strong>
-                                                    @Html.DisplayFor(modelItem => item.Gender)
-                                                </strong>
-                                            </li>
-                                            <li class="list-group-item px-0 d-flex justify-content-between">
-                                                <span class="mb-0">@Html.DisplayNameFor(model => model.PhysicalAddress) :</span><strong>
-                                                    @Html.DisplayFor(modelItem => item.PhysicalAddress)
-                                                </strong>
-                                            </li>
-                                        </ul>
-                                        <a class="btn btn-outline-primary btn-rounded mt-3 px-4"
-                                           asp-action="Details"
-                                           asp-route-id="@item.Id">
-                                            Read More
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
                 </div>
             </div>
         </div>
