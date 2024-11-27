@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
 {
+    [Index(nameof(UserId), IsUnique = true)]
     public class Admin
     {
-        [Key]
         [Display(Name = "Admin ID")]
         public int Id { get; set; }
-        [Required]
         [Display(Name = "User ID")]
-        public string UserId { get; set; } = null!;
+        public required string UserId { get; set; }
         public User? User { get; set; }
         [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

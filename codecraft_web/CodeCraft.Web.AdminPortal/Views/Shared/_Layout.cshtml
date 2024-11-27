@@ -58,25 +58,42 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
+                    <li class="nav-label first">Dashboard</li>
                     <li>
                         <a asp-controller="Dashboard" asp-action="Index" aria-expanded="false">
                             <i class="la la-home"></i>
-                            <span class="nav-text">Dashboard</span>
+                            <span class="nav-text">
+                                Dashboard
+                            </span>
                         </a>
                     </li>
                     <li>
+                        <a asp-controller="ContactInquiries" asp-action="Index">
+                            <i class="la la-clipboard"></i>
+                            <span class="nav-text">
+                                Contact Inquiries
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-label">Management</li>
+                    <li>
                         <a asp-controller="Users" asp-action="Index" class="has-arrow" aria-expanded="false">
                             <i class="la la-user"></i>
-                            <span class="nav-text">Users</span>
+                            <span class="nav-text">
+                                Users
+                            </span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a asp-controller="Users" asp-action="Index">All Users</a>
+                                <a asp-controller="Users" asp-action="Index">
+                                    All Users
+                                </a>
                             </li>
                             <!-- 'Add User' action item
                             <li>
-                                <a asp-controller="Users" asp-action="Create">Add User</a>
+                                <a asp-controller="Users" asp-action="Create">
+                                    Add User
+                                </a>
                             </li>
                             -->
                         </ul>
@@ -84,51 +101,69 @@
                     <li>
                         <a asp-controller="Instructors" asp-action="Index" class="has-arrow" aria-expanded="false">
                             <i class="la la-user"></i>
-                            <span class="nav-text">Instructors</span>
+                            <span class="nav-text">
+                                Instructors
+                            </span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a asp-controller="Instructors" asp-action="Index">All Instructors</a>
+                                <a asp-controller="Instructors" asp-action="Index">
+                                    All Instructors
+                                </a>
                             </li>
                             <li>
-                                <a asp-controller="Instructors" asp-action="Create">Add Instructor</a>
+                                <a asp-controller="Instructors" asp-action="Create">
+                                    Add Instructor
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a asp-controller="Students" asp-action="Index" class="has-arrow" aria-expanded="false">
-                            <i class="la la-users"></i>
-                            <span class="nav-text">Students</span>
+                            <i class="la la-graduation-cap"></i>
+                            <span class="nav-text">
+                                Students
+                            </span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a asp-controller="Students"
-                                   asp-action="Index">All Students</a>
+                                <a asp-controller="Students" asp-action="Index">
+                                   All Students
+                               </a>
                             </li>
                             <li>
-                                <a asp-controller="Students"
-                                   asp-action="Create">Add Student</a>
+                                <a asp-controller="Students" asp-action="Create">
+                                    Add Student
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a asp-controller="Courses" asp-action="Index" class="has-arrow" aria-expanded="false">
-                            <i class="la la-graduation-cap"></i>
-                            <span class="nav-text">Courses</span>
+                            <i class="la la-book"></i>
+                            <span class="nav-text">
+                                Courses
+                            </span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a asp-controller="Courses" asp-action="Index">All Courses</a>
+                                <a asp-controller="Courses" asp-action="Index">
+                                    All Courses
+                                </a>
                             </li>
                             <li>
-                                <a asp-controller="Courses"  asp-action="Create">Add Course</a>
+                                <a asp-controller="Courses"  asp-action="Create">
+                                    Add Course
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a asp-controller="Departments" asp-action="Index" class="has-arrow" aria-expanded="false">
                             <i class="la la-building"></i>
-                            <span class="nav-text">Departments</span>
+                            <span class="nav-text">
+                                Departments
+                            </span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
@@ -143,6 +178,7 @@
                             </li>
                         </ul>
                     </li>
+                    
                 </ul>
             </div>
         </div>

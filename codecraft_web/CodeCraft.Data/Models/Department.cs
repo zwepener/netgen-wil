@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
@@ -6,31 +7,25 @@ namespace CodeCraft.Data.Models
     /// <summary>
     /// Represents a course department entity instance.
     /// </summary>
+    [Index(nameof(Code), IsUnique = true)]
     public class Department
     {
         /// <summary>
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
-        [Key]
         [Display(Name = "Department ID")]
         public int Id { get; set; }
         /// <summary>
         /// The name of the department.
         /// </summary>
+        [Display(Name = "Name")]
+        public required string Name { get; set; }
+        [Display(Name = "Code")]
+        public required string Code { get; set; }
         [Required]
-        [Display(Name = "Department Name")]
-        public string Name { get; set; } = null!;
-        [Required]
-        [Display(Name = "Department Code")]
-        public string Code { get; set; } = null!;
-        [Required]
-        [Display(Name = "Department Description")]
-        public string Description { get; set; } = null!;
-        /// <summary>
-        /// A list of courses that belong to this department.
-        /// </summary>
-        public List<Course> Courses { get; set; } = [];
+        [Display(Name = "Description")]
+        public required string Description { get; set; }
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>
@@ -43,6 +38,10 @@ namespace CodeCraft.Data.Models
         [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
+        /// <summary>
+        /// A list of courses that belong to this department.
+        /// </summary>
+        public List<Course> Courses { get; set; } = [];
 
     }
 }

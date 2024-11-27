@@ -128,13 +128,13 @@ namespace CodeCraft.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<InstructorTestimonial>()
+                .Entity<InstructorStudentTestimonial>()
                 .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<InstructorTestimonial>()
+                .Entity<InstructorStudentTestimonial>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("GETDATE()");
@@ -158,45 +158,28 @@ namespace CodeCraft.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<StudentTestimonial>()
+                .Entity<StudentCourseTestimonial>()
                 .Property(e => e.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<StudentTestimonial>()
+                .Entity<StudentCourseTestimonial>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("GETDATE()");
         }
-        internal static void SetColumnConstraints(ModelBuilder builder)
-        {
-            builder
-                .Entity<Admin>()
-                .HasIndex(e => e.UserId)
-                .IsUnique();
-
-            builder
-                .Entity<Instructor>()
-                .HasIndex(e => e.UserId)
-                .IsUnique();
-
-            builder
-                .Entity<Student>()
-                .HasIndex(e => e.UserId)
-                .IsUnique();
-        }
         internal static void SetEntitiesDeleteBehavior(ModelBuilder builder)
         {
             builder
-                .Entity<InstructorTestimonial>()
+                .Entity<InstructorStudentTestimonial>()
                 .HasOne(e => e.Student)
                 .WithMany()
                 .HasForeignKey(t => t.StudentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .Entity<InstructorTestimonial>()
+                .Entity<InstructorStudentTestimonial>()
                 .HasOne(e => e.Instructor)
                 .WithMany()
                 .HasForeignKey(t => t.InstructorId)
@@ -357,10 +340,10 @@ namespace CodeCraft.Data
         public DbSet<CourseCategory> CourseCategory { get; set; } = default!;
         public DbSet<Instructor> Instructor { get; set; } = default!;
         public DbSet<InstructorCourse> InstructorCourse { get; set; } = default!;
-        public DbSet<InstructorTestimonial> InstructorTestimonial { get; set; } = default!;
+        public DbSet<InstructorStudentTestimonial> InstructorTestimonial { get; set; } = default!;
         public DbSet<Student> Student { get; set; } = default!;
         public DbSet<StudentCourse> StudentCourse { get; set; } = default!;
-        public DbSet<StudentTestimonial> StudentTestimonial { get; set; } = default!;
+        public DbSet<StudentCourseTestimonial> StudentTestimonial { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -380,8 +363,6 @@ namespace CodeCraft.Data
             Configurer.SetTableRelationships(modelBuilder);
 
             Configurer.SetColumnDefaults(modelBuilder);
-
-            Configurer.SetColumnConstraints(modelBuilder);
 
             Configurer.SetEntitiesDeleteBehavior(modelBuilder);
 

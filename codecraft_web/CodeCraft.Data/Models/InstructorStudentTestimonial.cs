@@ -1,40 +1,38 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
 {
     /// <summary>
-    /// Represents a student testimonial entity instance.
+    /// Represents an instructor testimonial entity instance.
     /// </summary>
-    public class StudentTestimonial
+    [Index(nameof(InstructorId), nameof(StudentId), IsUnique = true)]
+    public class InstructorStudentTestimonial
     {
         /// <summary>
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
-        [Key]
-        [Display(Name = "Student Testimonial ID")]
+        [Display(Name = "Testimonial ID")]
         public int Id { get; set; }
         /// <summary>
-        /// The student id of the student this testimonial belongs to.
+        /// The instructor id of the instructor this testimonial belongs to.
         /// </summary>
-        [Required]
-        [Display(Name = "Student ID")]
+        [Display(Name = "Instructor ID")]
+        public int InstructorId { get; set; }
+        public Instructor? Instructor { get; set; }
+        /// <summary>
+        /// The student id of the student this testimonial is directed at.
+        /// </summary>
+        [Display(Name = "Target Student ID")]
         public int StudentId { get; set; }
         public Student? Student { get; set; }
         /// <summary>
-        /// The course id of the course this testimonial is directed at.
+        /// The comment of the instructor about the specified student.
         /// </summary>
-        [Required]
-        [Display(Name = "Target Course ID")]
-        public int CourseId { get; set; }
-        public Course? Course { get; set; }
-        /// <summary>
-        /// The comment made by the student towards the course.
-        /// </summary>
-        [Required]
         [Display(Name = "Comment")]
-        public string Comment { get; set; } = null!;
+        public required string Comment { get; set; }
         /// <summary>
         /// The date and time this entity was last updated.
         /// </summary>

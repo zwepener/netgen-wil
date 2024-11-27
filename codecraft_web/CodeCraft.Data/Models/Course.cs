@@ -7,38 +7,34 @@ namespace CodeCraft.Data.Models
     /// <summary>
     /// Represents a course entity instance.
     /// </summary>
+    [Index(nameof(Code), IsUnique = true)]
     public class Course
     {
         /// <summary>
         /// The id of this entity.
         /// This property can be used to uniquely identify this entity.
         /// </summary>
-        [Key]
         [Display(Name = "Course ID")]
         public int Id { get; set; }
         /// <summary>
         /// The name of the course.
         /// </summary>
-        [Required]
-        [Display(Name = "Course Name")]
-        public string Name { get; set; } = null!;
-        [Required]
-        [Display(Name = "Course Code")]
-        public string Code { get; set; } = null!;
+        [Display(Name = "Name")]
+        public required string Name { get; set; }
+        [Display(Name = "Code")]
+        public required string Code { get; set; }
         /// <summary>
         /// The description of the course.
         /// </summary>
-        [Required]
-        [Display(Name = "Course Description")]
-        public string Description { get; set; } = null!;
+        [Display(Name = "Description")]
+        public required string Description { get; set; }
         /// <summary>
         /// The duration of the course.
         /// Must be suffixed with:
         /// 'h' for 'hours', 'd' for 'days', 'm' for 'months', 'y' for 'years'.
         /// </summary>
-        [Required]
-        [Display(Name = "Course Duration")]
-        public string Duration { get; set; } = null!;
+        [Display(Name = "Duration")]
+        public required string Duration { get; set; }
         public string FormattedDuration
         {
             get
@@ -55,23 +51,10 @@ namespace CodeCraft.Data.Models
                 return durInt + " " + suffixes[suffix];
             }
         }
-        [Required]
         [Precision(18, 2)]
         [DataType(DataType.Currency)]
-        [Display(Name = "Course Price")]
+        [Display(Name = "Price")]
         public decimal Price { get; set; }
-        /// <summary>
-        /// The list of departments this course is apart of.
-        /// </summary>
-        public List<Department> Categories { get; } = [];
-        /// <summary>
-        /// The list of instructors that are qualified to teach this course.
-        /// </summary>
-        public List<Instructor> Instructors { get; } = [];
-        /// <summary>
-        /// A list of students that are enrolled in this course.
-        /// </summary>
-        public List<Student> Students { get; } = [];
         [Display(Name = "Student Count")]
         public int StudentCount
         {
@@ -80,12 +63,10 @@ namespace CodeCraft.Data.Models
                 return Students.Count;
             }
         }
-        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Application Open Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ApplicationOpenDate { get; set; }
-        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Application Close Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
@@ -102,5 +83,17 @@ namespace CodeCraft.Data.Models
         [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
+        /// <summary>
+        /// The list of departments this course is apart of.
+        /// </summary>
+        public List<Department> Categories { get; } = [];
+        /// <summary>
+        /// The list of instructors that are qualified to teach this course.
+        /// </summary>
+        public List<Instructor> Instructors { get; } = [];
+        /// <summary>
+        /// A list of students that are enrolled in this course.
+        /// </summary>
+        public List<Student> Students { get; } = [];
     }
 }
