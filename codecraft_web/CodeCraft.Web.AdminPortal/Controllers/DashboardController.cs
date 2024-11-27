@@ -1,6 +1,6 @@
 ﻿using CodeCraft.Data;
-using CodeCraft.Web.AdminPortal.Models;
 using CodeCraft.Data.Models;
+using CodeCraft.Web.AdminPortal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

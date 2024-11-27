@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 namespace CodeCraft.Web.StudentPortal.Controllers
 {
     [Authorize]
-    public class DashboardController(UserManager<IdentityUser> userManager, CodeCraftDbContext context) : Controller
+    public class DashboardController(UserManager<User> userManager, CodeCraftDbContext context) : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager = userManager;
+        private readonly UserManager<User> _userManager = userManager;
         private readonly CodeCraftDbContext _context = context;
 
         public async Task<IActionResult> Index()
         {
-            IdentityUser? user = await _userManager.GetUserAsync(User);
+            User? user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return Unauthorized();

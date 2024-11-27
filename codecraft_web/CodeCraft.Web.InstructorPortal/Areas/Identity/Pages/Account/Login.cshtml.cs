@@ -14,11 +14,11 @@ namespace CodeCraft.Web.InstructorPortal.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly CodeCraftDbContext _context;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, CodeCraftDbContext context)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, CodeCraftDbContext context)
         {
             _signInManager = signInManager;
             _logger = logger;

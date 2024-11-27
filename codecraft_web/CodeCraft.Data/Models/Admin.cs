@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
@@ -12,7 +11,7 @@ namespace CodeCraft.Data.Models
         [Required]
         [Display(Name = "User ID")]
         public string UserId { get; set; } = null!;
-        public IdentityUser? User { get; set; }
+        public User? User { get; set; }
         [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }

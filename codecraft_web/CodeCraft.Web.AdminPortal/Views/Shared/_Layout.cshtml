@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CodeCraft Admin</title>
     <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
@@ -63,6 +64,22 @@
                             <i class="la la-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Users" asp-action="Index" class="has-arrow" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Users</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a asp-controller="Users" asp-action="Index">All Users</a>
+                            </li>
+                            <!-- 'Add User' action item
+                            <li>
+                                <a asp-controller="Users" asp-action="Create">Add User</a>
+                            </li>
+                            -->
+                        </ul>
                     </li>
                     <li>
                         <a asp-controller="Instructors" asp-action="Index" class="has-arrow" aria-expanded="false">
@@ -153,7 +170,9 @@
     <script src="~/lib/svganimation/vivus.min.js"></script>
     <script src="~/lib/svganimation/svg.animation.js"></script>
     <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
 
+    <script src="~/js/plugins-init/datatables.init.js"></script>
     <script src="~/js/custom.min.js"></script>
     <script src="~/js/dlabnav-init.js"></script>
     <script src="~/js/styleSwitcher.js"></script>

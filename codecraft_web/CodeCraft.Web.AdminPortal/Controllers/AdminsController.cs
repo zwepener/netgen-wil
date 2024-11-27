@@ -46,7 +46,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: Admins/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
             return View();
         }
 
@@ -63,7 +63,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", admin.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", admin.UserId);
             return View(admin);
         }
 
@@ -80,7 +80,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", admin.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", admin.UserId);
             return View(admin);
         }
 
@@ -116,7 +116,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", admin.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", admin.UserId);
             return View(admin);
         }
 

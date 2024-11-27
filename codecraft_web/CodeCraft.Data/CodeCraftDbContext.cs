@@ -11,7 +11,7 @@ namespace CodeCraft.Data
         {
             string schema = "AspNetIdentity";
 
-            builder.Entity<IdentityUser>(entity =>
+            builder.Entity<User>(entity =>
             {
                 entity.ToTable(name: "User", schema: schema);
             });
@@ -23,27 +23,27 @@ namespace CodeCraft.Data
 
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.ToTable(name: "UserRoles", schema: schema);
+                entity.ToTable(name: "UserRole", schema: schema);
             });
 
             builder.Entity<IdentityUserClaim<string>>(entity =>
             {
-                entity.ToTable(name: "UserClaims", schema: schema);
+                entity.ToTable(name: "UserClaim", schema: schema);
             });
 
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
-                entity.ToTable(name: "UserLogins", schema: schema);
+                entity.ToTable(name: "UserLogin", schema: schema);
             });
 
             builder.Entity<IdentityRoleClaim<string>>(entity =>
             {
-                entity.ToTable(name: "RoleClaims", schema: schema);
+                entity.ToTable(name: "RoleClaim", schema: schema);
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
-                entity.ToTable(name: "UserTokens", schema: schema);
+                entity.ToTable(name: "UserToken", schema: schema);
             });
         }
         internal static void SetTableRelationships(ModelBuilder builder)
@@ -239,9 +239,9 @@ namespace CodeCraft.Data
                 }
             ];
 
-            List<IdentityUser> defaultUsers =
+            List<User> defaultUsers =
             [
-                new IdentityUser
+                new User
                 {
                     Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
                     Email = "admin@codecraft.co.za",
@@ -251,7 +251,7 @@ namespace CodeCraft.Data
                     NormalizedUserName = "ADMIN@CODECRAFT.CO.ZA",
                     PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==" // 'Password1#'
                 },
-                new IdentityUser
+                new User
                 {
                     Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
                     Email = "instructor@codecraft.co.za",
@@ -261,7 +261,7 @@ namespace CodeCraft.Data
                     NormalizedUserName = "INSTRUCTOR@CODECRAFT.CO.ZA",
                     PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==" // 'Password1#'
                 },
-                new IdentityUser
+                new User
                 {
                     Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
                     Email = "student@codecraft.co.za",
@@ -336,7 +336,7 @@ namespace CodeCraft.Data
             builder.Entity<Course>().HasData(defaultCourses);
             builder.Entity<Department>().HasData(defaultDepartments);
             builder.Entity<CourseCategory>().HasData(defaultCourseCategories);
-            builder.Entity<IdentityUser>().HasData(defaultUsers);
+            builder.Entity<User>().HasData(defaultUsers);
             builder.Entity<Admin>().HasData(defaultAdmins);
             builder.Entity<Instructor>().HasData(defaultInstructors);
             builder.Entity<InstructorCourse>().HasData(defaultInstructorCourses);
@@ -344,10 +344,11 @@ namespace CodeCraft.Data
             builder.Entity<StudentCourse>().HasData(defaultStudentCourses);
         }
     }
-    public class CodeCraftDbContext : IdentityDbContext<IdentityUser>
+    public class CodeCraftDbContext : IdentityDbContext<User>
     {
-        public CodeCraftDbContext(DbContextOptions<CodeCraftDbContext> options)
-            : base(options) { }
+        public CodeCraftDbContext(DbContextOptions<CodeCraftDbContext> options) : base(options)
+        {
+        }
 
         public DbSet<Admin> Admin { get; set; } = default!;
         public DbSet<ContactInquiry> ContactInquiry { get; set; } = default!;

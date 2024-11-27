@@ -1,26 +1,25 @@
-﻿@model IEnumerable<CodeCraft.Data.Models.Student>
+﻿@model IEnumerable<CodeCraft.Data.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Users";
 }
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
-            <h4>All Students</h4>
+            <h4>All Users</h4>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a asp-controller="Dashboard"
-                   asp-action="Index">
+                <a asp-controller="Dashboard" asp-action="Index">
                     Dashboard
                 </a>
             </li>
             <li class="breadcrumb-item active">
                 <a asp-action="Index">
-                    Students
+                    Users
                 </a>
             </li>
             <li class="breadcrumb-item active">
@@ -38,10 +37,12 @@
             <div id="list-view" class="tab-pane fade active show col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Students</h4>
+                        <h4 class="card-title">All Users</h4>
+                        <!-- 'Add User' Button
                         <a asp-action="Create" class="btn btn-primary">
-                            <i class="la la-plus-circle"></i> Add Student
+                            <i class="la la-plus-circle"></i> Add User
                         </a>
+                        -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -49,34 +50,36 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>@Html.DisplayNameFor(model => model.FullName)</th>
-                                        <th>@Html.DisplayNameFor(model => model.User!.Email)</th>
+                                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Email)</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (User user in Model)
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Id)
+                                                @Html.DisplayFor(modelItem => user.Id)
                                             </td>
                                             <td>
-                                                <a asp-action="Details" asp-route-id="@item.Id">
-                                                    @Html.DisplayFor(modelItem => item.FullName)
+                                                <a asp-action="Details" asp-route-id="@user.Id">
+                                                    @Html.DisplayFor(modelItem => user.UserName)
                                                 </a>
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.User!.Email)
+                                                @Html.DisplayFor(modelItem => user.Email)
                                             </td>
                                             <td>
-                                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">
+                                                <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-sm btn-primary">
                                                     <i class="la la-eye"></i>
                                                 </a>
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">
+                                                <!-- 'Edit' Button
+                                                <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-primary">
                                                     <i class="la la-pencil"></i>
                                                 </a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                                -->
+                                                <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">
                                                     <i class="la la-trash-o"></i>
                                                 </a>
                                             </td>
