@@ -1,4 +1,4 @@
-﻿@model CodeCraft.Data.Models.Instructor
+﻿@model CodeCraft.Data.Models.User
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,7 +12,7 @@
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
-            <h4>Edit Instructor</h4>
+            <h4>Edit User</h4>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -24,7 +24,7 @@
             </li>
             <li class="breadcrumb-item active">
                 <a asp-action="Index">
-                    Instructors
+                    Users
                 </a>
             </li>
             <li class="breadcrumb-item active">
@@ -49,82 +49,43 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
-                                <label asp-for="UserId" class="form-label">
-                                    User Account
-                                </label>
-                                <select asp-for="UserId" class="form-control">
-                                    @foreach (SelectListItem item in ViewBag.Users)
-                                    {
-                                        <option value="@item.Value" selected=@(Model.User!.Email == item.Text)>
-                                            @item.Text
-                                        </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <!-- First Name
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
                                 <label asp-for="FirstName" class="form-label"></label>
-                                <input asp-for="FirstName" class="form-control" value="@Model.User!.FirstName" />
+                                <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                         </div>
-                        -->
-                        <!-- Last Name
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="LastName" class="form-label"></label>
-                                <input asp-for="LastName" class="form-control" value="@Model.User!.LastName" />
+                                <input asp-for="LastName" class="form-control" value="@Model.LastName" />
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                         </div>
-                        -->
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="HireDate" class="form-label"></label>
-                                <input asp-for="HireDate" class="datepicker form-control" value="@(Model.HireDate.ToString("dd/MM/yyyy"))" />
-                                <span asp-validation-for="HireDate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <!-- Gender
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="Gender" class="form-label"></label>
                                 <select asp-for="Gender" class="form-control">
                                     @foreach (string gender in new List<string> { "Male", "Female" })
                                     {
-                                        <option value="@gender" selected=@(Model.User!.Gender == gender)>
+                                        <option value="@gender" selected=@(Model.Gender == gender)>
                                             @gender
                                         </option>
                                     }
                                 </select>
                             </div>
                         </div>
-                        -->
-                        <!-- Date of Birth
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="DateOfBirth" class="form-label"></label>
-                                <input asp-for="DateOfBirth" class="datepicker form-control" value="@Model.User!.DateOfBirth" />
+                                <input asp-for="DateOfBirth" class="datepicker form-control" value="@(Model.DateOfBirth.ToString("dd/MM/yyyy"))" />
                                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                             </div>
                         </div>
-                        -->
-                        <!-- Physical Address
-                        <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="PhysicalAddress" class="form-label"></label>
-                                <input asp-for="PhysicalAddress" class="form-control" value="@Model.User!.PhysicalAddress" />
+                                <input asp-for="PhysicalAddress" class="form-control" value="@Model.PhysicalAddress" />
                                 <span asp-validation-for="PhysicalAddress" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="Education" class="form-label"></label>
-                                <input asp-for="Education" class="form-control" value="@Model.Education" />
-                                <span asp-validation-for="Education" class="text-danger"></span>
                             </div>
                         </div>
                         <!-- Profile Picture (TODO)

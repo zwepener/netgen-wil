@@ -83,7 +83,7 @@
                                             </td>
                                             <td>
                                                 <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id">
-                                                    @Html.DisplayFor(modelItem => student.FullName)
+                                                    @Html.DisplayFor(modelItem => student.User!.FullName)
                                                 </a>
                                             </td>
                                             <td>

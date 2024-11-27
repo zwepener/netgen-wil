@@ -55,7 +55,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
+        public async Task<IActionResult> Create([Bind("Id,UserId,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
         {
             if (id != instructor.Id)
             {

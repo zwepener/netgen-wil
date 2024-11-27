@@ -91,8 +91,25 @@ namespace CodeCraft.Web.AdminPortal.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-        }
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+            [Required]
+            [Display(Name = "Gender")]
+            public required string Gender { get; set; }
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Date of Birth")]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+            public DateTime DateOfBirth { get; set; }
+            [Required]
+            [Display(Name = "Physical Address")]
+            public required string PhysicalAddress { get; set; }
 
+        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {

@@ -232,7 +232,12 @@ namespace CodeCraft.Data
                     EmailConfirmed = true,
                     UserName = "admin@codecraft.co.za",
                     NormalizedUserName = "ADMIN@CODECRAFT.CO.ZA",
-                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==" // 'Password1#'
+                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", // 'Password1#'
+                    FirstName = "Admin",
+                    LastName = "Default",
+                    Gender = "Male",
+                    PhysicalAddress = "Default Address",
+                    DateOfBirth = new DateTime(1970, 1, 1),
                 },
                 new User
                 {
@@ -242,7 +247,12 @@ namespace CodeCraft.Data
                     EmailConfirmed = true,
                     UserName = "instructor@codecraft.co.za",
                     NormalizedUserName = "INSTRUCTOR@CODECRAFT.CO.ZA",
-                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==" // 'Password1#'
+                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", // 'Password1#'
+                    FirstName = "Instructor",
+                    LastName = "Default",
+                    Gender = "Male",
+                    PhysicalAddress = "Default Address",
+                    DateOfBirth = new DateTime(1970, 1, 1),
                 },
                 new User
                 {
@@ -252,7 +262,12 @@ namespace CodeCraft.Data
                     EmailConfirmed = true,
                     UserName = "student@codecraft.co.za",
                     NormalizedUserName = "STUDENT@CODECRAFT.CO.ZA",
-                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==" // 'Password1#'
+                    PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", // 'Password1#'
+                    FirstName = "Student",
+                    LastName = "Default",
+                    Gender = "Male",
+                    PhysicalAddress = "Default Address",
+                    DateOfBirth = new DateTime(1970, 1, 1),
                 },
             ];
 
@@ -271,13 +286,8 @@ namespace CodeCraft.Data
                 {
                     Id = 1,
                     UserId = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
-                    FirstName = "Instructor",
-                    LastName = "Default",
-                    Gender = "Male",
-                    DateOfBirth = new DateTime(1970, 1, 1),
                     Education = "N/A",
                     HireDate = new DateTime(2024, 1, 1),
-                    PhysicalAddress = "N/A",
                 },
             ];
 
@@ -296,11 +306,6 @@ namespace CodeCraft.Data
                 {
                     Id = 1,
                     UserId = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
-                    FirstName = "Student",
-                    LastName = "Default",
-                    Gender = "Male",
-                    DateOfBirth = new DateTime(2004, 3, 15),
-                    PhysicalAddress = "N/A",
                 },
             ];
 

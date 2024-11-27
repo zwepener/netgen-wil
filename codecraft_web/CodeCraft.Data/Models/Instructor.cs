@@ -22,43 +22,6 @@ namespace CodeCraft.Data.Models
         [Display(Name = "User ID")]
         public required string UserId { get; set; }
         public User? User { get; set; }
-        /// <summary>
-        /// The first name of the instructor.
-        /// </summary>
-        [Display(Name = "First Name")]
-        public required string FirstName { get; set; }
-        /// <summary>
-        /// The last name of the instructor.
-        /// </summary>
-        [Display(Name = "Last Name")]
-        public required string LastName { get; set; }
-        [Display(Name = "Name")]
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
-        [Display(Name = "Gender")]
-        public required string Gender { get; set; }
-        /// <summary>
-        /// The date of birth of the instructor.
-        /// </summary>
-        [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DateOfBirth { get; set; }
-        [Display(Name = "Age")]
-        public int Age
-        {
-            get
-            {
-                return (new DateTime(1, 1, 1) + (DateTime.Today - DateOfBirth)).Year - 1;
-            }
-        }
-        [Display(Name = "Physical Address")]
-        public required string PhysicalAddress { get; set; }
         [Display(Name = "Education")]
         public required string Education { get; set; }
         /// <summary>

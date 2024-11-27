@@ -3,6 +3,7 @@
 #nullable disable
 
 using CodeCraft.Data;
+using CodeCraft.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
