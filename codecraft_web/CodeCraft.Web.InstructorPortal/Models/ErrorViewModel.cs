@@ -1,4 +1,4 @@
-﻿namespace CodeCraft.Web.InstructorPortal
+﻿namespace CodeCraft.Web.InstructorPortal.Models
 {
     public class ErrorViewModel
     {
