@@ -23,6 +23,10 @@ public class Instructor
     [Display(Name = "Education")]
     public required string Education { get; set; }
 
+    [Display(Name = "Bio")]
+    [DisplayFormat(NullDisplayText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat, quis vestibulum sapien maximus.")]
+    public string? Biography { get; set; }
+
     [Required]
     [DataType(DataType.Date)]
     [Column(TypeName = "date")]
@@ -58,6 +62,15 @@ public class Instructor
         get
         {
             return Courses.Count;
+        }
+    }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
         }
     }
 }

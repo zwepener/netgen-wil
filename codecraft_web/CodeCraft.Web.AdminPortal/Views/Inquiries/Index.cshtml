@@ -7,7 +7,7 @@
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
-            <h4>All Contact Inquiries</h4>
+            <h4>All Inquiries</h4>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -19,7 +19,7 @@
             </li>
             <li class="breadcrumb-item active">
                 <a asp-action="Index">
-                    Contact Inquiries
+                    Inquiries
                 </a>
             </li>
             <li class="breadcrumb-item active">
@@ -35,9 +35,9 @@
             <div id="list-view" class="tab-pane fade active show col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Contact Inquiries</h4>
+                        <h4 class="card-title">All Inquiries</h4>
                         <a asp-action="Create" class="btn btn-primary">
-                            <i class="la la-plus-circle"></i> Add Contact Inquiry
+                            <i class="la la-plus-circle"></i> Add Inquiry
                         </a>
                     </div>
                     <div class="card-body">
@@ -60,11 +60,11 @@
                                             </td>
                                             <td>
                                                 <a asp-action="Details" asp-route-id="@inquiry.Id">
-                                                    @Html.DisplayFor(modelItem => inquiry.Id)
+                                                    @Html.DisplayFor(modelItem => inquiry.Email)
                                                 </a>
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => inquiry.Email)
+                                                @Html.DisplayFor(modelItem => inquiry.Message)
                                             </td>
                                             <td>
                                                 <a asp-action="Details" asp-route-id="@inquiry.Id" class="btn btn-sm btn-primary">

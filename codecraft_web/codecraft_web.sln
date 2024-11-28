@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Data", "CodeCraft.Data\CodeCraft.Data.csproj", "{FB590774-CC4F-4801-80E4-923403B7D2C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3} = {EB63E97E-663F-477B-AF19-5F95BEC634B3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Web.StudentPortal", "CodeCraft.Web.StudentPortal\CodeCraft.Web.StudentPortal.csproj", "{F33BE0C3-643E-493E-AA3E-80B8F02DF241}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.PublicPortal"
 	ProjectSection(ProjectDependencies) = postProject
 		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Core", "CodeCraft.Core\CodeCraft.Core.csproj", "{EB63E97E-663F-477B-AF19-5F95BEC634B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +56,10 @@ Global
 		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

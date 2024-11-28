@@ -33,4 +33,17 @@ public class Admin
 
     [Display(Name = "User")]
     public User? User { get; set; }
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
+    }
 }

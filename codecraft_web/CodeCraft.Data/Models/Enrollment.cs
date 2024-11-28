@@ -51,4 +51,17 @@ public class Enrollment
 
     [Display(Name = "Student")]
     public Student? Student { get; set; }
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
+    }
 }

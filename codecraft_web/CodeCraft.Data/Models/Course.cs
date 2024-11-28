@@ -128,4 +128,13 @@ public class Course
             return Students.Count;
         }
     }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
+    }
 }

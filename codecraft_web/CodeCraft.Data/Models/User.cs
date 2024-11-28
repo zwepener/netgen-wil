@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace CodeCraft.Data.Models;
 
@@ -30,7 +31,7 @@ public class User : IdentityUser
     [DataType(DataType.Date)]
     [Column(TypeName = "date")]
     [Display(Name = "Date of Birth")]
-    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
     public required DateTime DateOfBirth { get; set; }
 
     [Required]
@@ -57,6 +58,20 @@ public class User : IdentityUser
         get
         {
             return (new DateTime(1, 1, 1) + (DateTime.Today - DateOfBirth)).Year - 1;
+        }
+    }
+
+    [Display(Name = "Location")]
+    public string Location
+    {
+        get
+        {
+            if (!PhysicalAddress.Contains(", "))
+            {
+                return "[Redacted]";
+            }
+            string[] tempArray = PhysicalAddress.Split(", ");
+            return tempArray.ElementAt(tempArray.Length - 1);
         }
     }
 }

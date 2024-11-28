@@ -14,7 +14,6 @@ public class Inquiry
     public required int Id { get; set; }
 
     [Required]
-    [EmailAddress]
     [DataType(DataType.EmailAddress)]
     public required string Email { get; set; }
 
@@ -25,4 +24,17 @@ public class Inquiry
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedAt { get; set; }
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
+    }
 }
