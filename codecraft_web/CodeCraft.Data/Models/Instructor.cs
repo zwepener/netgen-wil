@@ -4,45 +4,61 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
 {
-    /// <summary>
-    /// Represents a instructor entity instance.
-    /// </summary>
     [Index(nameof(UserId), IsUnique = true)]
     public class Instructor
     {
-        /// <summary>
-        /// The id of this entity.
-        /// This property can be used to uniquely identify this entity.
-        /// </summary>
+        ///
+        /// Table Columns
+        ///
+
+        [Key]
         [Display(Name = "Instructor ID")]
-        public int Id { get; set; }
-        /// <summary>
-        /// The user id of the instructor.
-        /// </summary>
+        public required int Id { get; set; }
+
+        [Required]
         [Display(Name = "User ID")]
         public required string UserId { get; set; }
-        public User? User { get; set; }
+
+        [Required]
         [Display(Name = "Education")]
         public required string Education { get; set; }
-        /// <summary>
-        /// The date and time this entity was last updated.
-        /// </summary>
+
+        [Required]
         [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
         [Display(Name = "Hired Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime HireDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
+        public required DateTime HireDate { get; set; }
+
         [Display(Name = "Updated At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
-        /// <summary>
-        /// The date and time this entity was created.
-        /// </summary>
+
         [Display(Name = "Created At")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; }
-        /// <summary>
-        /// A list of courses that this instructor is qualified to teach.
-        /// </summary>
+
+        ///
+        /// Relationship Entities
+        ///
+
+        [Display(Name = "User")]
+        public User? User { get; set; }
+
+        [Display(Name = "Courses")]
         public List<Course> Courses { get; } = [];
+
+        ///
+        /// Custom Properties
+        ///
+
+        [Display(Name = "Course Count")]
+        public int CourseCount
+        {
+            get
+            {
+                return Courses.Count;
+            }
+        }
     }
 }

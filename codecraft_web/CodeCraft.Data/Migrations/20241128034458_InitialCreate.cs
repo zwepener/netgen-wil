@@ -17,21 +17,6 @@ namespace CodeCraft.Data.Migrations
                 name: "AspNetIdentity");
 
             migrationBuilder.CreateTable(
-                name: "ContactInquiry",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ContactInquiry", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Course",
                 columns: table => new
                 {
@@ -40,10 +25,12 @@ namespace CodeCraft.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DifficultyLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Technologies = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    ApplicationOpenDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApplicationCloseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ApplicationOpenDate = table.Column<DateTime>(type: "date", nullable: false),
+                    ApplicationCloseDate = table.Column<DateTime>(type: "date", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
@@ -70,6 +57,21 @@ namespace CodeCraft.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Inquiry",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inquiry", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Role",
                 schema: "AspNetIdentity",
                 columns: table => new
@@ -93,7 +95,7 @@ namespace CodeCraft.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     PhysicalAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -116,7 +118,7 @@ namespace CodeCraft.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseCategory",
+                name: "CourseDepartment",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false),
@@ -124,15 +126,15 @@ namespace CodeCraft.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseCategory", x => new { x.CourseId, x.DepartmentId });
+                    table.PrimaryKey("PK_CourseDepartment", x => new { x.CourseId, x.DepartmentId });
                     table.ForeignKey(
-                        name: "FK_CourseCategory_Course_CourseId",
+                        name: "FK_CourseDepartment_Course_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseCategory_Department_DepartmentId",
+                        name: "FK_CourseDepartment_Department_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Department",
                         principalColumn: "Id",
@@ -192,7 +194,7 @@ namespace CodeCraft.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HireDate = table.Column<DateTime>(type: "date", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
@@ -349,7 +351,35 @@ namespace CodeCraft.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InstructorTestimonial",
+                name: "Enrollment",
+                columns: table => new
+                {
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "date", nullable: false),
+                    AdmitDate = table.Column<DateTime>(type: "date", nullable: false),
+                    GraduateDate = table.Column<DateTime>(type: "date", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enrollment", x => new { x.CourseId, x.StudentId });
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Student_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Student",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InstructorStudentTestimonial",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -362,15 +392,15 @@ namespace CodeCraft.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InstructorTestimonial", x => x.Id);
+                    table.PrimaryKey("PK_InstructorStudentTestimonial", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InstructorTestimonial_Instructor_InstructorId",
+                        name: "FK_InstructorStudentTestimonial_Instructor_InstructorId",
                         column: x => x.InstructorId,
                         principalTable: "Instructor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_InstructorTestimonial_Student_StudentId",
+                        name: "FK_InstructorStudentTestimonial_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "Id",
@@ -378,35 +408,7 @@ namespace CodeCraft.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentCourse",
-                columns: table => new
-                {
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AdmitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GraduateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentCourse", x => new { x.CourseId, x.StudentId });
-                    table.ForeignKey(
-                        name: "FK_StudentCourse_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StudentCourse_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StudentTestimonial",
+                name: "StudentCourseTestimonial",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -419,15 +421,15 @@ namespace CodeCraft.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentTestimonial", x => x.Id);
+                    table.PrimaryKey("PK_StudentCourseTestimonial", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentTestimonial_Course_CourseId",
+                        name: "FK_StudentCourseTestimonial_Course_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentTestimonial_Student_StudentId",
+                        name: "FK_StudentCourseTestimonial_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
                         principalColumn: "Id",
@@ -436,13 +438,43 @@ namespace CodeCraft.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Course",
-                columns: new[] { "Id", "ApplicationCloseDate", "ApplicationOpenDate", "Code", "Description", "Duration", "Name", "Price" },
-                values: new object[] { 1, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PRP412", "Learn the basics of how to program with Python.", "6m", "Programming With Python", 0m });
+                columns: new[] { "Id", "ApplicationCloseDate", "ApplicationOpenDate", "Code", "Description", "DifficultyLevel", "Duration", "Name", "Price", "Technologies" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY412", "Explore the basics of computer programming using the Python programming language.", "Beginner", "6m", "Python Basics", 5000m, "Python" },
+                    { 2, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY512", "Explore more advanced computer programming concepts using the Python programming language.", "Intermediate", "6m", "Programming With Python", 5000m, "Python" },
+                    { 3, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY522", "Explore the most advanced computer programming concepts using the Python programming language.", "Advanced", "6m", "Advanced Python", 5000m, "Python" },
+                    { 4, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML512", "Explore the basics of Machine Learning using the Python programming language.", "Advanced", "6m", "Machine Learning Basics", 5000m, "Python" },
+                    { 5, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML522", "Explore the most advanced Machine Learning techniques using the Python programming language.", "Advanced", "6m", "Advanced Machine Learning", 5000m, "Python" },
+                    { 6, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI521", "Explore the basics of Arificial Intelligence using the Python programming language.", "Advanced", "6m", "Understanding Arificial Intelligence", 5000m, "Python" },
+                    { 7, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI612", "Become a certified Arificial Intelligence Engineer.", "Major", "6m", "Arificial Intelligence Engineering", 5000m, "Python,Java,C++" },
+                    { 8, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DL612", "Study the concept of Deep Learning, engineering complex deep neural networks that will revolutionize the modern world.", "Major", "6m", "Deep Learning", 5000m, "Python,Java,C++" },
+                    { 9, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD412", "Explore the basics of computer programming using the Java programming language.", "Beginner", "6m", "Java Basics", 5000m, "Java" },
+                    { 10, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD512", "Explore more advanced computer programming concepts using the Java programming language.", "Intermediate", "6m", "Programming With Java", 5000m, "Java" },
+                    { 11, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD522", "Explore the most advanced computer programming concepts using the Java programming language.", "Advanced", "6m", "Advanced Java", 5000m, "Java" },
+                    { 12, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD412", "Build beautiful and responsive websites using HTML, CSS and JavaScript.", "Beginner", "6m", "Core Web Development", 5000m, "HTML,CSS,JavaScript" },
+                    { 13, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD422", "Design mobile-friendly websites using modern CSS techniques.", "Intermediate", "6m", "Modern Web Design", 5000m, "React,Vue,Svelte,Tailwind,Bootstrap,Angular" },
+                    { 14, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD512", "Become a full-stack developer using MongoDB, Express, React, and Node.", "Advanced", "6m", "Full-Stack Web Development", 5000m, "JavaScript,TypeScript,XML,JSON" },
+                    { 15, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DBQ412", "Master SQL queries to analyze and manipulate data.", "Beginner", "6m", "Database Queries Basics", 5000m, "SQL" },
+                    { 16, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP412", "Explore the basics of computer programming using the C++ programming language.", "Beginner", "6m", "C++ Basics", 5000m, "C++" },
+                    { 17, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP512", "Explore more advanced computer programming concepts using the C++ programming language.", "Intermediate", "6m", "Programming With C++", 5000m, "C++" },
+                    { 18, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP522", "Explore the most advanced computer programming concepts using the C++ programming language.", "Advanced", "6m", "Advanced C++", 5000m, "C++" },
+                    { 19, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS512", "Explore the basics of Cyber Security.", "Intermediate", "6m", "Cyber Security Basics", 5000m, "Python,C++" },
+                    { 20, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS522", "Explore the most advanced Cyber Security concepts and tecniques.", "Advanced", "6m", "Advanced Cyber Security", 5000m, "C,C++,Assembly,Python" },
+                    { 21, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS612", "Become a certified Offensive Security specialist.", "Major", "6m", "Offensive Security", 5000m, "C,C++,Assembly,Python" },
+                    { 22, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DS612", "Become a certified Defensive Security specialist.", "Major", "6m", "Defensive Security", 5000m, "C,C++,Assembly,Python" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Department",
                 columns: new[] { "Id", "Code", "Description", "Name" },
-                values: new object[] { 1, "IT", "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Information Technology" });
+                values: new object[,]
+                {
+                    { 1, "IT", "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Information Technology" },
+                    { 2, "ML", "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Machine Learning" },
+                    { 3, "CS", "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Cyber Security" },
+                    { 4, "WD", "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Web Development" }
+                });
 
             migrationBuilder.InsertData(
                 schema: "AspNetIdentity",
@@ -450,9 +482,9 @@ namespace CodeCraft.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhysicalAddress", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "b4ffe670-d041-4fbc-bd26-03989283043c", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "e2c3439c-91f3-4777-b9f6-aae464eb97c9", false, "instructor@codecraft.co.za" },
-                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "00e6cdd9-417d-49f1-8bf2-a1d70352a293", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "9c8d1fc0-dcf1-4b7d-9a1e-29ea20bb44df", false, "admin@codecraft.co.za" },
-                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "633bfa21-6b5b-4154-9fc9-6b2e7469de3a", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "d15a3098-d801-42ba-bd2f-3e7dd82271e3", false, "student@codecraft.co.za" }
+                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "c4f3a899-4390-4323-8220-b8c4664d6073", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "37794fd6-76dc-4115-b8bb-fe167c775d26", false, "instructor@codecraft.co.za" },
+                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "59520528-a2fb-4916-83b4-7e0824266f30", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "fb42d302-3294-4aa1-a7fb-f552f7481c92", false, "admin@codecraft.co.za" },
+                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "96b20fcb-e5d4-4f20-9a66-245e7e10c4d6", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "ba5c1aaa-b57c-4d00-bdf8-9db49705d09f", false, "student@codecraft.co.za" }
                 });
 
             migrationBuilder.InsertData(
@@ -461,14 +493,50 @@ namespace CodeCraft.Data.Migrations
                 values: new object[] { 1, "a660cfef-d951-47e4-b40d-2272788f94c1" });
 
             migrationBuilder.InsertData(
-                table: "CourseCategory",
+                table: "CourseDepartment",
                 columns: new[] { "CourseId", "DepartmentId" },
-                values: new object[] { 1, 1 });
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 },
+                    { 3, 1 },
+                    { 4, 1 },
+                    { 4, 2 },
+                    { 5, 1 },
+                    { 5, 2 },
+                    { 6, 1 },
+                    { 6, 2 },
+                    { 7, 1 },
+                    { 7, 2 },
+                    { 8, 1 },
+                    { 8, 2 },
+                    { 9, 1 },
+                    { 10, 1 },
+                    { 11, 1 },
+                    { 12, 1 },
+                    { 12, 4 },
+                    { 13, 1 },
+                    { 13, 4 },
+                    { 14, 1 },
+                    { 14, 4 },
+                    { 15, 1 },
+                    { 16, 1 },
+                    { 17, 1 },
+                    { 18, 1 },
+                    { 19, 1 },
+                    { 19, 3 },
+                    { 20, 1 },
+                    { 20, 3 },
+                    { 21, 1 },
+                    { 21, 3 },
+                    { 22, 1 },
+                    { 22, 3 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Instructor",
                 columns: new[] { "Id", "Education", "HireDate", "UserId" },
-                values: new object[] { 1, "N/A", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3fe25d09-a2b3-4b40-9fdf-c2b24455411a" });
+                values: new object[] { 1, "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3fe25d09-a2b3-4b40-9fdf-c2b24455411a" });
 
             migrationBuilder.InsertData(
                 table: "Student",
@@ -476,14 +544,62 @@ namespace CodeCraft.Data.Migrations
                 values: new object[] { 1, "efff6fe8-7d05-4adf-8ed1-92ed552c113f" });
 
             migrationBuilder.InsertData(
-                table: "InstructorCourse",
-                columns: new[] { "CourseId", "InstructorId" },
-                values: new object[] { 1, 1 });
+                table: "Enrollment",
+                columns: new[] { "CourseId", "StudentId", "AdmitDate", "GraduateDate", "RegisterDate" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 11, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 12, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 13, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 14, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 15, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 16, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 17, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 18, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 19, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 20, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 21, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 22, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
 
             migrationBuilder.InsertData(
-                table: "StudentCourse",
-                columns: new[] { "CourseId", "StudentId", "AdmitDate", "GraduateDate", "RegisterDate" },
-                values: new object[] { 1, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                table: "InstructorCourse",
+                columns: new[] { "CourseId", "InstructorId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 },
+                    { 3, 1 },
+                    { 4, 1 },
+                    { 5, 1 },
+                    { 6, 1 },
+                    { 7, 1 },
+                    { 8, 1 },
+                    { 9, 1 },
+                    { 10, 1 },
+                    { 11, 1 },
+                    { 12, 1 },
+                    { 13, 1 },
+                    { 14, 1 },
+                    { 15, 1 },
+                    { 16, 1 },
+                    { 17, 1 },
+                    { 18, 1 },
+                    { 19, 1 },
+                    { 20, 1 },
+                    { 21, 1 },
+                    { 22, 1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admin_UserId",
@@ -498,8 +614,14 @@ namespace CodeCraft.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseCategory_DepartmentId",
-                table: "CourseCategory",
+                name: "IX_CourseDepartment_CourseId_DepartmentId",
+                table: "CourseDepartment",
+                columns: new[] { "CourseId", "DepartmentId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseDepartment_DepartmentId",
+                table: "CourseDepartment",
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
@@ -509,9 +631,26 @@ namespace CodeCraft.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_CourseId_StudentId",
+                table: "Enrollment",
+                columns: new[] { "CourseId", "StudentId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_StudentId",
+                table: "Enrollment",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Instructor_UserId",
                 table: "Instructor",
                 column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InstructorCourse_CourseId_InstructorId",
+                table: "InstructorCourse",
+                columns: new[] { "CourseId", "InstructorId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -520,14 +659,14 @@ namespace CodeCraft.Data.Migrations
                 column: "InstructorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstructorTestimonial_InstructorId_StudentId",
-                table: "InstructorTestimonial",
+                name: "IX_InstructorStudentTestimonial_InstructorId_StudentId",
+                table: "InstructorStudentTestimonial",
                 columns: new[] { "InstructorId", "StudentId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstructorTestimonial_StudentId",
-                table: "InstructorTestimonial",
+                name: "IX_InstructorStudentTestimonial_StudentId",
+                table: "InstructorStudentTestimonial",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
@@ -550,18 +689,13 @@ namespace CodeCraft.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentCourse_StudentId",
-                table: "StudentCourse",
-                column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentTestimonial_CourseId",
-                table: "StudentTestimonial",
+                name: "IX_StudentCourseTestimonial_CourseId",
+                table: "StudentCourseTestimonial",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTestimonial_StudentId_CourseId",
-                table: "StudentTestimonial",
+                name: "IX_StudentCourseTestimonial_StudentId_CourseId",
+                table: "StudentCourseTestimonial",
                 columns: new[] { "StudentId", "CourseId" },
                 unique: true);
 
@@ -605,26 +739,26 @@ namespace CodeCraft.Data.Migrations
                 name: "Admin");
 
             migrationBuilder.DropTable(
-                name: "ContactInquiry");
+                name: "CourseDepartment");
 
             migrationBuilder.DropTable(
-                name: "CourseCategory");
+                name: "Enrollment");
+
+            migrationBuilder.DropTable(
+                name: "Inquiry");
 
             migrationBuilder.DropTable(
                 name: "InstructorCourse");
 
             migrationBuilder.DropTable(
-                name: "InstructorTestimonial");
+                name: "InstructorStudentTestimonial");
 
             migrationBuilder.DropTable(
                 name: "RoleClaim",
                 schema: "AspNetIdentity");
 
             migrationBuilder.DropTable(
-                name: "StudentCourse");
-
-            migrationBuilder.DropTable(
-                name: "StudentTestimonial");
+                name: "StudentCourseTestimonial");
 
             migrationBuilder.DropTable(
                 name: "UserClaim",

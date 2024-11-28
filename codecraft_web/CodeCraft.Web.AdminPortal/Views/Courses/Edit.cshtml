@@ -28,9 +28,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active">
-                <a asp-action="Edit" asp-route-id="@Model.Id">
-                    Edit
-                </a>
+                Edit
             </li>
         </ol>
     </div>
@@ -73,9 +71,29 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label asp-for="DifficultyLevel" class="form-label"></label>
+                                <select asp-for="DifficultyLevel" class="form-control">
+                                    @foreach (string difficultyLevel in ViewBag.DifficultyLevels)
+                                    {
+                                        <option value="@difficultyLevel" selected="@(Model.DifficultyLevel == difficultyLevel)">
+                                            @difficultyLevel
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label asp-for="Duration" class="form-label"></label>
                                 <input asp-for="Duration" class="form-control" value="@Model.Duration" />
                                 <span asp-validation-for="Duration" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Technologies" class="form-label"></label>
+                                <input asp-for="Technologies" class="form-control" value="@Model.Technologies" />
+                                <span asp-validation-for="Technologies" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -88,14 +106,14 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="ApplicationOpenDate" class="form-label"></label>
-                                <input asp-for="ApplicationOpenDate" class="datepicker form-control" value="@Model.ApplicationOpenDate" />
+                                <input asp-for="ApplicationOpenDate" class="datepicker form-control" value="@Model.ApplicationOpenDate.ToString("yyyy/MM/dd")" asp-format="{0:dd/MM/yyyy}" />
                                 <span asp-validation-for="ApplicationOpenDate" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="ApplicationCloseDate" class="form-label"></label>
-                                <input asp-for="ApplicationCloseDate" class="datepicker form-control" value="@Model.ApplicationCloseDate" />
+                                <input asp-for="ApplicationCloseDate" class="datepicker form-control" value="@Model.ApplicationCloseDate.ToString("yyyy/MM/dd")" asp-format="{0:dd/MM/yyyy}" />
                                 <span asp-validation-for="ApplicationCloseDate" class="text-danger"></span>
                             </div>
                         </div>

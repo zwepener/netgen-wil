@@ -28,9 +28,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active">
-                <a asp-action="Edit" asp-route-id="@Model.Id">
-                    Edit
-                </a>
+                Edit
             </li>
         </ol>
     </div>
@@ -62,64 +60,13 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- First Name
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="FirstName" class="form-label"></label>
-                                <input asp-for="FirstName" class="form-control" value="@Model.User!.FirstName" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Last Name
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="LastName" class="form-label"></label>
-                                <input asp-for="LastName" class="form-control" value="@Model.User!.LastName" />
-                                <span asp-validation-for="LastName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="HireDate" class="form-label"></label>
-                                <input asp-for="HireDate" class="datepicker form-control" value="@(Model.HireDate.ToString("dd/MM/yyyy"))" />
+                                <input asp-for="HireDate" class="datepicker form-control" value="@(Model.HireDate.ToString("yyyy/MM/dd"))" />
                                 <span asp-validation-for="HireDate" class="text-danger"></span>
                             </div>
                         </div>
-                        <!-- Gender
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="Gender" class="form-label"></label>
-                                <select asp-for="Gender" class="form-control">
-                                    @foreach (string gender in new List<string> { "Male", "Female" })
-                                    {
-                                        <option value="@gender" selected=@(Model.User!.Gender == gender)>
-                                            @gender
-                                        </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Date of Birth
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="DateOfBirth" class="form-label"></label>
-                                <input asp-for="DateOfBirth" class="datepicker form-control" value="@Model.User!.DateOfBirth" />
-                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Physical Address
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="PhysicalAddress" class="form-label"></label>
-                                <input asp-for="PhysicalAddress" class="form-control" value="@Model.User!.PhysicalAddress" />
-                                <span asp-validation-for="PhysicalAddress" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label asp-for="Education" class="form-label"></label>

@@ -69,9 +69,29 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
+                                <label asp-for="DifficultyLevel" class="form-label"></label>
+                                <select asp-for="DifficultyLevel" class="form-control">
+                                    @foreach (string difficultyLevel in ViewBag.DifficultyLevels)
+                                    {
+                                        <option value="@difficultyLevel">
+                                            @difficultyLevel
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
                                 <label asp-for="Duration" class="form-label"></label>
                                 <input asp-for="Duration" class="form-control" />
                                 <span asp-validation-for="Duration" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Technologies" class="form-label"></label>
+                                <input asp-for="Technologies" class="form-control" />
+                                <span asp-validation-for="Technologies" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">

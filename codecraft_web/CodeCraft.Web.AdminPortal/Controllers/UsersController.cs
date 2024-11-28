@@ -1,7 +1,8 @@
-﻿using CodeCraft.Data;
-using CodeCraft.Data.Models;
+﻿using CodeCraft.Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodeCraft.Web.AdminPortal.Controllers
@@ -9,16 +10,17 @@ namespace CodeCraft.Web.AdminPortal.Controllers
     [Authorize]
     public class UsersController : Controller
     {
-        private readonly CodeCraftDbContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly List<string> _genders = ["Male", "Female"];
 
-        public UsersController(CodeCraftDbContext context)
+        public UsersController(UserManager<User> userManager)
         {
-            _context = context;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<User> users = await _context.Users.ToListAsync();
+            List<User> users = await _userManager.Users.ToListAsync();
             return View(users);
         }
 
@@ -29,10 +31,37 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            User? user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
+            }
+
+            return View(user);
+        }
+
+        public IActionResult Create()
+        {
+            ViewData["Genders"] = new SelectList(_genders);
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityResult result = await _userManager.CreateAsync(user, "Password1#");
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
 
             return View(user);
@@ -45,7 +74,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
+            User? user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -56,10 +85,8 @@ namespace CodeCraft.Web.AdminPortal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Gender,DateOfBirth,PhysicalAddress")] User user)
+        public async Task<IActionResult> Edit(string id, User user)
         {
-            return StatusCode(503);
-
             if (id != user.Id)
             {
                 return NotFound();
@@ -67,23 +94,28 @@ namespace CodeCraft.Web.AdminPortal.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                User? existingUser = await _userManager.FindByIdAsync(id);
+                if (existingUser == null)
                 {
-                    _context.Users.Update(user);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                existingUser.FirstName = user.FirstName;
+                existingUser.LastName = user.LastName;
+                existingUser.Gender = user.Gender;
+                existingUser.DateOfBirth = user.DateOfBirth;
+                existingUser.PhysicalAddress = user.PhysicalAddress;
+
+                IdentityResult result = await _userManager.UpdateAsync(existingUser);
+                if (result.Succeeded)
                 {
-                    if (!UserExists(user.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
             return View(user);
         }
@@ -95,7 +127,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            User? user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -109,18 +141,19 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            User? user = await _userManager.FindByIdAsync(id);
+            if (user == null)
             {
-                _context.Users.Remove(user);
+                return NotFound();
             }
 
-            await _context.SaveChangesAsync();
+            IdentityResult result = await _userManager.DeleteAsync(user);
+
             return RedirectToAction(nameof(Index));
         }
         private bool UserExists(string id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _userManager.Users.Any(e => e.Id == id);
         }
     }
 }

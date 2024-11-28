@@ -17,14 +17,12 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             _context = context;
         }
 
-        // GET: Instructors
         public async Task<IActionResult> Index()
         {
             var codeCraftDbContext = _context.Instructor.Include(i => i.User);
             return View(await codeCraftDbContext.ToListAsync());
         }
 
-        // GET: Instructors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,16 +41,12 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             return View(instructor);
         }
 
-        // GET: Instructors/Create
         public IActionResult Create()
         {
             ViewData["Users"] = new SelectList(_context.Users, "Id", "Email");
             return View();
         }
 
-        // POST: Instructors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserId,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
@@ -63,11 +57,11 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["Users"] = new SelectList(_context.Users, "Id", "Email", instructor.UserId);
             return View(instructor);
         }
 
-        // GET: Instructors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,9 +79,6 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             return View(instructor);
         }
 
-        // POST: Instructors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Education,HireDate,UpdatedAt,CreatedAt")] Instructor instructor)
@@ -117,11 +108,11 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["Users"] = new SelectList(_context.Users, "Id", "Email", instructor.UserId);
             return View(instructor);
         }
 
-        // GET: Instructors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +131,6 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             return View(instructor);
         }
 
-        // POST: Instructors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

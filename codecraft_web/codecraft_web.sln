@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.InstructorPor
 		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.PublicPortal", "CodeCraft.Web.PublicPortal\CodeCraft.Web.PublicPortal.csproj", "{EE8CF483-C331-41D2-9009-762524118BBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.PublicPortal", "CodeCraft.Web.PublicPortal\CodeCraft.Web.PublicPortal.csproj", "{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
 	EndProjectSection
@@ -47,10 +47,10 @@ Global
 		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE8CF483-C331-41D2-9009-762524118BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE8CF483-C331-41D2-9009-762524118BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE8CF483-C331-41D2-9009-762524118BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE8CF483-C331-41D2-9009-762524118BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

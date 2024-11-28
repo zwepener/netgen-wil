@@ -20,7 +20,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // GET: InstructorTestimonials
         public async Task<IActionResult> Index()
         {
-            var codeCraftDbContext = _context.InstructorTestimonial.Include(i => i.Instructor).Include(i => i.Student);
+            var codeCraftDbContext = _context.InstructorStudentTestimonial.Include(i => i.Instructor).Include(i => i.Student);
             return View(await codeCraftDbContext.ToListAsync());
         }
 
@@ -32,16 +32,16 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var instructorTestimonial = await _context.InstructorTestimonial
+            var instructorStudentTestimonial = await _context.InstructorStudentTestimonial
                 .Include(i => i.Instructor)
                 .Include(i => i.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (instructorTestimonial == null)
+            if (instructorStudentTestimonial == null)
             {
                 return NotFound();
             }
 
-            return View(instructorTestimonial);
+            return View(instructorStudentTestimonial);
         }
 
         // GET: InstructorTestimonials/Create
@@ -57,17 +57,17 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,InstructorId,StudentId,Comment,UpdatedAt,CreatedAt")] InstructorStudentTestimonial instructorTestimonial)
+        public async Task<IActionResult> Create([Bind("Id,InstructorId,StudentId,Comment,UpdatedAt,CreatedAt")] InstructorStudentTestimonial instructorStudentTestimonial)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(instructorTestimonial);
+                _context.Add(instructorStudentTestimonial);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
-            return View(instructorTestimonial);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorStudentTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorStudentTestimonial.StudentId);
+            return View(instructorStudentTestimonial);
         }
 
         // GET: InstructorTestimonials/Edit/5
@@ -78,14 +78,14 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var instructorTestimonial = await _context.InstructorTestimonial.FindAsync(id);
-            if (instructorTestimonial == null)
+            var instructorStudentTestimonial = await _context.InstructorStudentTestimonial.FindAsync(id);
+            if (instructorStudentTestimonial == null)
             {
                 return NotFound();
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
-            return View(instructorTestimonial);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorStudentTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorStudentTestimonial.StudentId);
+            return View(instructorStudentTestimonial);
         }
 
         // POST: InstructorTestimonials/Edit/5
@@ -93,9 +93,9 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,InstructorId,StudentId,Comment,UpdatedAt,CreatedAt")] InstructorStudentTestimonial instructorTestimonial)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,InstructorId,StudentId,Comment,UpdatedAt,CreatedAt")] InstructorStudentTestimonial instructorStudentTestimonial)
         {
-            if (id != instructorTestimonial.Id)
+            if (id != instructorStudentTestimonial.Id)
             {
                 return NotFound();
             }
@@ -104,12 +104,12 @@ namespace CodeCraft.Web.AdminPortal.Controllers
             {
                 try
                 {
-                    _context.Update(instructorTestimonial);
+                    _context.Update(instructorStudentTestimonial);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InstructorTestimonialExists(instructorTestimonial.Id))
+                    if (!InstructorTestimonialExists(instructorStudentTestimonial.Id))
                     {
                         return NotFound();
                     }
@@ -120,9 +120,9 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorTestimonial.InstructorId);
-            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorTestimonial.StudentId);
-            return View(instructorTestimonial);
+            ViewData["InstructorId"] = new SelectList(_context.Instructor, "Id", "Id", instructorStudentTestimonial.InstructorId);
+            ViewData["StudentId"] = new SelectList(_context.Student, "Id", "Id", instructorStudentTestimonial.StudentId);
+            return View(instructorStudentTestimonial);
         }
 
         // GET: InstructorTestimonials/Delete/5
@@ -133,16 +133,16 @@ namespace CodeCraft.Web.AdminPortal.Controllers
                 return NotFound();
             }
 
-            var instructorTestimonial = await _context.InstructorTestimonial
+            var instructorStudentTestimonial = await _context.InstructorStudentTestimonial
                 .Include(i => i.Instructor)
                 .Include(i => i.Student)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (instructorTestimonial == null)
+            if (instructorStudentTestimonial == null)
             {
                 return NotFound();
             }
 
-            return View(instructorTestimonial);
+            return View(instructorStudentTestimonial);
         }
 
         // POST: InstructorTestimonials/Delete/5
@@ -150,10 +150,10 @@ namespace CodeCraft.Web.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var instructorTestimonial = await _context.InstructorTestimonial.FindAsync(id);
-            if (instructorTestimonial != null)
+            var instructorStudentTestimonial = await _context.InstructorStudentTestimonial.FindAsync(id);
+            if (instructorStudentTestimonial != null)
             {
-                _context.InstructorTestimonial.Remove(instructorTestimonial);
+                _context.InstructorStudentTestimonial.Remove(instructorStudentTestimonial);
             }
 
             await _context.SaveChangesAsync();
@@ -162,7 +162,7 @@ namespace CodeCraft.Web.AdminPortal.Controllers
 
         private bool InstructorTestimonialExists(int id)
         {
-            return _context.InstructorTestimonial.Any(e => e.Id == id);
+            return _context.InstructorStudentTestimonial.Any(e => e.Id == id);
         }
     }
 }

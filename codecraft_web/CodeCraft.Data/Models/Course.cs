@@ -4,37 +4,87 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeCraft.Data.Models
 {
-    /// <summary>
-    /// Represents a course entity instance.
-    /// </summary>
     [Index(nameof(Code), IsUnique = true)]
     public class Course
     {
-        /// <summary>
-        /// The id of this entity.
-        /// This property can be used to uniquely identify this entity.
-        /// </summary>
+        ///
+        /// Table Columns
+        ///
+
+        [Key]
         [Display(Name = "Course ID")]
-        public int Id { get; set; }
-        /// <summary>
-        /// The name of the course.
-        /// </summary>
+        public required int Id { get; set; }
+
+        [Required]
         [Display(Name = "Name")]
         public required string Name { get; set; }
+
+        [Required]
         [Display(Name = "Code")]
         public required string Code { get; set; }
-        /// <summary>
-        /// The description of the course.
-        /// </summary>
+
+        [Required]
         [Display(Name = "Description")]
         public required string Description { get; set; }
-        /// <summary>
-        /// The duration of the course.
-        /// Must be suffixed with:
-        /// 'h' for 'hours', 'd' for 'days', 'm' for 'months', 'y' for 'years'.
-        /// </summary>
+
+        [Required]
+        [Display(Name = "Difficulty Level")]
+        public required string DifficultyLevel { get; set; }
+
+        [Required]
         [Display(Name = "Duration")]
         public required string Duration { get; set; }
+
+        [Display(Name = "Technologies")]
+        public string? Technologies { get; set; }
+
+        [Required]
+        [Precision(18, 2)]
+        [Display(Name = "Price")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
+        public required decimal Price { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
+        [Display(Name = "Application Open Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
+        public required DateTime ApplicationOpenDate { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
+        [Display(Name = "Application Close Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
+        public required DateTime ApplicationCloseDate { get; set; }
+
+        [Display(Name = "Updated At")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime UpdatedAt { get; set; }
+
+        [Display(Name = "Created At")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public DateTime CreatedAt { get; set; }
+
+        ///
+        /// Relationship Entities
+        ///
+
+        [Display(Name = "Departments")]
+        public List<Department> Departments { get; } = [];
+
+        [Display(Name = "Instructors")]
+        public List<Instructor> Instructors { get; } = [];
+
+        [Display(Name = "Students")]
+        public List<Student> Students { get; } = [];
+
+        ///
+        /// Custom Properties
+        ///
+
+        [Display(Name = "Formatted Duration")]
         public string FormattedDuration
         {
             get
@@ -51,10 +101,25 @@ namespace CodeCraft.Data.Models
                 return durInt + " " + suffixes[suffix];
             }
         }
-        [Precision(18, 2)]
-        [DataType(DataType.Currency)]
-        [Display(Name = "Price")]
-        public decimal Price { get; set; }
+
+        [Display(Name = "Department Count")]
+        public int DepartmentCount
+        {
+            get
+            {
+                return Departments.Count;
+            }
+        }
+
+        [Display(Name = "Instructor Count")]
+        public int InstructorCount
+        {
+            get
+            {
+                return Instructors.Count;
+            }
+        }
+
         [Display(Name = "Student Count")]
         public int StudentCount
         {
@@ -63,37 +128,5 @@ namespace CodeCraft.Data.Models
                 return Students.Count;
             }
         }
-        [DataType(DataType.Date)]
-        [Display(Name = "Application Open Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime ApplicationOpenDate { get; set; }
-        [DataType(DataType.Date)]
-        [Display(Name = "Application Close Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime ApplicationCloseDate { get; set; }
-        /// <summary>
-        /// The date and time this entity was last updated.
-        /// </summary>
-        [Display(Name = "Updated At")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedAt { get; set; }
-        /// <summary>
-        /// The date and time this entity was created.
-        /// </summary>
-        [Display(Name = "Created At")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; set; }
-        /// <summary>
-        /// The list of departments this course is apart of.
-        /// </summary>
-        public List<Department> Categories { get; } = [];
-        /// <summary>
-        /// The list of instructors that are qualified to teach this course.
-        /// </summary>
-        public List<Instructor> Instructors { get; } = [];
-        /// <summary>
-        /// A list of students that are enrolled in this course.
-        /// </summary>
-        public List<Student> Students { get; } = [];
     }
 }

@@ -58,13 +58,13 @@ namespace CodeCraft.Data
                 .Entity<Course>()
                 .HasMany(e => e.Students)
                 .WithMany(e => e.Courses)
-                .UsingEntity<StudentCourse>();
+                .UsingEntity<Enrollment>();
 
             builder
                 .Entity<Course>()
-                .HasMany(e => e.Categories)
+                .HasMany(e => e.Departments)
                 .WithMany(e => e.Courses)
-                .UsingEntity<CourseCategory>();
+                .UsingEntity<CourseDepartment>();
         }
         internal static void SetColumnDefaults(ModelBuilder builder)
         {
@@ -85,7 +85,7 @@ namespace CodeCraft.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<ContactInquiry>()
+                .Entity<Inquiry>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("GETDATE()");
@@ -152,7 +152,7 @@ namespace CodeCraft.Data
                 .HasDefaultValueSql("GETDATE()");
 
             builder
-                .Entity<StudentCourse>()
+                .Entity<Enrollment>()
                 .Property(e => e.CreatedAt)
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("GETDATE()");
@@ -192,11 +192,286 @@ namespace CodeCraft.Data
                 new Course
                 {
                     Id = 1,
-                    Name = "Programming With Python",
-                    Code = "PRP412",
-                    Description = "Learn the basics of how to program with Python.",
+                    Name = "Python Basics",
+                    Code = "PY412",
+                    Description = "Explore the basics of computer programming using the Python programming language.",
+                    DifficultyLevel = "Beginner",
+                    Technologies = "Python",
                     Duration = "6m",
-                    Price = 0,
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 2,
+                    Name = "Programming With Python",
+                    Code = "PY512",
+                    Description = "Explore more advanced computer programming concepts using the Python programming language.",
+                    DifficultyLevel = "Intermediate",
+                    Technologies = "Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 3,
+                    Name = "Advanced Python",
+                    Code = "PY522",
+                    Description = "Explore the most advanced computer programming concepts using the Python programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 4,
+                    Name = "Machine Learning Basics",
+                    Code = "ML512",
+                    Description = "Explore the basics of Machine Learning using the Python programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 5,
+                    Name = "Advanced Machine Learning",
+                    Code = "ML522",
+                    Description = "Explore the most advanced Machine Learning techniques using the Python programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 6,
+                    Name = "Understanding Arificial Intelligence",
+                    Code = "AI521",
+                    Description = "Explore the basics of Arificial Intelligence using the Python programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 7,
+                    Name = "Arificial Intelligence Engineering",
+                    Code = "AI612",
+                    Description = "Become a certified Arificial Intelligence Engineer.",
+                    DifficultyLevel = "Major",
+                    Technologies = "Python,Java,C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 8,
+                    Name = "Deep Learning",
+                    Code = "DL612",
+                    Description = "Study the concept of Deep Learning, engineering complex deep neural networks that will revolutionize the modern world.",
+                    DifficultyLevel = "Major",
+                    Technologies = "Python,Java,C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 9,
+                    Name = "Java Basics",
+                    Code = "JD412",
+                    Description = "Explore the basics of computer programming using the Java programming language.",
+                    DifficultyLevel = "Beginner",
+                    Technologies = "Java",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 10,
+                    Name = "Programming With Java",
+                    Code = "JD512",
+                    Description = "Explore more advanced computer programming concepts using the Java programming language.",
+                    DifficultyLevel = "Intermediate",
+                    Technologies = "Java",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 11,
+                    Name = "Advanced Java",
+                    Code = "JD522",
+                    Description = "Explore the most advanced computer programming concepts using the Java programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "Java",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 12,
+                    Name = "Core Web Development",
+                    Code = "CWD412",
+                    Description = "Build beautiful and responsive websites using HTML, CSS and JavaScript.",
+                    DifficultyLevel = "Beginner",
+                    Technologies = "HTML,CSS,JavaScript",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 13,
+                    Name = "Modern Web Design",
+                    Code = "CWD422",
+                    Description = "Design mobile-friendly websites using modern CSS techniques.",
+                    DifficultyLevel = "Intermediate",
+                    Technologies = "React,Vue,Svelte,Tailwind,Bootstrap,Angular",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 14,
+                    Name = "Full-Stack Web Development",
+                    Code = "CWD512",
+                    Description = "Become a full-stack developer using MongoDB, Express, React, and Node.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "JavaScript,TypeScript,XML,JSON",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 15,
+                    Name = "Database Queries Basics",
+                    Code = "DBQ412",
+                    Description = "Master SQL queries to analyze and manipulate data.",
+                    DifficultyLevel = "Beginner",
+                    Technologies = "SQL",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 16,
+                    Name = "C++ Basics",
+                    Code = "CPP412",
+                    Description = "Explore the basics of computer programming using the C++ programming language.",
+                    DifficultyLevel = "Beginner",
+                    Technologies = "C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 17,
+                    Name = "Programming With C++",
+                    Code = "CPP512",
+                    Description = "Explore more advanced computer programming concepts using the C++ programming language.",
+                    DifficultyLevel = "Intermediate",
+                    Technologies = "C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 18,
+                    Name = "Advanced C++",
+                    Code = "CPP522",
+                    Description = "Explore the most advanced computer programming concepts using the C++ programming language.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 19,
+                    Name = "Cyber Security Basics",
+                    Code = "CS512",
+                    Description = "Explore the basics of Cyber Security.",
+                    DifficultyLevel = "Intermediate",
+                    Technologies = "Python,C++",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 20,
+                    Name = "Advanced Cyber Security",
+                    Code = "CS522",
+                    Description = "Explore the most advanced Cyber Security concepts and tecniques.",
+                    DifficultyLevel = "Advanced",
+                    Technologies = "C,C++,Assembly,Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 21,
+                    Name = "Offensive Security",
+                    Code = "AS612",
+                    Description = "Become a certified Offensive Security specialist.",
+                    DifficultyLevel = "Major",
+                    Technologies = "C,C++,Assembly,Python",
+                    Duration = "6m",
+                    Price = 5000,
+                    ApplicationOpenDate = new DateTime(2024, 6, 30),
+                    ApplicationCloseDate = new DateTime(2024, 12, 31),
+                },
+                new Course
+                {
+                    Id = 22,
+                    Name = "Defensive Security",
+                    Code = "DS612",
+                    Description = "Become a certified Defensive Security specialist.",
+                    DifficultyLevel = "Major",
+                    Technologies = "C,C++,Assembly,Python",
+                    Duration = "6m",
+                    Price = 5000,
                     ApplicationOpenDate = new DateTime(2024, 6, 30),
                     ApplicationCloseDate = new DateTime(2024, 12, 31),
                 }
@@ -210,15 +485,201 @@ namespace CodeCraft.Data
                     Name = "Information Technology",
                     Code = "IT",
                     Description = "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
-                }
+                },
+                new Department
+                {
+                    Id = 2,
+                    Name = "Machine Learning",
+                    Code = "ML",
+                    Description = "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
+                },
+                new Department
+                {
+                    Id = 3,
+                    Name = "Cyber Security",
+                    Code = "CS",
+                    Description = "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
+                },
+                new Department
+                {
+                    Id = 4,
+                    Name = "Web Development",
+                    Code = "WD",
+                    Description = "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
+                },
             ];
 
-            List<CourseCategory> defaultCourseCategories =
+            List<CourseDepartment> defaultCourseCategories =
             [
-                new CourseCategory
+                new CourseDepartment
                 {
                     CourseId = 1,
                     DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 2,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 3,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 4,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 4,
+                    DepartmentId = 2,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 5,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 5,
+                    DepartmentId = 2,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 6,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 6,
+                    DepartmentId = 2,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 7,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 7,
+                    DepartmentId = 2,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 8,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 8,
+                    DepartmentId = 2,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 9,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 10,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 11,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 12,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 12,
+                    DepartmentId = 4,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 13,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 13,
+                    DepartmentId = 4,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 14,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 14,
+                    DepartmentId = 4,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 15,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 16,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 17,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 18,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 19,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 19,
+                    DepartmentId = 3,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 20,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 20,
+                    DepartmentId = 3,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 21,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 21,
+                    DepartmentId = 3,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 22,
+                    DepartmentId = 1,
+                },
+                new CourseDepartment
+                {
+                    CourseId = 22,
+                    DepartmentId = 3,
                 }
             ];
 
@@ -286,7 +747,7 @@ namespace CodeCraft.Data
                 {
                     Id = 1,
                     UserId = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
-                    Education = "N/A",
+                    Education = "Computer Science, PHD",
                     HireDate = new DateTime(2024, 1, 1),
                 },
             ];
@@ -296,6 +757,111 @@ namespace CodeCraft.Data
                 new InstructorCourse
                 {
                     CourseId = 1,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 2,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 3,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 4,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 5,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 6,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 7,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 8,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 9,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 10,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 11,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 12,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 13,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 14,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 15,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 16,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 17,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 18,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 19,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 20,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 21,
+                    InstructorId = 1,
+                },
+                new InstructorCourse
+                {
+                    CourseId = 22,
                     InstructorId = 1,
                 }
             ];
@@ -309,11 +875,179 @@ namespace CodeCraft.Data
                 },
             ];
 
-            List<StudentCourse> defaultStudentCourses =
+            List<Enrollment> defaultStudentCourses =
             [
-                new StudentCourse
+                new Enrollment
                 {
                     CourseId = 1,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 2,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 3,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 4,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 5,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 6,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 7,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 8,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 9,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 10,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 11,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 12,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 13,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 14,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 15,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 16,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 17,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 18,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 19,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 20,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 21,
+                    StudentId = 1,
+                    RegisterDate = new DateTime(2024, 6, 30),
+                    AdmitDate = new DateTime(2025, 1, 1),
+                    GraduateDate = new DateTime(2025, 7, 1),
+                },
+                new Enrollment
+                {
+                    CourseId = 22,
                     StudentId = 1,
                     RegisterDate = new DateTime(2024, 6, 30),
                     AdmitDate = new DateTime(2025, 1, 1),
@@ -323,13 +1057,13 @@ namespace CodeCraft.Data
 
             builder.Entity<Course>().HasData(defaultCourses);
             builder.Entity<Department>().HasData(defaultDepartments);
-            builder.Entity<CourseCategory>().HasData(defaultCourseCategories);
+            builder.Entity<CourseDepartment>().HasData(defaultCourseCategories);
             builder.Entity<User>().HasData(defaultUsers);
             builder.Entity<Admin>().HasData(defaultAdmins);
             builder.Entity<Instructor>().HasData(defaultInstructors);
             builder.Entity<InstructorCourse>().HasData(defaultInstructorCourses);
             builder.Entity<Student>().HasData(defaultStudents);
-            builder.Entity<StudentCourse>().HasData(defaultStudentCourses);
+            builder.Entity<Enrollment>().HasData(defaultStudentCourses);
         }
     }
     public class CodeCraftDbContext : IdentityDbContext<User>
@@ -339,20 +1073,22 @@ namespace CodeCraft.Data
         }
 
         public DbSet<Admin> Admin { get; set; } = default!;
-        public DbSet<ContactInquiry> ContactInquiry { get; set; } = default!;
+        public DbSet<Inquiry> Inquiry { get; set; } = default!;
         public DbSet<Course> Course { get; set; } = default!;
         public DbSet<Department> Department { get; set; } = default!;
-        public DbSet<CourseCategory> CourseCategory { get; set; } = default!;
+        public DbSet<CourseDepartment> CourseDepartment { get; set; } = default!;
         public DbSet<Instructor> Instructor { get; set; } = default!;
         public DbSet<InstructorCourse> InstructorCourse { get; set; } = default!;
-        public DbSet<InstructorStudentTestimonial> InstructorTestimonial { get; set; } = default!;
+        public DbSet<InstructorStudentTestimonial> InstructorStudentTestimonial { get; set; } = default!;
         public DbSet<Student> Student { get; set; } = default!;
-        public DbSet<StudentCourse> StudentCourse { get; set; } = default!;
-        public DbSet<StudentCourseTestimonial> StudentTestimonial { get; set; } = default!;
+        public DbSet<Enrollment> Enrollment { get; set; } = default!;
+        public DbSet<StudentCourseTestimonial> StudentCourseTestimonial { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+
+            // optionsBuilder.EnableSensitiveDataLogging();
 
             optionsBuilder.UseSqlServer(
                 "Server=(localdb)\\mssqllocaldb;Database=CodeCraftDB;Trusted_Connection=True;MultipleActiveResultSets=true"
