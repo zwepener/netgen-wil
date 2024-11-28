@@ -482,9 +482,9 @@ namespace CodeCraft.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhysicalAddress", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "c4f3a899-4390-4323-8220-b8c4664d6073", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "37794fd6-76dc-4115-b8bb-fe167c775d26", false, "instructor@codecraft.co.za" },
-                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "59520528-a2fb-4916-83b4-7e0824266f30", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "fb42d302-3294-4aa1-a7fb-f552f7481c92", false, "admin@codecraft.co.za" },
-                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "96b20fcb-e5d4-4f20-9a66-245e7e10c4d6", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "ba5c1aaa-b57c-4d00-bdf8-9db49705d09f", false, "student@codecraft.co.za" }
+                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "a5d59b83-401a-4968-bd65-5432422cca84", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "dc3de3f4-5260-4728-9e1f-9572b54f3839", false, "instructor@codecraft.co.za" },
+                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "6144c948-f052-4a88-98b8-061615b22b1e", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "8e1554b5-a566-4fd3-baa1-5de20bcb32e1", false, "admin@codecraft.co.za" },
+                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "c242ab10-d408-48d7-b769-a295b681781d", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "cbad65e0-16c0-423b-9eb3-ff53d895679a", false, "student@codecraft.co.za" }
                 });
 
             migrationBuilder.InsertData(
@@ -686,7 +686,8 @@ namespace CodeCraft.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Student_UserId",
                 table: "Student",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentCourseTestimonial_CourseId",

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeCraft.Data.Migrations
 {
     [DbContext(typeof(CodeCraftDbContext))]
-    [Migration("20241128034458_InitialCreate")]
+    [Migration("20241128153025_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1219,7 +1219,8 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Student");
 
@@ -1359,7 +1360,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59520528-a2fb-4916-83b4-7e0824266f30",
+                            ConcurrencyStamp = "6144c948-f052-4a88-98b8-061615b22b1e",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1372,7 +1373,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "fb42d302-3294-4aa1-a7fb-f552f7481c92",
+                            SecurityStamp = "8e1554b5-a566-4fd3-baa1-5de20bcb32e1",
                             TwoFactorEnabled = false,
                             UserName = "admin@codecraft.co.za"
                         },
@@ -1380,7 +1381,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c4f3a899-4390-4323-8220-b8c4664d6073",
+                            ConcurrencyStamp = "a5d59b83-401a-4968-bd65-5432422cca84",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "instructor@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1393,7 +1394,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "37794fd6-76dc-4115-b8bb-fe167c775d26",
+                            SecurityStamp = "dc3de3f4-5260-4728-9e1f-9572b54f3839",
                             TwoFactorEnabled = false,
                             UserName = "instructor@codecraft.co.za"
                         },
@@ -1401,7 +1402,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "96b20fcb-e5d4-4f20-9a66-245e7e10c4d6",
+                            ConcurrencyStamp = "c242ab10-d408-48d7-b769-a295b681781d",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "student@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1414,7 +1415,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "ba5c1aaa-b57c-4d00-bdf8-9db49705d09f",
+                            SecurityStamp = "cbad65e0-16c0-423b-9eb3-ff53d895679a",
                             TwoFactorEnabled = false,
                             UserName = "student@codecraft.co.za"
                         });
