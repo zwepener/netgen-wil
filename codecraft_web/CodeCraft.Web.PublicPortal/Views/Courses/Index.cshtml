@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/courses.css" asp-append-version="true" />
+}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-5">
+            <!-- Left Text Content -->
+            <div class="col-lg-6">
+                <h1 class="display-4">Take Your Coding To The <span class="text-highlight">Next Level_</span></h1>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat,
+                    quis vestibulum sapien maximus.
+                </p>
+            </div>
+            <!-- Right Image Content-->
+            <div class="col-lg-5 text-center">
+                <img src="~/images/StudentCollage.png" alt="StudentCollage" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<div class="container py-5">
+    <h1 class="heading text-center fw-bold mb-5">Explore Our <span class="text-highlight">Courses_</span></h1>
+
+    <!-- Course Header -->
+    <section class="course-header mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="h4">Available Courses</h2>
+            <div class="search-bar-container">
+                <input type="text" id="searchBar" class="form-control" placeholder="Search courses..." />
+            </div>
+        </div>
+    </section>
+
+    <hr />
+
+    <div class="row">
+        <!-- Filters Section -->
+        <div class="col-md-4 mb-4">
+            <form id="filterForm" class="card p-3">
+                <h3 class="h5">Filter</h3>
+
+                <!-- Level Filter -->
+                <fieldset class="mb-3">
+                    <legend class="h6">Level</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="level" value="Beginner" id="levelBeginner">
+                        <label class="form-check-label" for="levelBeginner">Beginner</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="level" value="Intermediate" id="levelIntermediate">
+                        <label class="form-check-label" for="levelIntermediate">Intermediate</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="level" value="Advanced" id="levelAdvanced">
+                        <label class="form-check-label" for="levelAdvanced">Advanced</label>
+                    </div>
+                </fieldset>
+
+                <!-- Duration Filter -->
+                <fieldset class="mb-3">
+                    <legend class="h6">Duration</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="duration" value="Less than 5 hours" id="durationShort">
+                        <label class="form-check-label" for="durationShort">Less than 5 hours</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="duration" value="5-10 hours" id="durationMedium">
+                        <label class="form-check-label" for="durationMedium">5-10 hours</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="duration" value="More than 10 hours" id="durationLong">
+                        <label class="form-check-label" for="durationLong">More than 10 hours</label>
+                    </div>
+                </fieldset>
+
+                <!-- Language Filter -->
+                <fieldset class="mb-3">
+                    <legend class="h6">Language</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="Python" id="languagePython">
+                        <label class="form-check-label" for="languagePython">Python</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="Java" id="languageJava">
+                        <label class="form-check-label" for="languageJava">Java</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="JavaScript" id="languageJavaScript">
+                        <label class="form-check-label" for="languageJavaScript">JavaScript</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="C++" id="languageCpp">
+                        <label class="form-check-label" for="languageCpp">C++</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="HTML & CSS" id="languageHtmlCss">
+                        <label class="form-check-label" for="languageHtmlCss">HTML & CSS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="language" value="SQL" id="languageSql">
+                        <label class="form-check-label" for="languageSql">SQL</label>
+                    </div>
+                </fieldset>
+
+                <!-- Clear Filters Button -->
+                <button id="clearFiltersBtn" class="colored-btn">Clear Filters</button>
+            </form>
+        </div>
+
+        <!-- Course Listings Section -->
+        <div class="col-md-8">
+            <div id="courseListings" class="row row-cols-1 row-cols-md-2 g-4">
+                @foreach (Course course in Model)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">@course.Name</h5>
+                                <p class="card-text">@course.Description</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Level:</strong> @course.DifficultyLevel</li>
+                                <li class="list-group-item"><strong>Duration:</strong> @course.FormattedDuration</li>
+                                @if (course.Technologies != null) {
+                                    <li class="list-group-item">
+                                        <strong>
+                                            Technologies:
+                                        </strong>
+                                        <span>
+                                            @course.Technologies.Replace(",", ", ")
+                                        </span>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="card-footer d-flex justify-content-end mt-4">
+                                <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id" class="btn px-4 py-2">
+                                    Enroll
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/courses.js" asp-append-version="true"></script>
+}

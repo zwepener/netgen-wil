@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/about.css" asp-append-version="true" />
+}
+
+<!-- HERO SECTION-->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-5">
+            <!-- Left Text Content -->
+            <div class="col-lg-6">
+                <h1>About <span class="text-highlight">Code Craft_</span></h1>
+                <h6>Welcome to CodeCraft!</h6>
+                <h1></h1>
+                <p class="lead">
+                    At CodeCraft, we believe in the power of coding to unlock creativity, solve problems, and open doors to new opportunities.
+                    We are a dedicated team of experienced programmers and educators, committed to helping you navigate the ever-evolving world of technology.
+                </p>
+            </div>
+            <!-- Right Image Content-->
+            <div class="col-lg-5 text-center">
+                <img src="~/images/picture-4.png" alt="Hero Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION STATEMENT -->
+<section class="mission-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-5">
+            <!-- Left Image Content -->
+            <div class="col-lg-5 text-center">
+                <img src="~/images/picture-5.png" alt="StudentCollage" class="img-fluid">
+            </div>
+            <!-- Right Text Content -->
+            <div class="col-lg-7">
+                <h1 class="display-4">Our CodeCraft <span class="text-highlight">Mission_</span></h1>
+                <p class="lead">
+                    Our mission is to empower individuals of all ages and backgrounds to learn programming in a way that is accessible, engaging, and practical.
+                    We strive to provide high-quality tutoring that not only teaches coding skills but also fosters a deep understanding of the principles and best
+                    practices that drive the tech industry.
+                    <br><br>
+                    We strive to provide high-quality tutoring that not only teaches coding skills but also fosters a deep understanding of the principles and best
+                    practices that drive the tech industry.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Section -->
+<section class="services-section py-5">
+    <div class="container">
+        <!-- Section Heading -->
+        <div class="text-center mb-5">
+            <h2 class="display-5">What <span class="text-highlight">We Offer_</span></h2>
+        </div>
+
+        <!-- Progress Bar Container -->
+        <div class="progress-bar-container text-center mb-4">
+            <!-- Steps -->
+            <ul class="list-unstyled d-flex justify-content-between steps">
+                <li class="step me-3" data-target="step-1">
+                    <div class="circle"></div>
+                    <p class="step-title mt-2">Courses</p>
+                </li>
+                <li class="step me-3" data-target="step-2">
+                    <div class="circle"></div>
+                    <p class="step-title mt-2">Expert Instructors</p>
+                </li>
+                <li class="step me-3" data-target="step-3">
+                    <div class="circle"></div>
+                    <p class="step-title mt-2">Personalized Learning</p>
+                </li>
+                <li class="step" data-target="step-4">
+                    <div class="circle"></div>
+                    <p class="step-title mt-2">Learning System</p>
+                </li>
+            </ul>
+
+            <!-- Progress Line -->
+            <div id="progress-bar-container">
+                <div id="line-progress"></div>
+            </div>
+        </div>
+
+        <!-- Progress Content Section -->
+        <div id="progress-content-container">
+            <div class="section-content discovery active">
+                <p>Whether you’re a beginner just starting your coding journey or an experienced programmer looking to hone your skills, we have a course for you. Our curriculum covers a wide range of programming languages and technologies, including Python, Java, JavaScript, and more.</p>
+            </div>
+            <div class="section-content strategy">
+                <p>Our instructors are not just teachers; they are industry professionals with years of experience. They bring real-world insights into the classroom, ensuring that you learn practical skills that you can apply immediately.</p>
+            </div>
+            <div class="section-content creative">
+                <p>We understand that every student learns differently. That’s why we offer personalized tutoring sessions tailored to your individual learning style and goals.</p>
+            </div>
+            <div class="section-content production">
+                <p>We emphasize hands-on learning with plenty of coding exercises, projects, and real-world scenarios. Our goal is to make learning to code as engaging and interactive as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5">Frequently <span class="text-highlight">Asked</span> Questions_</h2>
+        </div>
+
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        What is CodeCraft?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        CodeCraft is a platform that offers expert coding mentorship. We provide personalized tutoring sessions to students looking to improve their programming skills.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How do I enroll in a course?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can enroll in any of our available courses by visiting the "Courses" section and filling out the enrollment form. You'll then be contacted by an instructor.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Can I take lessons online or in person?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we offer both online and in-person lessons depending on your location and preferences. You can discuss your preferred method with your instructor.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        How can I contact an instructor?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can contact an instructor directly through the "Get Tutor Now" button on their profile page. You can also contact support if you need assistance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Are there any prerequisites for the courses?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Our courses are designed for students of all levels. Some may have prerequisites depending on the course content, but there are many beginner-friendly options available.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/about.js" asp-append-version="true"></script>
+}

@@ -18,7 +18,7 @@ namespace CodeCraft.Web.PublicPortal.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
