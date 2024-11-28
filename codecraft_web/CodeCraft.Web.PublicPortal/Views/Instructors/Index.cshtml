@@ -1,0 +1,108 @@
+﻿@model List<Instructor>
+
+@{
+    ViewData["Title"] = "Instructors";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/instructors.css" asp-append-version="true" />
+}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-between g-5">
+            <!-- Left Image Content -->
+            <div class="col-lg-5 text-center">
+                <img src="~/images/picture-3.png" alt="StudentCollage" class="img-fluid">
+            </div>
+            <!-- Right Text Content -->
+            <div class="col-lg-6">
+                <h1 class="display-4"><span class="text-highlight">Expert Coding</span> Mentors Guiding Your Success</h1>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat,
+                    quis vestibulum sapien maximus.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--INSTRUCTOR SECTION-->
+<section class="instructors-section">
+    <div class="container">
+        <div class="section-heading text-center mb-3">
+            <h2>Meet Our <span class="text-highlight">Instructors_</span></h2>
+        </div>
+        <div class="row">
+            @foreach (Instructor instructor in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="instructor-card text-center p-4 ">
+                        <!-- Photo -->
+                        <div class="instructor-photo mb-3">
+                            <img src="~/images/avatar/default.png" alt="@instructor.User!.FullName" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover; border: 5px solid #fcd535;">
+                        </div>
+                        <!-- Name -->
+                        <h4 class="instructor-name mb-1">@instructor.User!.FullName</h4>
+                        <small class="instructor-location text-muted">Tutor in @instructor.User!.Location</small>
+                        <!-- Bio -->
+                        <div class="instructor-bio mt-3">
+                            <h6 class="fw-bold text-start">About</h6>
+                            <p class="text-muted text-start">@instructor.Biography</p>
+                        </div>
+                        <!-- Qualifications -->
+                        <ul class="list-unstyled instructor-qualifications text-start mt-3">
+                            <li class="mb-2">
+                                <i class="bx bx-check-circle text-success"></i> @instructor.Education
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button"
+                                    class="contact-btn px-4 py-2"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#contactFormModal">
+                                Get Tutor Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Modal -->
+<div class="modal fade" id="contactFormModal" tabindex="-1" aria-labelledby="contactFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactFormModalLabel">Contact Instructor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="studentName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="studentName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentEmail" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Write your message here" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary  px-4 py-2">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/instructors.js" asp-append-version="true"></script>
+}

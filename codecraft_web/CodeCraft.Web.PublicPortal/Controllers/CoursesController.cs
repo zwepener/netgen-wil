@@ -13,9 +13,27 @@ namespace CodeCraft.Web.PublicPortal.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? difficulyLevel, string? duration, string? technologies)
         {
-            return View(await _context.Course.ToListAsync());
+            var courses = from c in _context.Course select c;
+
+            if (!String.IsNullOrEmpty(difficulyLevel))
+            {
+                courses = courses.Where(c => c.DifficultyLevel == difficulyLevel);
+            }
+
+            if (!String.IsNullOrEmpty(duration))
+            {
+                courses = courses.Where(c => c.Duration == duration);
+            }
+
+            if (!String.IsNullOrEmpty(technologies))
+            {
+                courses = courses.Where(c => c.Technologies != null);
+                courses = courses.Where(c => c.Technologies!.ToUpper().Contains(technologies.ToUpper()));
+            }
+
+            return View(await courses.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)

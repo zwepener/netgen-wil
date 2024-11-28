@@ -47,22 +47,22 @@
     <div class="row">
         <!-- Filters Section -->
         <div class="col-md-4 mb-4">
-            <form id="filterForm" class="card p-3">
+            <form asp-action="Index" id="filterForm" method="get" class="card p-3">
                 <h3 class="h5">Filter</h3>
 
                 <!-- Level Filter -->
                 <fieldset class="mb-3">
                     <legend class="h6">Level</legend>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="level" value="Beginner" id="levelBeginner">
+                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Beginner" id="levelBeginner">
                         <label class="form-check-label" for="levelBeginner">Beginner</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="level" value="Intermediate" id="levelIntermediate">
+                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Intermediate" id="levelIntermediate">
                         <label class="form-check-label" for="levelIntermediate">Intermediate</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="level" value="Advanced" id="levelAdvanced">
+                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Advanced" id="levelAdvanced">
                         <label class="form-check-label" for="levelAdvanced">Advanced</label>
                     </div>
                 </fieldset>
@@ -71,16 +71,16 @@
                 <fieldset class="mb-3">
                     <legend class="h6">Duration</legend>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="duration" value="Less than 5 hours" id="durationShort">
-                        <label class="form-check-label" for="durationShort">Less than 5 hours</label>
+                        <input class="form-check-input" type="checkbox" name="Duration" value="1m" id="durationShort">
+                        <label class="form-check-label" for="durationShort">1 Month</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="duration" value="5-10 hours" id="durationMedium">
-                        <label class="form-check-label" for="durationMedium">5-10 hours</label>
+                        <input class="form-check-input" type="checkbox" name="Duration" value="6m" id="durationMedium">
+                        <label class="form-check-label" for="durationMedium">6 Months</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="duration" value="More than 10 hours" id="durationLong">
-                        <label class="form-check-label" for="durationLong">More than 10 hours</label>
+                        <input class="form-check-input" type="checkbox" name="Duration" value="1y" id="durationLong">
+                        <label class="form-check-label" for="durationLong">1 Year</label>
                     </div>
                 </fieldset>
 
@@ -88,33 +88,33 @@
                 <fieldset class="mb-3">
                     <legend class="h6">Language</legend>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="Python" id="languagePython">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="Python" id="languagePython">
                         <label class="form-check-label" for="languagePython">Python</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="Java" id="languageJava">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="Java" id="languageJava">
                         <label class="form-check-label" for="languageJava">Java</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="JavaScript" id="languageJavaScript">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="JavaScript" id="languageJavaScript">
                         <label class="form-check-label" for="languageJavaScript">JavaScript</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="C++" id="languageCpp">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="C++" id="languageCpp">
                         <label class="form-check-label" for="languageCpp">C++</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="HTML & CSS" id="languageHtmlCss">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="HTML,CSS" id="languageHtmlCss">
                         <label class="form-check-label" for="languageHtmlCss">HTML & CSS</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="language" value="SQL" id="languageSql">
+                        <input class="form-check-input" type="checkbox" name="Technologies" value="SQL" id="languageSql">
                         <label class="form-check-label" for="languageSql">SQL</label>
                     </div>
                 </fieldset>
 
-                <!-- Clear Filters Button -->
-                <button id="clearFiltersBtn" class="colored-btn">Clear Filters</button>
+                <!-- Apply Filters Button -->
+                <button type="submit" id="applyFiltersBtn" class="colored-btn w-100">Filter</button>
             </form>
         </div>
 
@@ -144,7 +144,7 @@
                                 }
                             </ul>
                             <div class="card-footer d-flex justify-content-end mt-4">
-                                <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id" class="btn px-4 py-2">
+                                <a asp-action="Details" asp-route-id="@course.Id" class="btn px-4 py-2">
                                     Enroll
                                 </a>
                             </div>
