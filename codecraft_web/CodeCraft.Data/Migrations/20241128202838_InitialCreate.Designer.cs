@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeCraft.Data.Migrations
 {
     [DbContext(typeof(CodeCraftDbContext))]
-    [Migration("20241128175103_InitialCreate")]
+    [Migration("20241128202838_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -1424,7 +1424,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6e7cfd5b-39e1-4d01-bafe-82797dc94370",
+                            ConcurrencyStamp = "ae6b7564-24b9-4f32-9be1-7889b2a1f37b",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1437,7 +1437,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "59c5acb9-8dc1-42a0-ad58-0dfdfb7905ae",
+                            SecurityStamp = "dace729a-e2fc-4c40-8df3-dd533a7cbd63",
                             TwoFactorEnabled = false,
                             UserName = "admin@codecraft.co.za"
                         },
@@ -1445,7 +1445,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7fd3c43f-e81a-4ba8-b789-b0963f7ddd1c",
+                            ConcurrencyStamp = "bd25db2f-dea5-4362-8ac5-05c88bcb35ac",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "instructor@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1458,7 +1458,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "8b1635df-d03a-4250-a66d-af170d9ea0bb",
+                            SecurityStamp = "dfced2f5-f04d-4fa2-9098-97bc44201e49",
                             TwoFactorEnabled = false,
                             UserName = "instructor@codecraft.co.za"
                         },
@@ -1466,7 +1466,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "46ab86ff-e807-4bac-8364-488b69e27512",
+                            ConcurrencyStamp = "2a0e34c5-e1f8-4990-b264-514a5d85206f",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "student@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1479,7 +1479,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "2999a4cd-b221-4d3d-b427-5d21e5e499db",
+                            SecurityStamp = "25228ec1-40ec-4d7d-8814-574b6fbc59f0",
                             TwoFactorEnabled = false,
                             UserName = "student@codecraft.co.za"
                         },
@@ -1487,7 +1487,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb0bff40-0e70-4b26-8fb3-d7cf7cb996e6",
+                            ConcurrencyStamp = "2512ee41-f5a2-400f-8a8b-364428fe3698",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "jane.smith@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1500,7 +1500,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Cape Town",
-                            SecurityStamp = "4a0823f6-24cc-4e1e-bb6f-ff4eb0b64153",
+                            SecurityStamp = "254f75f5-cf05-470d-a02f-92ffd3043314",
                             TwoFactorEnabled = false,
                             UserName = "jane.smith@codecraft.co.za"
                         },
@@ -1508,7 +1508,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5158c5f7-71bf-4172-b1cb-cf56e782364e",
+                            ConcurrencyStamp = "8094fd7d-be9e-477c-beb8-007b801dc6d8",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "michael.johnson@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1521,7 +1521,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Johannesburg",
-                            SecurityStamp = "2269380f-30b6-4d18-a8dc-177e1919e53b",
+                            SecurityStamp = "0e3921e6-495f-489c-a406-4a80d4c9ff87",
                             TwoFactorEnabled = false,
                             UserName = "michael.johnson@codecraft.co.za"
                         },
@@ -1529,7 +1529,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "d7574773-b281-4c29-8e6b-bf818d5680a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a209cca-a85a-45e6-b8f0-23fb55da0cfa",
+                            ConcurrencyStamp = "969a36d6-3822-4dd6-a71b-945c200c7249",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "lisa.roberts@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1542,7 +1542,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Durban",
-                            SecurityStamp = "9490411a-a9f9-4c3e-b24f-5782cd0791e5",
+                            SecurityStamp = "1501780c-1af6-400f-817b-72e7737429f7",
                             TwoFactorEnabled = false,
                             UserName = "lisa.roberts@codecraft.co.za"
                         },
@@ -1550,7 +1550,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "40c697c6-41ec-42fd-93c9-5624d377b710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed1febdb-c835-4815-ac44-8b361b094c23",
+                            ConcurrencyStamp = "8c1ad04e-c8d9-439a-bf9a-5781e0611d6b",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "david.khumalo@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1563,7 +1563,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Pretoria",
-                            SecurityStamp = "1b8ff0b5-be47-4ea0-8189-26ae351a32dd",
+                            SecurityStamp = "fbd39a44-0239-4166-8b3d-19db75fd335d",
                             TwoFactorEnabled = false,
                             UserName = "david.khumal@codecraft.co.za"
                         },
@@ -1571,7 +1571,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1fa8b7de-a3af-4ac1-bd6f-8ad9fdedae2d",
+                            ConcurrencyStamp = "936e96ba-e6ce-457f-8475-6134a96a2141",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "themba.carter@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1584,7 +1584,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Port Elizabeth",
-                            SecurityStamp = "5ccafe4f-4f40-4c22-8373-b5621ab8db19",
+                            SecurityStamp = "c1794b31-46b7-4bac-89d8-76b980a2c8d0",
                             TwoFactorEnabled = false,
                             UserName = "themba.carter@codecraft.co.za"
                         },
@@ -1592,7 +1592,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "76735e5b-52ef-4c2f-b17b-2456ff4b9556",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac9ee81c-1e7c-48ad-aa00-1a3a458a7a64",
+                            ConcurrencyStamp = "501487a9-b92f-4090-97b1-01fc74ddd865",
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "james.wilson@codecraft.co.za",
                             EmailConfirmed = true,
@@ -1605,7 +1605,7 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Bloemfontein",
-                            SecurityStamp = "681a333f-960b-4ab6-8d6b-5784ffc42ea3",
+                            SecurityStamp = "91d2b038-310f-4370-975b-5e0486a3126c",
                             TwoFactorEnabled = false,
                             UserName = "james.wilson@codecraft.co.za"
                         });
