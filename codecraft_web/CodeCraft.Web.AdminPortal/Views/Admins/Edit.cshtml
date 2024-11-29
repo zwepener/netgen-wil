@@ -1,33 +1,15 @@
-﻿@model CodeCraft.Data.Models.Admin
+﻿@model Admin
 
 @{
     ViewData["Title"] = "Edit Admin";
 }
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Edit Admin</h4>
-        </div>
-    </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a asp-controller="Dashboard" asp-action="Index">
-                    Dashboard
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a asp-action="Index">
-                    Admins
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                Edit
-            </li>
-        </ol>
-    </div>
-</div>
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = "Edit Admin",
+    SectionName = "Admins",
+    ActiveName = "Edit"
+})" />
 
 <div class="row">
     <div class="col-xl-12 col-xxl-12 col-sm-12">

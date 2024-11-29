@@ -1,0 +1,28 @@
+﻿@model BreadCrumbViewModel
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                @Html.DisplayFor(model => model.Header)
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Dashboard" asp-action="Index">
+                    Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a asp-action="Index">
+                    @Html.DisplayFor(model => model.SectionName)
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                @Html.DisplayFor(model => model.ActiveName)
+            </li>
+        </ol>
+    </div>
+</div>

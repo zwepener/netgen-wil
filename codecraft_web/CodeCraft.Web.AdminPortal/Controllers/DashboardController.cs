@@ -5,29 +5,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace CodeCraft.Web.AdminPortal.Controllers
-{
-    [Authorize]
-    public class DashboardController : Controller
-    {
-        private readonly CodeCraftDbContext _context;
-        public DashboardController(CodeCraftDbContext context)
-        {
-            _context = context;
-        }
-        public async Task<IActionResult> Index()
-        {
-            List<Student> students = await _context.Student.Include(s => s.User).ToListAsync();
-            List<Course> courses = await _context.Course.ToListAsync();
+namespace CodeCraft.Web.AdminPortal.Controllers;
 
-            return View
-            (
-                new DashboardModel
-                {
-                    Students = students,
-                    Courses = courses,
-                }
-            );
-        }
+[Authorize]
+public class DashboardController(CodeCraftDbContext context) : Controller
+{
+    private readonly CodeCraftDbContext _context = context;
+
+    public async Task<IActionResult> Index()
+    {
+        List<Student> students = await _context.Student.Include(s => s.User).ToListAsync();
+        List<Course> courses = await _context.Course.ToListAsync();
+
+        DashboardModel dashboardModel = new()
+        {
+            Students = students,
+            Courses = courses,
+        };
+
+        return View(dashboardModel);
     }
 }

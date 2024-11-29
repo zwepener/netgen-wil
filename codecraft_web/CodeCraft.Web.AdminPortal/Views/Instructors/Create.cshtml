@@ -1,7 +1,7 @@
-﻿@model CodeCraft.Data.Models.Instructor
+﻿@model Instructor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Instructor";
 }
 
 @section Styles {
@@ -9,30 +9,12 @@
     <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
 }
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Add Instructor</h4>
-        </div>
-    </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a asp-controller="Dashboard" asp-action="Index">
-                    Dashboard
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a asp-action="Index">
-                    Instructors
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                Add
-            </li>
-        </ol>
-    </div>
-</div>
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = "Create Instructor",
+    SectionName = "Instructors",
+    ActiveName = "Create"
+})" />
 
 <div class="row">
     <div class="col-xl-12 col-xxl-12 col-sm-12">
@@ -62,6 +44,13 @@
                                 <label asp-for="HireDate" class="form-label"></label>
                                 <input asp-for="HireDate" class="datepicker form-control" />
                                 <span asp-validation-for="HireDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Biography" class="form-label"></label>
+                                <textarea asp-for="Biography" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Biography" class="text-danger"></span>
                             </div>
                         </div>
                         <!--

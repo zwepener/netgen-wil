@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CodeCraft.Web.AdminPortal.Controllers
+namespace CodeCraft.Web.AdminPortal.Controllers;
+
+public class ErrorController : Controller
 {
-    public class ErrorController : Controller
+    [Route("Error/{statusCode}")]
+    public IActionResult HttpStatusCodeHandler(int statusCode)
     {
-        [Route("Error/{statusCode}")]
-        public IActionResult HttpStatusCodeHandler(int statusCode)
-        {
-            var viewName = statusCode.ToString();
-            return View(viewName);
-        }
+        var viewName = statusCode.ToString();
+        return View(viewName);
     }
 }

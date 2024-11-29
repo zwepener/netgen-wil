@@ -1,8 +1,15 @@
-﻿@model CodeCraft.Data.Models.Department
+﻿@model Department
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Department Details";
 }
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = "Department Details",
+    SectionName = "Departments",
+    ActiveName = "Details"
+})" />
 
 <h1>Details</h1>
 

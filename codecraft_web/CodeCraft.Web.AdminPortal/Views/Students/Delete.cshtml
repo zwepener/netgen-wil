@@ -1,8 +1,15 @@
-﻿@model CodeCraft.Data.Models.Student
+﻿@model Student
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Student";
 }
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = "Delete Student",
+    SectionName = "Students",
+    ActiveName = "Delete"
+})" />
 
 <h1>Delete</h1>
 
