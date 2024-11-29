@@ -20,8 +20,7 @@ public class Student
     public required string UserId { get; set; }
 
     [Display(Name = "Updated At")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime UpdatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -59,6 +58,15 @@ public class Student
         get
         {
             return CourseTestimonials.Count;
+        }
+    }
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
         }
     }
 

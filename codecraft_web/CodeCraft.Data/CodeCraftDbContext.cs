@@ -2,11 +2,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CodeCraft.Data;
 
 internal class Configurer
 {
+    internal static IConfigurationRoot GetConfiguration()
+    {
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddUserSecrets<CodeCraftDbContext>();
+        return builder.Build();
+    }
     internal static void RenameDefaultIdentityTables(ModelBuilder builder)
     {
         string schema = "AspNetIdentity";
@@ -68,32 +77,10 @@ internal class Configurer
     }
     internal static void SetColumnDefaults(ModelBuilder builder)
     {
-        // TODO: Add db trigger for computed columns
-        // Database does not allow "GETDATE()" on computed columns (e.g., UpdatedAt),
-        // won't cause issues, just won't update after initial insert...
-
-        builder
-            .Entity<Admin>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETDATE()");
-
         builder
             .Entity<Admin>()
             .Property(e => e.CreatedAt)
             .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Inquiry>()
-            .Property(e => e.CreatedAt)
-            .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Course>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
             .HasDefaultValueSql("GETDATE()");
 
         builder
@@ -102,51 +89,8 @@ internal class Configurer
             .ValueGeneratedOnAdd()
             .HasDefaultValueSql("GETDATE()");
 
-
         builder
             .Entity<Department>()
-            .Property(e => e.CreatedAt)
-            .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Department>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Instructor>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Instructor>()
-            .Property(e => e.CreatedAt)
-            .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<InstructorStudentTestimonial>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<InstructorStudentTestimonial>()
-            .Property(e => e.CreatedAt)
-            .ValueGeneratedOnAdd()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Student>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
-            .HasDefaultValueSql("GETDATE()");
-
-        builder
-            .Entity<Student>()
             .Property(e => e.CreatedAt)
             .ValueGeneratedOnAdd()
             .HasDefaultValueSql("GETDATE()");
@@ -158,13 +102,37 @@ internal class Configurer
             .HasDefaultValueSql("GETDATE()");
 
         builder
-            .Entity<StudentCourseTestimonial>()
-            .Property(e => e.UpdatedAt)
-            .ValueGeneratedOnAddOrUpdate()
+            .Entity<Inquiry>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
+            .Entity<Instructor>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
+            .Entity<InstructorStudentTestimonial>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
+            .Entity<Student>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
             .HasDefaultValueSql("GETDATE()");
 
         builder
             .Entity<StudentCourseTestimonial>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
+            .Entity<User>()
             .Property(e => e.CreatedAt)
             .ValueGeneratedOnAdd()
             .HasDefaultValueSql("GETDATE()");
@@ -1228,11 +1196,10 @@ public class CodeCraftDbContext : IdentityDbContext<User>
     {
         base.OnConfiguring(optionsBuilder);
 
-        // optionsBuilder.EnableSensitiveDataLogging();
+        var configuration = Configurer.GetConfiguration();
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        optionsBuilder.UseSqlServer(
-            "Server=(localdb)\\mssqllocaldb;Database=CodeCraftDB;Trusted_Connection=True;MultipleActiveResultSets=true"
-        );
+        optionsBuilder.UseSqlServer(connectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

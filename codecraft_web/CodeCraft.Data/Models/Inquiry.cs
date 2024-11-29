@@ -14,12 +14,19 @@ public class Inquiry
     public required int Id { get; set; }
 
     [Required]
+    [Display(Name = "From Name")]
+    public required string Name { get; set; }
+
+    [Required]
+    [Display(Name = "Contact Email")]
     [DataType(DataType.EmailAddress)]
     public required string Email { get; set; }
 
     [Required]
     [Display(Name = "Message")]
     public required string Message { get; set; }
+
+    public bool IsResolved { get; set; } = false;
 
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -38,6 +38,9 @@ public class Enrollment
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
     public required DateTime GraduateDate { get; set; }
 
+    [Display(Name = "Updated At")]
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedAt { get; set; }
@@ -55,6 +58,15 @@ public class Enrollment
     ///
     /// Custom Properties
     ///
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
+        }
+    }
 
     [Display(Name = "Created")]
     public string CreatedAgo

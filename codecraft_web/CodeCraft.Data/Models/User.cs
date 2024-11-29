@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace CodeCraft.Data.Models;
 
@@ -39,6 +38,13 @@ public class User : IdentityUser
     [Display(Name = "Physical Address")]
     public required string PhysicalAddress { get; set; }
 
+    [Display(Name = "Updated At")]
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    [Display(Name = "Created At")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime CreatedAt { get; set; }
+
     ///
     /// Custom Properties
     ///
@@ -72,6 +78,24 @@ public class User : IdentityUser
             }
             string[] tempArray = PhysicalAddress.Split(", ");
             return tempArray.ElementAt(tempArray.Length - 1);
+        }
+    }
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
+        }
+    }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
         }
     }
 }

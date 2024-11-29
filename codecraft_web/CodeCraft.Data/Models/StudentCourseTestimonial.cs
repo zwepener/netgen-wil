@@ -28,8 +28,7 @@ public class StudentCourseTestimonial
     public required string Comment { get; set; }
 
     [Display(Name = "Updated At")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime UpdatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -44,4 +43,26 @@ public class StudentCourseTestimonial
 
     [Display(Name = "Course")]
     public Course? Course { get; set; }
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
+        }
+    }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
+    }
 }

@@ -60,8 +60,7 @@ public class Course
     public required DateTime ApplicationCloseDate { get; set; }
 
     [Display(Name = "Updated At")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime UpdatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [Display(Name = "Created At")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -83,6 +82,15 @@ public class Course
     ///
     /// Custom Properties
     ///
+
+    [Display(Name = "Formatted Name")]
+    public string FormattedName
+    {
+        get
+        {
+            return $"{Name} ({Code})";
+        }
+    }
 
     [Display(Name = "Formatted Duration")]
     public string FormattedDuration

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -31,7 +30,7 @@ namespace CodeCraft.Data.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     ApplicationOpenDate = table.Column<DateTime>(type: "date", nullable: false),
                     ApplicationCloseDate = table.Column<DateTime>(type: "date", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -48,7 +47,7 @@ namespace CodeCraft.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -97,6 +96,8 @@ namespace CodeCraft.Data.Migrations
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     PhysicalAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -171,7 +172,7 @@ namespace CodeCraft.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -196,7 +197,7 @@ namespace CodeCraft.Data.Migrations
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Biography = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HireDate = table.Column<DateTime>(type: "date", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -218,7 +219,7 @@ namespace CodeCraft.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -360,6 +361,7 @@ namespace CodeCraft.Data.Migrations
                     RegisterDate = table.Column<DateTime>(type: "date", nullable: false),
                     AdmitDate = table.Column<DateTime>(type: "date", nullable: false),
                     GraduateDate = table.Column<DateTime>(type: "date", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -388,7 +390,7 @@ namespace CodeCraft.Data.Migrations
                     InstructorId = table.Column<int>(type: "int", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -417,7 +419,7 @@ namespace CodeCraft.Data.Migrations
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
@@ -439,65 +441,65 @@ namespace CodeCraft.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Course",
-                columns: new[] { "Id", "ApplicationCloseDate", "ApplicationOpenDate", "Code", "Description", "DifficultyLevel", "Duration", "Name", "Price", "Technologies" },
+                columns: new[] { "Id", "ApplicationCloseDate", "ApplicationOpenDate", "Code", "Description", "DifficultyLevel", "Duration", "Name", "Price", "Technologies", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY412", "Explore the basics of computer programming using the Python programming language.", "Beginner", "6m", "Python Basics", 5000m, "Python" },
-                    { 2, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY512", "Explore more advanced computer programming concepts using the Python programming language.", "Intermediate", "6m", "Programming With Python", 5000m, "Python" },
-                    { 3, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY522", "Explore the most advanced computer programming concepts using the Python programming language.", "Advanced", "6m", "Advanced Python", 5000m, "Python" },
-                    { 4, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML512", "Explore the basics of Machine Learning using the Python programming language.", "Advanced", "6m", "Machine Learning Basics", 5000m, "Python" },
-                    { 5, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML522", "Explore the most advanced Machine Learning techniques using the Python programming language.", "Advanced", "6m", "Advanced Machine Learning", 5000m, "Python" },
-                    { 6, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI521", "Explore the basics of Arificial Intelligence using the Python programming language.", "Advanced", "6m", "Understanding Arificial Intelligence", 5000m, "Python" },
-                    { 7, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI612", "Become a certified Arificial Intelligence Engineer.", "Major", "6m", "Arificial Intelligence Engineering", 5000m, "Python,Java,C++" },
-                    { 8, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DL612", "Study the concept of Deep Learning, engineering complex deep neural networks that will revolutionize the modern world.", "Major", "6m", "Deep Learning", 5000m, "Python,Java,C++" },
-                    { 9, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD412", "Explore the basics of computer programming using the Java programming language.", "Beginner", "6m", "Java Basics", 5000m, "Java" },
-                    { 10, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD512", "Explore more advanced computer programming concepts using the Java programming language.", "Intermediate", "6m", "Programming With Java", 5000m, "Java" },
-                    { 11, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD522", "Explore the most advanced computer programming concepts using the Java programming language.", "Advanced", "6m", "Advanced Java", 5000m, "Java" },
-                    { 12, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD412", "Build beautiful and responsive websites using HTML, CSS and JavaScript.", "Beginner", "6m", "Core Web Development", 5000m, "HTML,CSS,JavaScript" },
-                    { 13, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD422", "Design mobile-friendly websites using modern CSS techniques.", "Intermediate", "6m", "Modern Web Design", 5000m, "React,Vue,Svelte,Tailwind,Bootstrap,Angular" },
-                    { 14, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD512", "Become a full-stack developer using MongoDB, Express, React, and Node.", "Advanced", "6m", "Full-Stack Web Development", 5000m, "JavaScript,TypeScript,XML,JSON" },
-                    { 15, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DBQ412", "Master SQL queries to analyze and manipulate data.", "Beginner", "6m", "Database Queries Basics", 5000m, "SQL" },
-                    { 16, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP412", "Explore the basics of computer programming using the C++ programming language.", "Beginner", "6m", "C++ Basics", 5000m, "C++" },
-                    { 17, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP512", "Explore more advanced computer programming concepts using the C++ programming language.", "Intermediate", "6m", "Programming With C++", 5000m, "C++" },
-                    { 18, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP522", "Explore the most advanced computer programming concepts using the C++ programming language.", "Advanced", "6m", "Advanced C++", 5000m, "C++" },
-                    { 19, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS512", "Explore the basics of Cyber Security.", "Intermediate", "6m", "Cyber Security Basics", 5000m, "Python,C++" },
-                    { 20, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS522", "Explore the most advanced Cyber Security concepts and tecniques.", "Advanced", "6m", "Advanced Cyber Security", 5000m, "C,C++,Assembly,Python" },
-                    { 21, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS612", "Become a certified Offensive Security specialist.", "Major", "6m", "Offensive Security", 5000m, "C,C++,Assembly,Python" },
-                    { 22, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DS612", "Become a certified Defensive Security specialist.", "Major", "6m", "Defensive Security", 5000m, "C,C++,Assembly,Python" }
+                    { 1, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY412", "Explore the basics of computer programming using the Python programming language.", "Beginner", "6m", "Python Basics", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1491) },
+                    { 2, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY512", "Explore more advanced computer programming concepts using the Python programming language.", "Intermediate", "6m", "Programming With Python", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1499) },
+                    { 3, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "PY522", "Explore the most advanced computer programming concepts using the Python programming language.", "Advanced", "6m", "Advanced Python", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1501) },
+                    { 4, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML512", "Explore the basics of Machine Learning using the Python programming language.", "Advanced", "6m", "Machine Learning Basics", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1504) },
+                    { 5, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "ML522", "Explore the most advanced Machine Learning techniques using the Python programming language.", "Advanced", "6m", "Advanced Machine Learning", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1511) },
+                    { 6, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI521", "Explore the basics of Arificial Intelligence using the Python programming language.", "Advanced", "6m", "Understanding Arificial Intelligence", 5000m, "Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1514) },
+                    { 7, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AI612", "Become a certified Arificial Intelligence Engineer.", "Major", "6m", "Arificial Intelligence Engineering", 5000m, "Python,Java,C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1516) },
+                    { 8, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DL612", "Study the concept of Deep Learning, engineering complex deep neural networks that will revolutionize the modern world.", "Major", "6m", "Deep Learning", 5000m, "Python,Java,C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1519) },
+                    { 9, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD412", "Explore the basics of computer programming using the Java programming language.", "Beginner", "6m", "Java Basics", 5000m, "Java", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1521) },
+                    { 10, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD512", "Explore more advanced computer programming concepts using the Java programming language.", "Intermediate", "6m", "Programming With Java", 5000m, "Java", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1523) },
+                    { 11, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "JD522", "Explore the most advanced computer programming concepts using the Java programming language.", "Advanced", "6m", "Advanced Java", 5000m, "Java", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1526) },
+                    { 12, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD412", "Build beautiful and responsive websites using HTML, CSS and JavaScript.", "Beginner", "6m", "Core Web Development", 5000m, "HTML,CSS,JavaScript", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1528) },
+                    { 13, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD422", "Design mobile-friendly websites using modern CSS techniques.", "Intermediate", "6m", "Modern Web Design", 5000m, "React,Vue,Svelte,Tailwind,Bootstrap,Angular", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1531) },
+                    { 14, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CWD512", "Become a full-stack developer using MongoDB, Express, React, and Node.", "Advanced", "6m", "Full-Stack Web Development", 5000m, "JavaScript,TypeScript,XML,JSON", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1533) },
+                    { 15, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DBQ412", "Master SQL queries to analyze and manipulate data.", "Beginner", "6m", "Database Queries Basics", 5000m, "SQL", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1536) },
+                    { 16, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP412", "Explore the basics of computer programming using the C++ programming language.", "Beginner", "6m", "C++ Basics", 5000m, "C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1538) },
+                    { 17, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP512", "Explore more advanced computer programming concepts using the C++ programming language.", "Intermediate", "6m", "Programming With C++", 5000m, "C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1541) },
+                    { 18, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CPP522", "Explore the most advanced computer programming concepts using the C++ programming language.", "Advanced", "6m", "Advanced C++", 5000m, "C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1543) },
+                    { 19, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS512", "Explore the basics of Cyber Security.", "Intermediate", "6m", "Cyber Security Basics", 5000m, "Python,C++", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1546) },
+                    { 20, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CS522", "Explore the most advanced Cyber Security concepts and tecniques.", "Advanced", "6m", "Advanced Cyber Security", 5000m, "C,C++,Assembly,Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1548) },
+                    { 21, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "AS612", "Become a certified Offensive Security specialist.", "Major", "6m", "Offensive Security", 5000m, "C,C++,Assembly,Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1551) },
+                    { 22, new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "DS612", "Become a certified Defensive Security specialist.", "Major", "6m", "Defensive Security", 5000m, "C,C++,Assembly,Python", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1553) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Department",
-                columns: new[] { "Id", "Code", "Description", "Name" },
+                columns: new[] { "Id", "Code", "Description", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, "IT", "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Information Technology" },
-                    { 2, "ML", "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Machine Learning" },
-                    { 3, "CS", "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Cyber Security" },
-                    { 4, "WD", "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Web Development" }
+                    { 1, "IT", "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Information Technology", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1559) },
+                    { 2, "ML", "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Machine Learning", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1561) },
+                    { 3, "CS", "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Cyber Security", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1563) },
+                    { 4, "WD", "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.", "Web Development", new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1564) }
                 });
 
             migrationBuilder.InsertData(
                 schema: "AspNetIdentity",
                 table: "User",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhysicalAddress", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhysicalAddress", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { "2f5423d9-3322-438a-b9dc-ec1ffdb3db87", 0, "2512ee41-f5a2-400f-8a8b-364428fe3698", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@codecraft.co.za", true, "Jane", "Female", "Smith", false, null, "JANE.SMITH@CODECRAFT.CO.ZA", "JANE.SMITH@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Cape Town", "254f75f5-cf05-470d-a02f-92ffd3043314", false, "jane.smith@codecraft.co.za" },
-                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "bd25db2f-dea5-4362-8ac5-05c88bcb35ac", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "dfced2f5-f04d-4fa2-9098-97bc44201e49", false, "instructor@codecraft.co.za" },
-                    { "40c697c6-41ec-42fd-93c9-5624d377b710", 0, "8c1ad04e-c8d9-439a-bf9a-5781e0611d6b", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "david.khumalo@codecraft.co.za", true, "David", "Male", "Khumalo", false, null, "DAVID.KHUMALO@CODECRAFT.CO.ZA", "DAVID.KHUMAL@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Pretoria", "fbd39a44-0239-4166-8b3d-19db75fd335d", false, "david.khumal@codecraft.co.za" },
-                    { "41edb5b2-3dd8-4c40-b7db-96f609d2fdab", 0, "8094fd7d-be9e-477c-beb8-007b801dc6d8", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "michael.johnson@codecraft.co.za", true, "Michael", "Male", "Johnson", false, null, "MICHAEL.JOHNSON@CODECRAFT.CO.ZA", "MICHAEL.JOHNSON@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Johannesburg", "0e3921e6-495f-489c-a406-4a80d4c9ff87", false, "michael.johnson@codecraft.co.za" },
-                    { "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb", 0, "936e96ba-e6ce-457f-8475-6134a96a2141", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "themba.carter@codecraft.co.za", true, "Themba", "Male", "Carter", false, null, "THEMBA.CARTER@CODECRAFT.CO.ZA", "THEMBA.CARTER@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Port Elizabeth", "c1794b31-46b7-4bac-89d8-76b980a2c8d0", false, "themba.carter@codecraft.co.za" },
-                    { "76735e5b-52ef-4c2f-b17b-2456ff4b9556", 0, "501487a9-b92f-4090-97b1-01fc74ddd865", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "james.wilson@codecraft.co.za", true, "James", "Male", "Wilson", false, null, "JAMES.WILSON@CODECRAFT.CO.ZA", "JAMES.WILSON@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Bloemfontein", "91d2b038-310f-4370-975b-5e0486a3126c", false, "james.wilson@codecraft.co.za" },
-                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "ae6b7564-24b9-4f32-9be1-7889b2a1f37b", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "dace729a-e2fc-4c40-8df3-dd533a7cbd63", false, "admin@codecraft.co.za" },
-                    { "d7574773-b281-4c29-8e6b-bf818d5680a2", 0, "969a36d6-3822-4dd6-a71b-945c200c7249", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "lisa.roberts@codecraft.co.za", true, "Lisa", "Female", "Roberts", false, null, "LISA.ROBERTS@CODECRAFT.CO.ZA", "LISA.ROBERTS@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Durban", "1501780c-1af6-400f-817b-72e7737429f7", false, "lisa.roberts@codecraft.co.za" },
-                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "2a0e34c5-e1f8-4990-b264-514a5d85206f", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "25228ec1-40ec-4d7d-8814-574b6fbc59f0", false, "student@codecraft.co.za" }
+                    { "2f5423d9-3322-438a-b9dc-ec1ffdb3db87", 0, "96909d17-ff56-48f9-892d-2b149fd62b15", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@codecraft.co.za", true, "Jane", "Female", "Smith", false, null, "JANE.SMITH@CODECRAFT.CO.ZA", "JANE.SMITH@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Cape Town", "bcf3c808-dff1-4b95-8dad-9a4a3fa56339", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1700), "jane.smith@codecraft.co.za" },
+                    { "3fe25d09-a2b3-4b40-9fdf-c2b24455411a", 0, "b00dec2a-a93e-48cf-9a5b-4a0d7a9a4834", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "instructor@codecraft.co.za", true, "Instructor", "Male", "Default", false, null, "INSTRUCTOR@CODECRAFT.CO.ZA", "INSTRUCTOR@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "a58f05ed-0854-4b65-8a0b-5514133376e7", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1675), "instructor@codecraft.co.za" },
+                    { "40c697c6-41ec-42fd-93c9-5624d377b710", 0, "d1a9157b-0162-4b62-9653-0f909144f70d", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "david.khumalo@codecraft.co.za", true, "David", "Male", "Khumalo", false, null, "DAVID.KHUMALO@CODECRAFT.CO.ZA", "DAVID.KHUMAL@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Pretoria", "635c655e-27b0-4cb3-9834-223bd8837e2a", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1726), "david.khumal@codecraft.co.za" },
+                    { "41edb5b2-3dd8-4c40-b7db-96f609d2fdab", 0, "4f336569-7cf2-4a1f-ac91-a3b32b327b5c", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "michael.johnson@codecraft.co.za", true, "Michael", "Male", "Johnson", false, null, "MICHAEL.JOHNSON@CODECRAFT.CO.ZA", "MICHAEL.JOHNSON@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Johannesburg", "38593805-10f9-4c50-a6d2-05fd79b8d6bd", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1707), "michael.johnson@codecraft.co.za" },
+                    { "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb", 0, "83b39022-24d0-4c54-bcb8-7397b5e64763", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "themba.carter@codecraft.co.za", true, "Themba", "Male", "Carter", false, null, "THEMBA.CARTER@CODECRAFT.CO.ZA", "THEMBA.CARTER@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Port Elizabeth", "3dde98d0-2d01-4252-93ee-ad8580319a97", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1735), "themba.carter@codecraft.co.za" },
+                    { "76735e5b-52ef-4c2f-b17b-2456ff4b9556", 0, "7376c397-fd4d-467d-916b-822896cdafbc", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "james.wilson@codecraft.co.za", true, "James", "Male", "Wilson", false, null, "JAMES.WILSON@CODECRAFT.CO.ZA", "JAMES.WILSON@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Bloemfontein", "b43e4fdc-22da-4dc6-a4a2-d104e47c892b", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1744), "james.wilson@codecraft.co.za" },
+                    { "a660cfef-d951-47e4-b40d-2272788f94c1", 0, "65c7e7b5-bbac-4eef-b323-528a55c2a17f", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@codecraft.co.za", true, "Admin", "Male", "Default", false, null, "ADMIN@CODECRAFT.CO.ZA", "ADMIN@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "435faab8-3eaf-47e9-9cb8-6e31aaaaf60a", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1594), "admin@codecraft.co.za" },
+                    { "d7574773-b281-4c29-8e6b-bf818d5680a2", 0, "1acf4cae-c4e4-4702-88cf-264cb58e4fa9", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "lisa.roberts@codecraft.co.za", true, "Lisa", "Female", "Roberts", false, null, "LISA.ROBERTS@CODECRAFT.CO.ZA", "LISA.ROBERTS@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "42 Some St., Durban", "40cec38a-20e6-4611-9506-d2af5901b471", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1715), "lisa.roberts@codecraft.co.za" },
+                    { "efff6fe8-7d05-4adf-8ed1-92ed552c113f", 0, "da3d21f6-4250-41ed-8a64-7e6a77137973", new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "student@codecraft.co.za", true, "Student", "Male", "Default", false, null, "STUDENT@CODECRAFT.CO.ZA", "STUDENT@CODECRAFT.CO.ZA", "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==", null, false, "Default Address", "85853ff7-962e-4d1f-9e79-f295a0a2492e", false, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1683), "student@codecraft.co.za" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Admin",
-                columns: new[] { "Id", "UserId" },
-                values: new object[] { 1, "a660cfef-d951-47e4-b40d-2272788f94c1" });
+                columns: new[] { "Id", "UpdatedAt", "UserId" },
+                values: new object[] { 1, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1759), "a660cfef-d951-47e4-b40d-2272788f94c1" });
 
             migrationBuilder.InsertData(
                 table: "CourseDepartment",
@@ -542,50 +544,50 @@ namespace CodeCraft.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Instructor",
-                columns: new[] { "Id", "Biography", "Education", "HireDate", "UserId" },
+                columns: new[] { "Id", "Biography", "Education", "HireDate", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat, quis vestibulum sapien maximus.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3fe25d09-a2b3-4b40-9fdf-c2b24455411a" },
-                    { 2, "Experienced software engineer specializing in Java and Python programming.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2f5423d9-3322-438a-b9dc-ec1ffdb3db87" },
-                    { 3, "Expert in data science and machine learning with 5+ years of teaching experience.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "41edb5b2-3dd8-4c40-b7db-96f609d2fdab" },
-                    { 4, "Specializes in web development using React and Node.js. Passionate about mentoring.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "d7574773-b281-4c29-8e6b-bf818d5680a2" },
-                    { 5, "Full-stack developer with expertise in PHP and Laravel. Loves teaching coding fundamentals.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "40c697c6-41ec-42fd-93c9-5624d377b710" },
-                    { 6, "Creative designer and developer focusing on UI/UX and front-end frameworks like Angular.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb" },
-                    { 7, "Senior software developer with extensive experience in C# and .NET development.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "76735e5b-52ef-4c2f-b17b-2456ff4b9556" }
+                    { 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat, quis vestibulum sapien maximus.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1766), "3fe25d09-a2b3-4b40-9fdf-c2b24455411a" },
+                    { 2, "Experienced software engineer specializing in Java and Python programming.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1769), "2f5423d9-3322-438a-b9dc-ec1ffdb3db87" },
+                    { 3, "Expert in data science and machine learning with 5+ years of teaching experience.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1771), "41edb5b2-3dd8-4c40-b7db-96f609d2fdab" },
+                    { 4, "Specializes in web development using React and Node.js. Passionate about mentoring.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1772), "d7574773-b281-4c29-8e6b-bf818d5680a2" },
+                    { 5, "Full-stack developer with expertise in PHP and Laravel. Loves teaching coding fundamentals.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1774), "40c697c6-41ec-42fd-93c9-5624d377b710" },
+                    { 6, "Creative designer and developer focusing on UI/UX and front-end frameworks like Angular.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1775), "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb" },
+                    { 7, "Senior software developer with extensive experience in C# and .NET development.", "Computer Science, PHD", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1777), "76735e5b-52ef-4c2f-b17b-2456ff4b9556" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Student",
-                columns: new[] { "Id", "UserId" },
-                values: new object[] { 1, "efff6fe8-7d05-4adf-8ed1-92ed552c113f" });
+                columns: new[] { "Id", "UpdatedAt", "UserId" },
+                values: new object[] { 1, new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1798), "efff6fe8-7d05-4adf-8ed1-92ed552c113f" });
 
             migrationBuilder.InsertData(
                 table: "Enrollment",
-                columns: new[] { "CourseId", "StudentId", "AdmitDate", "GraduateDate", "RegisterDate" },
+                columns: new[] { "CourseId", "StudentId", "AdmitDate", "GraduateDate", "RegisterDate", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 10, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 11, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 12, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 13, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 14, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 15, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 16, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 17, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 18, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 19, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 20, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 21, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 22, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1805) },
+                    { 2, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1807) },
+                    { 3, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1809) },
+                    { 4, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1810) },
+                    { 5, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1812) },
+                    { 6, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1813) },
+                    { 7, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1815) },
+                    { 8, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1816) },
+                    { 9, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1818) },
+                    { 10, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1820) },
+                    { 11, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1821) },
+                    { 12, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1823) },
+                    { 13, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1824) },
+                    { 14, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1826) },
+                    { 15, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1827) },
+                    { 16, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1829) },
+                    { 17, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1830) },
+                    { 18, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1832) },
+                    { 19, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1834) },
+                    { 20, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1835) },
+                    { 21, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1837) },
+                    { 22, 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 29, 3, 13, 19, 79, DateTimeKind.Utc).AddTicks(1838) }
                 });
 
             migrationBuilder.InsertData(
