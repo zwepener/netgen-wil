@@ -3,14 +3,13 @@
 <form asp-controller="Inquiries" asp-action="SubmitInquiry" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row gy-4 gx-3">
-        <!-- Person Name (Not currently a column in the database)
         <div class="col-12">
             <div class="form-group">
-                <label class="form-label">Name</label>
-                <input type="text" class="form-control" name="name">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" autocomplete="name">
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
-        -->
         <div class="col-12">
             <div class="form-group">
                 <label asp-for="Email" class="form-label"></label>
@@ -18,23 +17,15 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
-        <!-- Inquiry Subject (Not currently a column in the database)
-        <div class="col-12">
-            <div class="form-group">
-                <label class="form-label">Subject</label>
-                <input type="text" class="form-control" name="Subject">
-            </div>
-        </div>
-        -->
         <div class="col-12">
             <div class="form-group">
                 <label asp-for="Message" class="form-label"></label>
                 <textarea asp-for="Message" cols="3" class="form-control"></textarea>
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <span asp-validation-for="Message" class="text-danger"></span>
             </div>
         </div>
         <div class="col-12">
-            <button class="colored-btn" type="submit">Send Message</button>
+            <button class="colored-btn" type="submit">Send Inquiry</button>
         </div>
     </div>
 </form>
