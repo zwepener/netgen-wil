@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodeCraft.Web.StudentPortal.Controllers
+namespace CodeCraft.Web.StudentPortal.Controllers;
+
+[Authorize]
+public class ProfileManagementController : Controller
 {
-    [Authorize]
-    public class ProfileManagementController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

@@ -5,10 +5,9 @@
 }
 
 @section Styles {
-    <link href="~/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/dashboard.css" rel="stylesheet" />
 }
 
-<!-- Main Content -->
 <div class="main-content">
     <div class="header">
         <h1>Welcome back @Model.User!.FullName</h1>
@@ -21,24 +20,15 @@
     <div class="courses-section">
         <h2>Enrolled Courses</h2>
         <div class="courses">
-            <div class="course-card animate">
-                <h3>Introduction to Python Programming - PRP411</h3>
-                <p>Jane Doe</p>
-                <p>Monday & Wednesday</p>
-                <p>8:00 AM - 11:30 AM</p>
-            </div>
-            <div class="course-card animate">
-                <h3>Beginner Java Programming - JD522</h3>
-                <p>Michael Anson</p>
-                <p>Tuesday & Thursday</p>
-                <p>9:00 AM - 11:30 AM</p>
-            </div>
-            <div class="course-card animate">
-                <h3>Business Programming - PRG522</h3>
-                <p>John Doe</p>
-                <p>Monday</p>
-                <p>1:00 PM - 3:30 PM</p>
-            </div>
+            @foreach (Course course in Model.Courses)
+            {
+                <div class="course-card animate">
+                    <h3>@course.FormattedName</h3>
+                    <p>Jane Doe</p>
+                    <p>Monday & Wednesday</p>
+                    <p>8:00 AM - 11:30 AM</p>
+                </div>
+            }
         </div>
     </div>
 

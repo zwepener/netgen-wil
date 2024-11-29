@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Student
+
+@{
     ViewData["Title"] = "My Courses";
 }
 
@@ -12,8 +14,8 @@
         <h1>My Courses</h1>
         <div class="profile-icon">
             <img src="~/assets/profile-icon.png"
-                 alt="Profile Icon"
-                 class="small-profile-icon" />
+            alt="Profile Icon"
+            class="small-profile-icon" />
         </div>
     </div>
 
@@ -21,19 +23,15 @@
     <div class="courses-section">
         <h2>Currently Enrolled Courses</h2>
         <div class="courses">
-            <div class="course-card animate">
-                <h3>Course Name 1</h3>
-                <p>Instructor: Jane Doe</p>
-                <p>Monday & Wednesday</p>
-                <p>8:00 AM - 11:30 AM</p>
-            </div>
-            <div class="course-card animate">
-                <h3>Course Name 2</h3>
-                <p>Instructor: John Doe</p>
-                <p>Tuesday & Thursday</p>
-                <p>9:00 AM - 11:30 AM</p>
-            </div>
-            <!-- Add more courses as needed -->
+            @foreach (Course course in Model.Courses)
+            {
+                <div class="course-card animate">
+                    <h3>@course.FormattedName</h3>
+                    <p>Jane Doe</p>
+                    <p>Monday & Wednesday</p>
+                    <p>8:00 AM - 11:30 AM</p>
+                </div>
+            }
         </div>
     </div>
 </div>

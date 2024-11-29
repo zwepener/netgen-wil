@@ -1,14 +1,32 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CodeCraft.Data;
+using CodeCraft.Data.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace CodeCraft.Web.StudentPortal.Controllers
+namespace CodeCraft.Web.StudentPortal.Controllers;
+
+[Authorize]
+public class CoursesController(UserManager<User> userManager, CodeCraftDbContext context) : Controller
 {
-    [Authorize]
-    public class CoursesController : Controller
+    private readonly UserManager<User> _userManager = userManager;
+    private readonly CodeCraftDbContext _context = context;
+
+    public async Task<IActionResult> Index()
     {
-        public IActionResult Index()
+        User? user = await _userManager.GetUserAsync(User);
+        if (user == null)
         {
-            return View();
+            return Unauthorized();
         }
+
+        Student? student = await _context.Student.Include(s => s.Courses).FirstAsync();
+        if (student == null)
+        {
+            return NotFound();
+        }
+
+        return View(student);
     }
 }

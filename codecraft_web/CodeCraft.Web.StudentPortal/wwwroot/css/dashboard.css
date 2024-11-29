@@ -1,214 +1,66 @@
-/* Applying fonts to the entire page */
 body {
-  font-family: "Karla", sans-serif; /* Body text */
-  background-color: #00012a; /* Background as per your theme */
-  color: #010101; /* Text color */
-  margin: 0;
-  padding: 0;
-}
-
-/* Apply Montserrat for headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Montserrat", sans-serif;
-  color: #00012a; /* Heading color */
-}
-
-/* Optional: Adjust font size and weight for main headings */
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-/* Optional: Adjust the font style for cards and sidebar */
-.sidebar ul.nav li,
-.library-card,
-.exam-board,
-.calendar {
   font-family: "Karla", sans-serif;
-  font-weight: 400;
-}
-
-/* Buttons and links */
-button,
-a {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-}
-
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #00012a;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.logo h2 {
-  text-align: center;
-  color: #f3ca16;
-}
-
-.profile-section {
-  text-align: center;
-}
-
-.profile-pic {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.nav {
-  list-style: none;
-  padding: 0;
-}
-
-.nav li {
-  margin: 20px 0;
-  cursor: pointer;
-  color: #f9f6f1;
-}
-
-.nav li:hover,
-.nav .active {
-  color: #f3ca16;
-  transform: translateX(5px);
-  transition: all 0.3s ease;
-}
-
-/* Main Content */
-.main-content {
-  flex: 2;
-  padding: 20px;
-  background-color: #fff;
-}
-
-/* Profile Icon */
-.profile-icon img {
-  width: 50px; /* Adjust the width to a smaller size */
-  height: 50px; /* Adjust the height to match */
-  border-radius: 50%; /* Ensures the image stays circular */
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  position: relative;
 }
 
-.header h1 {
-  margin: 0;
-}
-
-.courses-section,
-.exam-board {
-  margin-bottom: 30px;
-}
-
-.courses {
-  display: flex;
-  gap: 20px;
-}
-
-.course-card {
-  background-color: #f3ca16;
-  border-radius: 10px;
-  padding: 20px;
-  width: 30%;
-  text-align: left;
-  transition: transform 0.2s;
-}
-
-.course-card:hover {
-  transform: scale(1.05);
-}
-
-table {
+.exam-board table {
   width: 100%;
   border-collapse: collapse;
 }
 
-table,
+.exam-board table,
 th,
 td {
   border: 1px solid #ddd;
 }
 
-th,
-td {
-  padding: 8px;
-  text-align: left;
-}
-
-th {
+.exam-board th {
   background-color: #f58a07;
-  color: white;
+  color: #fff;
 }
 
-/* Right Sidebar */
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid #f3ca16;
+}
+
+.sidebar .logo {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.logo-img img {
+  width: 80px;
+  height: auto;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.sidebar .logo h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
 .right-sidebar {
   width: 300px;
   padding: 20px;
   background-color: #f9f6f1;
-}
-
-.calendar {
-  background-color: #6bd425;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.assignments ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.assignments li {
-  background-color: #f58a07;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
-}
-
-.assignments li:hover {
-  background-color: #6bd425;
-  transform: scale(1.05);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Animations */
-.animate {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }

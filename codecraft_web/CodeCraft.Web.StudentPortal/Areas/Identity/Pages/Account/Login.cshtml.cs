@@ -111,7 +111,7 @@ namespace CodeCraft.Web.StudentPortal.Areas.Identity.Pages.Account
                 return Page();
             }
 
-            bool isStudent = await _context.Admin.AnyAsync(u => u.User.Email == Input.Email);
+            bool isStudent = await _context.Student.AnyAsync(s => s.User.Email == Input.Email);
             if (!isStudent)
             {
                 ModelState.AddModelError(string.Empty, "Invalid student account.");
