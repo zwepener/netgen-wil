@@ -13,7 +13,6 @@ env:
     DOTNET_CORE_VERSION: 8.0.x
     WORKING_DIRECTORY: codecraft_web\CodeCraft.Web.AdminPortal
     ENV_NAME: Production
-    ARTIFACT_NAME: admin-portal
 
 jobs:
   build:
@@ -42,14 +41,14 @@ jobs:
       - name: Publish Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
+          name: webapp
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
   deploy:
     runs-on: windows-latest
     needs: build
     environment:
-      name: ${{ env.ENV_NAME }}
+      name: webapp
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
