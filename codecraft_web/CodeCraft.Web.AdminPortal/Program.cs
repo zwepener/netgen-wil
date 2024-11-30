@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = (Environment.GetEnvironmentVariable("DefaultConnection") ?? builder.Configuration.GetConnectionString("DefaultConnection")) ?? throw new InvalidOperationException("Connection string not found.");
+string? connectionString = (Environment.GetEnvironmentVariable("DefaultConnection") ?? builder.Configuration.GetConnectionString("DefaultConnection")) ?? throw new InvalidOperationException("Connection string not found.");
 
 builder.Services.AddDbContext<CodeCraftDbContext>(options =>
     options.UseSqlServer(connectionString));
