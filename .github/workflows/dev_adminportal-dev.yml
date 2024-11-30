@@ -12,7 +12,6 @@ env:
     CONFIGURATION: Debug
     DOTNET_CORE_VERSION: 8.0.x
     WORKING_DIRECTORY: codecraft_web\CodeCraft.Web.AdminPortal
-    ENV_NAME: Development
 
 jobs:
   build:
@@ -48,7 +47,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: ${{ env.ENV_NAME }}
+      name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write
@@ -73,6 +72,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: ${{ env.ENV_NAME }}
+          slot-name: 'Production'
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
           
