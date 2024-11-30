@@ -1197,7 +1197,12 @@ public class CodeCraftDbContext : IdentityDbContext<User>
         base.OnConfiguring(optionsBuilder);
 
         var configuration = Configurer.GetConfiguration();
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+        string? connectionString = configuration.GetConnectionString("DatabaseConnection") ?? configuration.GetConnectionString("DefaultConnection");
+        if (connectionString == null)
+        {
+            throw new InvalidOperationException("Connection string not found.");
+        }
 
         optionsBuilder.UseSqlServer(connectionString);
     }

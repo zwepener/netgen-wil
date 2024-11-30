@@ -28,8 +28,4 @@
     <ProjectReference Include="..\CodeCraft.Data\CodeCraft.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\assets\" />
-  </ItemGroup>
-
 </Project>
