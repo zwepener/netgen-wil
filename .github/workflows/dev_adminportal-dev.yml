@@ -12,7 +12,7 @@ env:
     CONFIGURATION: Debug
     DOTNET_CORE_VERSION: 8.0.x
     WORKING_DIRECTORY: codecraft_web\CodeCraft.Web.AdminPortal
-    ENV_NAME: Production
+    ENV_NAME: Development
 
 jobs:
   build:
@@ -41,31 +41,32 @@ jobs:
       - name: Publish Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: webapp
+          name: dev
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
   deploy:
     runs-on: windows-latest
     needs: build
-
     environment:
-      name: webapp
+      name: ${{ env.ENV_NAME }}
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
+          name: dev
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: ${{ env.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
