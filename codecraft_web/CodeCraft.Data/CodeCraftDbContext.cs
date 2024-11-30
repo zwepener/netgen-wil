@@ -1174,12 +1174,8 @@ internal class Configurer
     }
 }
 
-public class CodeCraftDbContext : IdentityDbContext<User>
+public class CodeCraftDbContext(DbContextOptions<CodeCraftDbContext> options) : IdentityDbContext<User>(options)
 {
-    public CodeCraftDbContext(DbContextOptions<CodeCraftDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<Admin> Admin { get; set; } = default!;
     public DbSet<Inquiry> Inquiry { get; set; } = default!;
     public DbSet<Course> Course { get; set; } = default!;
@@ -1198,11 +1194,7 @@ public class CodeCraftDbContext : IdentityDbContext<User>
 
         var configuration = Configurer.GetConfiguration();
 
-        string? connectionString = configuration.GetConnectionString("DatabaseConnection") ?? configuration.GetConnectionString("DefaultConnection");
-        if (connectionString == null)
-        {
-            throw new InvalidOperationException("Connection string not found.");
-        }
+        string? connectionString = (Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING") ?? configuration.GetConnectionString("DefaultConnection")) ?? throw new InvalidOperationException("Connection string not found.");
 
         optionsBuilder.UseSqlServer(connectionString);
     }
