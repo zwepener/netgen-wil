@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string? connectionString = (Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING") ?? builder.Configuration.GetConnectionString("DefaultConnection")) ?? throw new InvalidOperationException("Connection string not found.");
+string? connectionString = (Environment.GetEnvironmentVariable("SQLAZURECONNSTR_CodeCraftDbConn") ?? builder.Configuration.GetConnectionString("DefaultConnection")) ?? throw new InvalidOperationException("Connection string not found.");
 
 builder.Services.AddDbContext<CodeCraftDbContext>(options =>
     options.UseSqlServer(connectionString));
