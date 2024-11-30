@@ -5,10 +5,10 @@ on:
     - dev
 env:
   AZURE_WEBAPP_NAME: AdminPortal-Dev
-  AZURE_WEBAPP_PACKAGE_PATH: CodeCraft.Web.AdminPortal\published
+  AZURE_WEBAPP_PACKAGE_PATH: codecraft_web\CodeCraft.Web.AdminPortal\published
   CONFIGURATION: Debug
   DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: CodeCraft.Web.AdminPortal
+  WORKING_DIRECTORY: codecraft_web\CodeCraft.Web.AdminPortal
 jobs:
   build:
     runs-on: windows-latest
