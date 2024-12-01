@@ -1,0 +1,168 @@
+name: Deploy-Development
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+env:
+  CONFIGURATION: Debug
+  DOTNET_CORE_VERSION: 8.0.x
+
+jobs:
+  build_admin:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+      - name: Restore AdminPortal
+        run: dotnet restore "codecraft_web\CodeCraft.Web.AdminPortal"
+
+      - name: Build AdminPortal
+        run: dotnet build "codecraft_web\CodeCraft.Web.AdminPortal" --configuration ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Test AdminPortal
+        run: dotnet test "codecraft_web\CodeCraft.Web.AdminPortal" --no-build
+
+      - name: Publish AdminPortal
+        run: dotnet publish "codecraft_web\CodeCraft.Web.AdminPortal" --configuration ${{ env.CONFIGURATION }} --no-build --output "codecraft_web\CodeCraft.Web.AdminPortal\published"
+
+      - name: Publish AdminPortal Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: admin-portal-dev
+          path: codecraft_web\CodeCraft.Web.AdminPortal\published
+
+  build_public:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+      - name: Restore PublicPortal
+        run: dotnet restore "codecraft_web\CodeCraft.Web.PublicPortal"
+
+      - name: Build PublicPortal
+        run: dotnet build "codecraft_web\CodeCraft.Web.PublicPortal" --configuration ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Test PublicPortal
+        run: dotnet test "codecraft_web\CodeCraft.Web.PublicPortal" --no-build
+
+      - name: Publish PublicPortal
+        run: dotnet publish "codecraft_web\CodeCraft.Web.PublicPortal" --configuration ${{ env.CONFIGURATION }} --no-build --output "codecraft_web\CodeCraft.Web.PublicPortal\published"
+
+      - name: Publish PublicPortal Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-portal-dev
+          path: codecraft_web\CodeCraft.Web.PublicPortal\published
+
+  build_student:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+      - name: Restore StudentPortal
+        run: dotnet restore "codecraft_web\CodeCraft.Web.StudentPortal"
+
+      - name: Build StudentPortal
+        run: dotnet build "codecraft_web\CodeCraft.Web.StudentPortal" --configuration ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Test StudentPortal
+        run: dotnet test "codecraft_web\CodeCraft.Web.StudentPortal" --no-build
+
+      - name: Publish StudentPortal
+        run: dotnet publish "codecraft_web\CodeCraft.Web.StudentPortal" --configuration ${{ env.CONFIGURATION }} --no-build --output "codecraft_web\CodeCraft.Web.StudentPortal\published"
+
+      - name: Publish StudentPortal Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-portal-dev
+          path: codecraft_web\CodeCraft.Web.StudentPortal\published
+
+  deploy_admin:
+    runs-on: windows-latest
+    needs: build_admin
+
+    steps:
+      - name: Download AdminPortal artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: admin-portal-dev
+          path: codecraft_web\CodeCraft.Web.AdminPortal\published
+
+      - name: Azure Login (AdminPortal)
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.ADMIN_PORTAL_AZURE_CREDENTIALS }}
+
+      - name: Deploy AdminPortal to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: AdminPortal-Dev
+          slot-name: 'Production'
+          package: codecraft_web\CodeCraft.Web.AdminPortal\published
+
+  deploy_public:
+    runs-on: windows-latest
+    needs: build_public
+
+    steps:
+      - name: Download PublicPortal artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public-portal-dev
+          path: codecraft_web\CodeCraft.Web.PublicPortal\published
+
+      - name: Azure Login (PublicPortal)
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.PUBLIC_PORTAL_AZURE_CREDENTIALS }}
+
+      - name: Deploy PublicPortal to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: PublicPortal-Dev
+          slot-name: 'Production'
+          package: codecraft_web\CodeCraft.Web.PublicPortal\published
+
+  deploy_student:
+    runs-on: windows-latest
+    needs: build_student
+
+    steps:
+      - name: Download StudentPortal artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: student-portal-dev
+          path: codecraft_web\CodeCraft.Web.StudentPortal\published
+
+      - name: Azure Login (StudentPortal)
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.STUDENT_PORTAL_AZURE_CREDENTIALS }}
+
+      - name: Deploy StudentPortal to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: StudentPortal-Dev
+          slot-name: 'Production'
+          package: codecraft_web\CodeCraft.Web.StudentPortal\published

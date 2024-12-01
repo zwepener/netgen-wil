@@ -6,7 +6,7 @@
 
 <partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
 {
-    Header = "Edit Admin",
+    Header = ViewBag.Title,
     SectionName = "Admins",
     ActiveName = "Edit"
 })" />
@@ -15,7 +15,9 @@
     <div class="col-xl-12 col-xxl-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Basic Info</h5>
+                <h5 class="card-title">
+                    ViewBag.Title
+                </h5>
             </div>
             <div class="card-body">
                 <form asp-action="Edit">

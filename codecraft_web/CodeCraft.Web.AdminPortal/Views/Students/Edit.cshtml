@@ -11,43 +11,18 @@
 
 <partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
 {
-    Header = "Edit Student",
+    Header = ViewBag.Titles,
     SectionName = "Students",
     ActiveName = "Edit"
 })" />
-
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Edit Student</h4>
-        </div>
-    </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a asp-controller="Dashboard" asp-action="Index">
-                    Home
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a asp-action="Index">
-                    Students
-                </a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a asp-action="Edit" asp-route-id="@Model.Id">
-                    Edit
-                </a>
-            </li>
-        </ol>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-xl-12 col-xxl-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Basic Info</h5>
+                <h5 class="card-title">
+                    @ViewBag.Title
+                </h5>
             </div>
             <div class="card-body">
                 <form asp-action="Edit">
@@ -68,58 +43,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- First Name
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="FirstName" class="form-label"></label>
-                                <input asp-for="FirstName" class="form-control" value="@Model.User!.FirstName" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Last Name
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="LastName" class="form-label"></label>
-                                <input asp-for="LastName" class="form-control" value="@Model.User!.LastName" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Gender
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="Gender" class="form-label"></label>
-                                <select asp-for="Gender" class="form-control">
-                                    @foreach (string gender in new List<string> { "Male", "Female" }) {
-                                            <option value="@gender" selected=@(Model.User!.Gender == gender)>
-                                            @gender
-                                        </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Date of Birth
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="DateOfBirth" class="form-label"></label>
-                                <input asp-for="DateOfBirth" class="datepicker form-control" value="@Model.User!.DateOfBirth" />
-                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
-                        <!-- Physical Address
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label asp-for="PhysicalAddress" class="form-label"></label>
-                                <textarea asp-for="PhysicalAddress" class="form-control" rows="5">
-                                    @Html.DisplayFor(model => model.User!.PhysicalAddress)
-                                </textarea>
-                                <span asp-validation-for="PhysicalAddress" class="text-danger"></span>
-                            </div>
-                        </div>
-                        -->
                         <!-- Profile Image
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group fallback w-100">
