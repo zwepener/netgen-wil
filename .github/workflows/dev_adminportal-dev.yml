@@ -13,9 +13,9 @@ env:
     CONFIGURATION: Debug
     DOTNET_CORE_VERSION: 8.0.x
     
-    ADMIN_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.AdminPortal"
-    PUBLIC_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.PublicPortal"
-    STUDENT_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.StudentPortal"
+    ADMIN_PORTAL_DIRECTORY: "$WORKING_DIRECTORY/CodeCraft.Web.AdminPortal"
+    PUBLIC_PORTAL_DIRECTORY: "$WORKING_DIRECTORY/CodeCraft.Web.PublicPortal"
+    STUDENT_PORTAL_DIRECTORY: "$WORKING_DIRECTORY/CodeCraft.Web.StudentPortal"
 
 jobs:
   build-admin-portal:
