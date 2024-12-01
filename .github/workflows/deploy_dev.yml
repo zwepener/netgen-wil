@@ -98,9 +98,39 @@ jobs:
           name: student-portal-dev
           path: codecraft_web\CodeCraft.Web.StudentPortal\published
 
+  check_db_sync:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+      - name: Restore Database Project
+        run: dotnet restore "codecraft_web\CodeCraft.Data"
+
+      - name: Build Database Project
+        run: dotnet build "codecraft_web\CodeCraft.Data" --configuration ${{ env.CONFIGURATION }}
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_DATA_CREDENTIALS }}
+
+      - name: Apply Database Migrations (EF) on Azure
+        run: |
+          az login --service-principal --sdk-auth <<< "${{ secrets.DATA_AZURE_CREDENTIALS }}"
+          dotnet ef database update --project "codecraft_web\CodeCraft.Data" --connection ${{ secrets.AZURE_DB_CONNECTION }}
+
   deploy_admin:
     runs-on: windows-latest
-    needs: build_admin
+
+    needs:
+      - check_db_sync
+      - build_admin
 
     steps:
       - name: Download AdminPortal artifact
@@ -123,7 +153,10 @@ jobs:
 
   deploy_public:
     runs-on: windows-latest
-    needs: build_public
+
+    needs:
+      - check_db_sync
+      - build_public
 
     steps:
       - name: Download PublicPortal artifact
@@ -146,7 +179,10 @@ jobs:
 
   deploy_student:
     runs-on: windows-latest
-    needs: build_student
+
+    needs:
+      - check_db_sync
+      - build_student
 
     steps:
       - name: Download StudentPortal artifact
