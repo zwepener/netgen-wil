@@ -8,14 +8,21 @@ on:
 
 env:
     AZURE_WEBAPP_NAME: AdminPortal-Dev
+    WORKING_DIRECTORY: codecraft_web
     AZURE_WEBAPP_PACKAGE_PATH: codecraft_web\CodeCraft.Web.AdminPortal\published
     CONFIGURATION: Debug
     DOTNET_CORE_VERSION: 8.0.x
-    WORKING_DIRECTORY: codecraft_web\CodeCraft.Web.AdminPortal
+    
+    ADMIN_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.AdminPortal"
+    PUBLIC_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.PublicPortal"
+    STUDENT_PORTAL_DIRECTORY: "${{ env.WORKING_DIRECTORY }}/CodeCraft.Web.StudentPortal"
 
 jobs:
-  build:
+  build-admin-portal:
     runs-on: windows-latest
+
+    env:
+        PUBLISH_PATH: "${{ env.ADMIN_PORTAL_DIRECTORY }}/published"
 
     steps:
       - uses: actions/checkout@v4
@@ -26,33 +33,36 @@ jobs:
           dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
 
       - name: Restore
-        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+        run: dotnet restore "${{ env.ADMIN_PORTAL_DIRECTORY }}\published"
 
       - name: Build
-        run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+        run: dotnet build "${{ env.ADMIN_PORTAL_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
 
       - name: Test
-        run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
+        run: dotnet test "${{ env.ADMIN_PORTAL_DIRECTORY }}" --no-build
 
       - name: Publish
-        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+        run: dotnet publish "${{ env.ADMIN_PORTAL_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output $PUBLISH_PATH
 
       - name: Publish Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: adminportal-dev
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          path: $PUBLISH_PATH
 
-  deploy:
+  deploy-admin-portal:
     runs-on: windows-latest
     needs: build
+
+    env:
+        PUBLISH_PATH: "${{ env.ADMIN_PORTAL_DIRECTORY }}/published"
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: adminportal-dev
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          path: $PUBLISH_PATH
       
       - name: Azure Login
         uses: azure/login@v2
@@ -62,7 +72,7 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: AdminPortal-Dev
           slot-name: 'Production'
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          package: $PUBLISH_PATH
           
