@@ -13,7 +13,7 @@ public class Student
 
     [Key]
     [Display(Name = "Student ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "User ID")]

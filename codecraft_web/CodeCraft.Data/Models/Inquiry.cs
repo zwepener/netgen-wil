@@ -11,7 +11,7 @@ public class Inquiry
 
     [Key]
     [Display(Name = "Inquiry ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "From Name")]

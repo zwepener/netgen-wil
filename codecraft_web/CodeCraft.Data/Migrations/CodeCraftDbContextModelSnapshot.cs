@@ -54,7 +54,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7749),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6920),
                             UserId = "a660cfef-d951-47e4-b40d-2272788f94c1"
                         });
                 });
@@ -129,7 +129,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Python Basics",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7484)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6654)
                         },
                         new
                         {
@@ -144,7 +144,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Programming With Python",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7493)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6662)
                         },
                         new
                         {
@@ -159,7 +159,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Advanced Python",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7496)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6665)
                         },
                         new
                         {
@@ -174,7 +174,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Machine Learning Basics",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7498)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6667)
                         },
                         new
                         {
@@ -189,7 +189,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Advanced Machine Learning",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7501)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6670)
                         },
                         new
                         {
@@ -204,7 +204,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Understanding Arificial Intelligence",
                             Price = 5000m,
                             Technologies = "Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7503)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6672)
                         },
                         new
                         {
@@ -219,7 +219,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Arificial Intelligence Engineering",
                             Price = 5000m,
                             Technologies = "Python,Java,C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7506)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6675)
                         },
                         new
                         {
@@ -234,7 +234,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Deep Learning",
                             Price = 5000m,
                             Technologies = "Python,Java,C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7508)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6677)
                         },
                         new
                         {
@@ -249,7 +249,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Java Basics",
                             Price = 5000m,
                             Technologies = "Java",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7510)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6679)
                         },
                         new
                         {
@@ -264,7 +264,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Programming With Java",
                             Price = 5000m,
                             Technologies = "Java",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7513)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6682)
                         },
                         new
                         {
@@ -279,7 +279,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Advanced Java",
                             Price = 5000m,
                             Technologies = "Java",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7515)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6684)
                         },
                         new
                         {
@@ -294,7 +294,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Core Web Development",
                             Price = 5000m,
                             Technologies = "HTML,CSS,JavaScript",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7518)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6687)
                         },
                         new
                         {
@@ -309,7 +309,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Modern Web Design",
                             Price = 5000m,
                             Technologies = "React,Vue,Svelte,Tailwind,Bootstrap,Angular",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7520)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6689)
                         },
                         new
                         {
@@ -324,7 +324,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Full-Stack Web Development",
                             Price = 5000m,
                             Technologies = "JavaScript,TypeScript,XML,JSON",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7523)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6692)
                         },
                         new
                         {
@@ -339,7 +339,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Database Queries Basics",
                             Price = 5000m,
                             Technologies = "SQL",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7525)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6694)
                         },
                         new
                         {
@@ -354,7 +354,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "C++ Basics",
                             Price = 5000m,
                             Technologies = "C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7533)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6696)
                         },
                         new
                         {
@@ -369,7 +369,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Programming With C++",
                             Price = 5000m,
                             Technologies = "C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7536)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6699)
                         },
                         new
                         {
@@ -384,7 +384,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Advanced C++",
                             Price = 5000m,
                             Technologies = "C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7538)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6701)
                         },
                         new
                         {
@@ -399,7 +399,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Cyber Security Basics",
                             Price = 5000m,
                             Technologies = "Python,C++",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7541)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6704)
                         },
                         new
                         {
@@ -414,7 +414,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Advanced Cyber Security",
                             Price = 5000m,
                             Technologies = "C,C++,Assembly,Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7543)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6706)
                         },
                         new
                         {
@@ -429,7 +429,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Offensive Security",
                             Price = 5000m,
                             Technologies = "C,C++,Assembly,Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7545)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6720)
                         },
                         new
                         {
@@ -444,7 +444,7 @@ namespace CodeCraft.Data.Migrations
                             Name = "Defensive Security",
                             Price = 5000m,
                             Technologies = "C,C++,Assembly,Python",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7548)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6723)
                         });
                 });
 
@@ -681,7 +681,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
                             Name = "Information Technology",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7554)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6729)
                         },
                         new
                         {
@@ -690,7 +690,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
                             Name = "Machine Learning",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7556)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6731)
                         },
                         new
                         {
@@ -699,7 +699,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
                             Name = "Cyber Security",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7558)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6732)
                         },
                         new
                         {
@@ -708,7 +708,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
                             Name = "Web Development",
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7559)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6733)
                         });
                 });
 
@@ -755,7 +755,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7785)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6971)
                         },
                         new
                         {
@@ -765,7 +765,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7787)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6973)
                         },
                         new
                         {
@@ -775,7 +775,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7789)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6975)
                         },
                         new
                         {
@@ -785,7 +785,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7791)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6976)
                         },
                         new
                         {
@@ -795,7 +795,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7792)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6978)
                         },
                         new
                         {
@@ -805,7 +805,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7794)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6979)
                         },
                         new
                         {
@@ -815,7 +815,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7796)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6981)
                         },
                         new
                         {
@@ -825,7 +825,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7797)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6983)
                         },
                         new
                         {
@@ -835,7 +835,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7799)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6984)
                         },
                         new
                         {
@@ -845,7 +845,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7800)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6986)
                         },
                         new
                         {
@@ -855,7 +855,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7802)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6987)
                         },
                         new
                         {
@@ -865,7 +865,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7803)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6989)
                         },
                         new
                         {
@@ -875,7 +875,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7805)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6990)
                         },
                         new
                         {
@@ -885,7 +885,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7807)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6992)
                         },
                         new
                         {
@@ -895,7 +895,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7808)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6993)
                         },
                         new
                         {
@@ -905,7 +905,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7810)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6995)
                         },
                         new
                         {
@@ -915,7 +915,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7811)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6997)
                         },
                         new
                         {
@@ -925,7 +925,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7813)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6998)
                         },
                         new
                         {
@@ -935,7 +935,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7814)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(7000)
                         },
                         new
                         {
@@ -945,7 +945,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7816)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(7001)
                         },
                         new
                         {
@@ -955,7 +955,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7818)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(7003)
                         },
                         new
                         {
@@ -965,7 +965,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7819)
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(7004)
                         });
                 });
 
@@ -1047,7 +1047,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7752),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6925),
                             UserId = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a"
                         },
                         new
@@ -1057,7 +1057,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7754),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6928),
                             UserId = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87"
                         },
                         new
@@ -1067,7 +1067,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7756),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6929),
                             UserId = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab"
                         },
                         new
@@ -1077,7 +1077,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7757),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6931),
                             UserId = "d7574773-b281-4c29-8e6b-bf818d5680a2"
                         },
                         new
@@ -1087,7 +1087,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7759),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6932),
                             UserId = "40c697c6-41ec-42fd-93c9-5624d377b710"
                         },
                         new
@@ -1097,7 +1097,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7760),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6933),
                             UserId = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb"
                         },
                         new
@@ -1107,7 +1107,7 @@ namespace CodeCraft.Data.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Education = "Computer Science, PHD",
                             HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7761),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6935),
                             UserId = "76735e5b-52ef-4c2f-b17b-2456ff4b9556"
                         });
                 });
@@ -1310,7 +1310,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7781),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6967),
                             UserId = "efff6fe8-7d05-4adf-8ed1-92ed552c113f"
                         });
                 });
@@ -1334,6 +1334,9 @@ namespace CodeCraft.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -1447,7 +1450,7 @@ namespace CodeCraft.Data.Migrations
                         {
                             Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a6ce0396-5a4d-4e51-8e06-2c2f1c8db94e",
+                            ConcurrencyStamp = "2fd9e5f6-46d3-4867-8eb9-78cd2149acdc",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@codecraft.co.za",
@@ -1461,16 +1464,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "11135b16-c31e-4f43-9101-3448c8a3ae7b",
+                            SecurityStamp = "43aa0c5c-272a-4f24-b9e6-c107a185cc90",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7587),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6761),
                             UserName = "admin@codecraft.co.za"
                         },
                         new
                         {
                             Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4aab0d9-5767-4f73-af08-520ac6cd9fcd",
+                            ConcurrencyStamp = "ae06e0bc-11b1-46dd-9f96-c200d0f3fa7a",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "instructor@codecraft.co.za",
@@ -1484,16 +1487,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "270d0113-0fd2-42a1-a5c8-1b5344b18eb5",
+                            SecurityStamp = "31477369-a2e3-4b39-ae7a-feba001036bf",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7648),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6822),
                             UserName = "instructor@codecraft.co.za"
                         },
                         new
                         {
                             Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7f322670-968c-4077-b3b5-6e57c5e62eed",
+                            ConcurrencyStamp = "37764e66-7d49-4959-89f7-7b60bdf71331",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "student@codecraft.co.za",
@@ -1507,16 +1510,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "Default Address",
-                            SecurityStamp = "43b058a8-c8e9-4ff1-8154-ebadae3515b0",
+                            SecurityStamp = "3a8dceed-44b4-420f-8d85-c87bba09f2cf",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7656),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6848),
                             UserName = "student@codecraft.co.za"
                         },
                         new
                         {
                             Id = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3ec5f592-5e60-4265-8d52-0f04f762144e",
+                            ConcurrencyStamp = "d4fceff9-4e80-41ac-b409-1749f0185f32",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "jane.smith@codecraft.co.za",
@@ -1530,16 +1533,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Cape Town",
-                            SecurityStamp = "5fcde16b-6734-4fc0-9f86-23c3b37a3919",
+                            SecurityStamp = "9a686f6f-e105-4d5f-9dd3-378db105e79e",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7679),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6857),
                             UserName = "jane.smith@codecraft.co.za"
                         },
                         new
                         {
                             Id = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec8b3c02-76f6-4a1b-ba8f-9021f6bb056e",
+                            ConcurrencyStamp = "ef40d6b8-50c2-4b61-b7b3-95fb24190811",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "michael.johnson@codecraft.co.za",
@@ -1553,16 +1556,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Johannesburg",
-                            SecurityStamp = "21feab9b-2a55-44d2-a7e1-ac8d11c0fdf2",
+                            SecurityStamp = "86265e89-37a6-4bdf-b775-98603b185813",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7688),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6866),
                             UserName = "michael.johnson@codecraft.co.za"
                         },
                         new
                         {
                             Id = "d7574773-b281-4c29-8e6b-bf818d5680a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7ebc5ca-2800-4516-9195-a4ee88e2f7a8",
+                            ConcurrencyStamp = "b2ebc38b-ef1e-4165-b24a-6119757afa1a",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "lisa.roberts@codecraft.co.za",
@@ -1576,16 +1579,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Durban",
-                            SecurityStamp = "9c2013f8-2f50-472a-8942-4b7d0d45a6da",
+                            SecurityStamp = "ed8ef21c-82e5-4039-b67d-76681c169118",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7697),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6878),
                             UserName = "lisa.roberts@codecraft.co.za"
                         },
                         new
                         {
                             Id = "40c697c6-41ec-42fd-93c9-5624d377b710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0e2ace0-a40d-49da-90ce-a31f8b56a132",
+                            ConcurrencyStamp = "efa3c49c-924b-4d34-8b09-582f0300afbb",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "david.khumalo@codecraft.co.za",
@@ -1599,16 +1602,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Pretoria",
-                            SecurityStamp = "b4198ac4-b5f8-46d2-b7b9-543c23235188",
+                            SecurityStamp = "8463dae6-2a44-4e4b-9e60-6ad4c61fabe8",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7709),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6887),
                             UserName = "david.khumal@codecraft.co.za"
                         },
                         new
                         {
                             Id = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cf210b00-be2b-41ba-ab73-cf36273d2126",
+                            ConcurrencyStamp = "bb94b3a1-a148-47b8-a87a-c6638e61d05d",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "themba.carter@codecraft.co.za",
@@ -1622,16 +1625,16 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Port Elizabeth",
-                            SecurityStamp = "842bbd09-7342-4d24-92ab-37bef39def60",
+                            SecurityStamp = "68542002-d06f-43b7-8ab3-69486118550e",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7720),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6896),
                             UserName = "themba.carter@codecraft.co.za"
                         },
                         new
                         {
                             Id = "76735e5b-52ef-4c2f-b17b-2456ff4b9556",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c8c3f19a-8a1c-42ae-8ff9-b961f52a2a0d",
+                            ConcurrencyStamp = "8725ecfa-6e2c-4e33-bb2e-103f9b47d542",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "james.wilson@codecraft.co.za",
@@ -1645,9 +1648,9 @@ namespace CodeCraft.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
                             PhoneNumberConfirmed = false,
                             PhysicalAddress = "42 Some St., Bloemfontein",
-                            SecurityStamp = "b61753d7-7d27-403a-84c1-66ab93469ab8",
+                            SecurityStamp = "997f3992-1f4b-4f40-b6f7-cdb20737c72b",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 11, 29, 9, 23, 51, 208, DateTimeKind.Utc).AddTicks(7730),
+                            UpdatedAt = new DateTime(2024, 12, 1, 20, 45, 56, 513, DateTimeKind.Utc).AddTicks(6906),
                             UserName = "james.wilson@codecraft.co.za"
                         });
                 });

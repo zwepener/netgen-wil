@@ -13,7 +13,7 @@ public class InstructorStudentTestimonial
 
     [Key]
     [Display(Name = "Testimonial ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "Instructor ID")]

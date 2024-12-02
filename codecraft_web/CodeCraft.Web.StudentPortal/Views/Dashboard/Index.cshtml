@@ -1,165 +1,73 @@
-﻿@{
+﻿@model Student
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <!-- BRAND NAME-->
-        <a href="#" class="navbar-brand">
-            <img src="~/images/brand/logo.svg" alt="CodeCraft Logo" />
-            <h4 class="mb-0"><span class="fw-bold">Code</span>Craft</h4>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="ms-auto d-none d-lg-block">
-                <a class="colored-btn" href="#">LOGOUT</a>
+<section class="main p-5">
+    <div class="row pt-2">
+        <div id="assignments" class="card mt-4 p-4">
+            <div class="heading">
+                <h5>Upcoming Assignments</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Assignment</th>
+                            <th>Course Name</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assignment-list">
+                        <tr>
+                            <td>1</td>
+                            <td>Project Proposal</td>
+                            <td>Web Development Basics</td>
+                            <td>2024-12-05</td>
+                            <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Midterm Report</td>
+                            <td>Advanced Java</td>
+                            <td>2024-12-12</td>
+                            <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</nav>
 
-<!-- Main Container -->
-<section class="main">
-    <div class="container my-4">
-        <div class="row">
-            <!-- Left Column -->
-            <div class="col-md-4">
-                <div class="card-greeting">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Welcome, Student!</h5>
-                        <p class="card-text">Manage your courses, assignments, and profile efficiently.</p>
-                    </div>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="list-group">
-                    <a href="#courses" class="list-group-item list-group-item-action">
-                        <i class='bx bxs-book-content'></i> Course Registration
-                    </a>
-                    <a href="#assignments" class="list-group-item list-group-item-action">
-                        <i class='bx bx-bar-chart-square'></i> Upcoming Assignments
-                    </a>
-                    <a href="#profile" class="list-group-item list-group-item-action">
-                        <i class='bx bxs-user'></i> Profile Management
-                    </a>
-                </div>
+    <div class="row">
+        <div id="courses" class="card mt-4 px-4 pt-4">
+            <div class="heading">
+                <h5>Your Courses</h5>
             </div>
-
-            <!-- Right Column -->
-            <div class="col-md-8">
-                <!-- Registered Courses -->
-                <div id="courses" class="card">
-                    <div class="heading">
-                        <h5>Registered Courses</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="course-list" class="row">
-                            <!-- Placeholder cards -->
-                            <div class="col-md-6 course-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Web Development Basics</h5>
-                                        <p class="card-text"><strong>Instructor:</strong> Jane Smith</p>
-                                        <button class="unregister-btn btn-sm" onclick="removeCourse(this)">Unregister</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 course-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Advanced Java</h5>
-                                        <p class="card-text"><strong>Instructor:</strong> John Doe</p>
-                                        <button class="unregister-btn btn-sm" onclick="removeCourse(this)">Unregister</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Upcoming Assignments -->
-                <div id="assignments" class="card mt-4">
-                    <div class="heading">
-                        <h5>Upcoming Assignments</h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Assignment</th>
-                                    <th>Course Name</th> <!-- New Column -->
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="assignment-list">
-                                <!-- Placeholder rows -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Project Proposal</td>
-                                    <td>Web Development Basics</td> <!-- Course Name -->
-                                    <td>2024-12-05</td>
-                                    <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Midterm Report</td>
-                                    <td>Advanced Java</td> <!-- Course Name -->
-                                    <td>2024-12-12</td>
-                                    <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Profile Management -->
-                <div id="profile" class="card mt-4">
-                    <div class="heading">
-                        <h5>Profile Management</h5>
-                    </div>
-                    <div class="card-body">
-                        <form id="profile-form">
-                            <!-- Name Field -->
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your first name">
-                            </div>
-
-                            <!-- Surname Field -->
-                            <div class="mb-3">
-                                <label for="surname" class="form-label">Surname</label>
-                                <input type="text" class="form-control" id="surname" placeholder="Enter your surname">
-                            </div>
-
-                            <!-- Phone Number Field -->
-                            <div class="mb-3">
-                                <label for="phoneNumber" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number">
-                            </div>
-
-                            <!-- Email Field -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                            </div>
-
-                            <!-- Preferences Field -->
-                            <div class="mb-3">
-                                <label for="preferences" class="form-label">Preferences</label>
-                                <textarea class="form-control" id="preferences" rows="3" placeholder="Your preferences"></textarea>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                        </form>
-                    </div>
-                </div>
-
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody id="course-list">
+                        @foreach (Course course in Model.Courses) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => course.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => course.Code)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

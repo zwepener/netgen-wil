@@ -13,7 +13,7 @@ public class Admin
 
     [Key]
     [Display(Name = "Admin ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "User ID")]

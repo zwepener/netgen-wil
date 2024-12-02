@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,11 +11,17 @@
             <!-- Left Text Content -->
             <div class="col-lg-5">
                 <h1>Unlock your Coding Potential with </h1>
-                <h1><span class="text-highlight">Code Craft_</span></h1>
+                <h1>
+                    <span class="text-highlight">
+                        CodeCraft_
+                    </span>
+                </h1>
                 <p class="lead">
                     Learn programming from industry experts and take your skills to the next level.
                 </p>
-                <a href="#apply" class="colored-btn mt-1">Apply Now</a>
+                <a asp-controller="Courses" asp-action="Index" class="colored-btn mt-1">
+                    Apply Now
+                </a>
             </div>
             <!-- Right Image Content-->
             <div class="col-lg-5 text-center">
@@ -163,77 +171,32 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonial-section">
-    <div class="container">
-        <div class="section-heading">
-            <h3>Testimonials</h3>
-        </div>
-        <div class="carousel">
-            <div class="carousel-inner">
-                <!-- Testimonial 1 -->
-                <div class="testimonial active">
-                    <div class="img">
-                        <img src="~/images/avatar/avatar-1" alt="Testimonial 1">
-                    </div>
-                    <div class="content">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alquid amet incidunt ipsum, laborum magna modi nisi velit volutate!"</p>
-                        <h6>Henry Arnold</h6>
-                        <small>Student at ZXY University</small>
-                    </div>
+@if (Model.Testimonials.Count > 0) {
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="section-heading">
+                <h3>Testimonials</h3>
+            </div>
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <partial name="_TestimonialsCarouselPartial" model="Model.Testimonials" />
                 </div>
-                <!-- Testimonial 2 -->
-                <div class="testimonial">
-                    <div class="img">
-                        <img src="~/images/avatar/avatar-2.jpg" alt="Testimonial 2">
-                    </div>
-                    <div class="content">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alquid amet incidunt ipsum, laborum magna modi nisi velit volutate!"</p>
-                        <h6>Anna Smith</h6>
-                        <small>Web Developer</small>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="testimonial">
-                    <div class="img">
-                        <img src="~/images/avatar/avatar-3.jpg" alt="Testimonial 3">
-                    </div>
-                    <div class="content">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alquid amet incidunt ipsum, laborum magna modi nisi velit volutate!"</p>
-                        <h6>John Doe</h6>
-                        <small>Data Analyst</small>
-                    </div>
-                </div>
-                <!-- Testimonial 4 -->
-                <div class="testimonial">
-                    <div class="img">
-                        <img src="~/images/avatar/avatar-4.jpg" alt="Testimonial 3">
-                    </div>
-                    <div class="content">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alquid amet incidunt ipsum, laborum magna modi nisi velit volutate!"</p>
-                        <h6>John Doe</h6>
-                        <small>Data Analyst</small>
-                    </div>
-                </div>
-                <!-- Testimonial 5 -->
-                <div class="testimonial">
-                    <div class="img">
-                        <img src="~/images/avatar/avatar-5.jpg" alt="Testimonial 3">
-                    </div>
-                    <div class="content">
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alquid amet incidunt ipsum, laborum magna modi nisi velit volutate!"</p>
-                        <h6>John Doe</h6>
-                        <small>Data Analyst</small>
-                    </div>
+                <div class="testimonial-navigation">
+                    <button id="prev" class="carousel-btn">
+                        <div class="icon">
+                            <i class='bx bx-chevron-left'></i>
+                        </div>
+                    </button>
+                    <button id="next" class="carousel-btn">
+                        <div class="icon">
+                            <i class='bx bx-chevron-right'></i>
+                        </div>
+                    </button>
                 </div>
             </div>
-            <!-- Navigation Buttons -->
-            <div class="testimonial-navigation">
-                <button id="prev" class="carousel-btn"><div class="icon"><i class='bx bx-chevron-left'></i></div></button>
-                <button id="next" class="carousel-btn"><div class="icon"><i class='bx bx-chevron-right'></i></div></button>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
+}
 
 
 <!-- CONTACT SECTION -->
@@ -250,12 +213,12 @@
                 <div class="contact-form">
                     <h2 class="text-dark">Inquiry Form</h2>
                     <p class="lead">Got a question or need more details? Fill out the form below, and one of our friendly team members will get back to you as soon as possible!</p>
-                    <partial name="_ContactFormPartial" />
+                    <partial name="_ContactFormPartial" model="null" />
                 </div>
             </div>
             <div class="col-lg-5 ms-auto col-xl-4">
                 <div class="pb-5 d-none d-md-block">
-                    <img src="Assests/images/picture-1.png" class="w-200" alt="">
+                    <img src="~/images/picture-1.png" class="w-200" alt="">
                 </div>
                 <ul class="contact-info">
                     <li>

@@ -14,4 +14,19 @@ public class Utils
             return $"{timeSpan.Hours} Hours Ago";
         else return $"{timeSpan.Days} Days Ago";
     }
+
+    public static DateTime GetFutureDateTime(DateTime dateTime, string duration)
+    { 
+        int value = int.Parse(duration[..^1]);
+        char unit = duration[^1];
+
+        return unit switch
+        {
+            'h' => dateTime.AddHours(value),
+            'd' => dateTime.AddDays(value),
+            'm' => dateTime.AddMonths(value),
+            'y' => dateTime.AddYears(value),
+            _ => dateTime,
+        };
+    }
 }

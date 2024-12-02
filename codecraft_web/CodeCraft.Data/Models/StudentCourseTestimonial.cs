@@ -34,6 +34,8 @@ public class StudentCourseTestimonial
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime CreatedAt { get; set; }
 
+    public bool IsFeatured { get; set; } = false;
+
     ///
     /// Relationship Entities
     ///

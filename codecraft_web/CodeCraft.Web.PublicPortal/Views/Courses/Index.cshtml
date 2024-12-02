@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Course>
+﻿@model CoursesViewModel
 
 @{
     ViewData["Title"] = "Courses";
@@ -50,68 +50,62 @@
             <form asp-action="Index" id="filterForm" method="get" class="card p-3">
                 <h3 class="h5">Filter</h3>
 
-                <!-- Level Filter -->
-                <fieldset class="mb-3">
-                    <legend class="h6">Level</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Beginner" id="levelBeginner">
-                        <label class="form-check-label" for="levelBeginner">Beginner</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Intermediate" id="levelIntermediate">
-                        <label class="form-check-label" for="levelIntermediate">Intermediate</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="DifficulyLevel" value="Advanced" id="levelAdvanced">
-                        <label class="form-check-label" for="levelAdvanced">Advanced</label>
-                    </div>
-                </fieldset>
+                @if (Model.Filters.DifficultyLevels.Count > 0)
+                {
+                    <fieldset class="mb-3">
+                        <legend class="h6">Difficuly Level</legend>
+                        @for (int i = 0; i < Model.Filters.DifficultyLevels.Count; i++)
+                        {
+                            <div class="form-check">
+                                <input asp-for="@Model.Filters.DifficultyLevels[i].Enabled" class="form-check-input" type="checkbox" checked="@Model.Filters.DifficultyLevels[i].Enabled">
+                                <label asp-for="@Model.Filters.DifficultyLevels[i].Enabled" class="form-check-label">
+                                    @Model.Filters.DifficultyLevels[i].Label
+                                </label>
 
-                <!-- Duration Filter -->
-                <fieldset class="mb-3">
-                    <legend class="h6">Duration</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Duration" value="1m" id="durationShort">
-                        <label class="form-check-label" for="durationShort">1 Month</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Duration" value="6m" id="durationMedium">
-                        <label class="form-check-label" for="durationMedium">6 Months</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Duration" value="1y" id="durationLong">
-                        <label class="form-check-label" for="durationLong">1 Year</label>
-                    </div>
-                </fieldset>
+                                <input asp-for="@Model.Filters.DifficultyLevels[i].Label" hidden />
+                                <input asp-for="@Model.Filters.DifficultyLevels[i].Value" hidden />
+                            </div>
+                        }
+                    </fieldset>
+                }
 
-                <!-- Language Filter -->
-                <fieldset class="mb-3">
-                    <legend class="h6">Language</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="Python" id="languagePython">
-                        <label class="form-check-label" for="languagePython">Python</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="Java" id="languageJava">
-                        <label class="form-check-label" for="languageJava">Java</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="JavaScript" id="languageJavaScript">
-                        <label class="form-check-label" for="languageJavaScript">JavaScript</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="C++" id="languageCpp">
-                        <label class="form-check-label" for="languageCpp">C++</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="HTML,CSS" id="languageHtmlCss">
-                        <label class="form-check-label" for="languageHtmlCss">HTML & CSS</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="Technologies" value="SQL" id="languageSql">
-                        <label class="form-check-label" for="languageSql">SQL</label>
-                    </div>
-                </fieldset>
+                @if (Model.Filters.Durations.Count > 0)
+                {
+                    <fieldset class="mb-3">
+                        <legend class="h6">Duration</legend>
+                        @for (int i = 0; i < Model.Filters.Durations.Count; i++)
+                        {
+                            <div class="form-check">
+                                <input asp-for="@Model.Filters.Durations[i].Enabled" class="form-check-input" type="checkbox" checked="@Model.Filters.Durations[i].Enabled">
+                                <label asp-for="@Model.Filters.Durations[i].Enabled" class="form-check-label">
+                                    @Model.Filters.Durations[i].Label
+                                </label>
+
+                                <input asp-for="@Model.Filters.Durations[i].Label" hidden />
+                                <input asp-for="@Model.Filters.Durations[i].Value" hidden />
+                            </div>
+                        }
+                    </fieldset>
+                }
+
+                @if (Model.Filters.Technologies.Count > 0)
+                {
+                    <fieldset class="mb-3">
+                        <legend class="h6">Language</legend>
+                        @for (int i = 0; i < Model.Filters.Technologies.Count; i++)
+                        {
+                            <div class="form-check">
+                                <input asp-for="@Model.Filters.Technologies[i].Enabled" class="form-check-input" type="checkbox" checked="@Model.Filters.Technologies[i].Enabled">
+                                <label asp-for="@Model.Filters.Technologies[i].Enabled" class="form-check-label">
+                                    @Model.Filters.Technologies[i].Label
+                                </label>
+
+                                <input asp-for="@Model.Filters.Technologies[i].Label" hidden />
+                                <input asp-for="@Model.Filters.Technologies[i].Value" hidden />
+                            </div>
+                        }
+                    </fieldset>
+                }
 
                 <!-- Apply Filters Button -->
                 <button type="submit" id="applyFiltersBtn" class="colored-btn w-100">Filter</button>
@@ -121,7 +115,7 @@
         <!-- Course Listings Section -->
         <div class="col-md-8">
             <div id="courseListings" class="row row-cols-1 row-cols-md-2 g-4">
-                @foreach (Course course in Model)
+                @foreach (Course course in Model.Courses)
                 {
                     <div class="col">
                         <div class="card h-100 shadow-sm">
@@ -144,9 +138,12 @@
                                 }
                             </ul>
                             <div class="card-footer d-flex justify-content-end mt-4">
-                                <a asp-action="Details" asp-route-id="@course.Id" class="btn px-4 py-2">
-                                    Enroll
-                                </a>
+                                <form asp-action="Enroll" method="post">
+                                    <input type="text" name="id" value="@course.Id" hidden />
+                                    <button type="submit" class="btn px-4 py-2">
+                                        Enroll
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

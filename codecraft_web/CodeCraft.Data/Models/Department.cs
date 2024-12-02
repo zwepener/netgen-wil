@@ -13,7 +13,7 @@ public class Department
 
     [Key]
     [Display(Name = "Department ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "Name")]
