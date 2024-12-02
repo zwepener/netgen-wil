@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "_ParentLayout";
+}
+
+<div id="preloader">
+    <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+</div>
+<div id="main-wrapper">
+    <div class="nav-header">
+        <a href="index.html" class="brand-logo">
+            <img class="logo-abbr" src="~/images/brand/logo-white.png" alt="" />
+            <img class="logo-compact" src="~/images/brand/logo-text-white.png" alt="" />
+            <img class="brand-title" src="~/images/brand/logo-text-white.png" alt="" />
+        </a>
+
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="header-content">
+            <nav class="navbar navbar-expand">
+                <div class="collapse navbar-collapse justify-content-between">
+                    <div class="header-left">
+                        <div class="search_bar dropdown">
+                            <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                <i class="mdi mdi-magnify"></i>
+                            </span>
+                            <div class="dropdown-menu p-0 m-0">
+                                <form>
+                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="navbar-nav header-right">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="dlabnav">
+        <div class="dlabnav-scroll">
+            <ul class="metismenu" id="menu">
+                <li class="nav-label first">User Details</li>
+                <li>
+                    <a href="#">
+                        <i class="la la-envelope"></i>
+                        <span class="nav-text">
+                            Email
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="la la-key"></i>
+                        <span class="nav-text">
+                            Password
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="la la-user"></i>
+                        <span class="nav-text">
+                            Personal Info
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-label">Instructor Details</li>
+                <li>
+                    <a href="#">
+                        <i class="la la-user-circle"></i>
+                        <span class="nav-text">
+                            Profile
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="has-arrow" aria-expanded="false">
+                        <i class="la la-newspaper"></i>
+                        <span class="nav-text">
+                            Testimonials
+                        </span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li>
+                            <a href="#">
+                                Students
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-label">Student Details</li>
+                <li>
+                    <a href="#">
+                        <i class="la la-user-circle"></i>
+                        <span class="nav-text">
+                            Profile
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="has-arrow" aria-expanded="false">
+                        <i class="la la-newspaper"></i>
+                        <span class="nav-text">
+                            Testimonials
+                        </span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li>
+                            <a href="#">
+                                Courses
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>
+                Copyright &copy; Designed &amp; Developed by
+                <a href="#">
+                    SomeTeamAtCTU
+                </a>
+                2024
+            </p>
+        </div>
+    </div>
+</div>
