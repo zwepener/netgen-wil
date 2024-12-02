@@ -104,7 +104,9 @@
                                             </h5>
                                         </div>
                                         <div class="col-lg-9 col-md-8 col-sm-6 col-6">
-                                            <span>@Html.DisplayFor(model => model.User!.Email)</span>
+                                            <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.User!.Id">
+                                                @Html.DisplayFor(model => model.User!.Email)
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
@@ -115,6 +117,30 @@
                                         </div>
                                         <div class="col-lg-9 col-md-8 col-sm-6 col-6">
                                             <span>@Html.DisplayFor(model => model.User!.Age)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                            <h5 class="f-w-500">
+                                                @Html.DisplayNameFor(model => model.UpdatedAgo) <span class="pull-right">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-lg-9 col-md-8 col-sm-6 col-6">
+                                            <span>
+                                                @Html.DisplayFor(model => model.UpdatedAgo)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                            <h5 class="f-w-500">
+                                                @Html.DisplayNameFor(model => model.CreatedAgo) <span class="pull-right">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-lg-9 col-md-8 col-sm-6 col-6">
+                                            <span>
+                                                @Html.DisplayFor(model => model.CreatedAgo)
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

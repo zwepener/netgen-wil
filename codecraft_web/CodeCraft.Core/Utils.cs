@@ -16,7 +16,7 @@ public class Utils
     }
 
     public static DateTime GetFutureDateTime(DateTime dateTime, string duration)
-    { 
+    {
         int value = int.Parse(duration[..^1]);
         char unit = duration[^1];
 

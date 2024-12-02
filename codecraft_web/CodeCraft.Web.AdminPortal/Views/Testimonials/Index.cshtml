@@ -21,15 +21,15 @@
             },
             new DataTableCellModel {
                 Value = a.Student!.User!.FullName,
-                Controller = "Testimonials",
+                Controller = "Students",
                 Action = "Details",
-                RouteId = a.Id.ToString()
+                RouteId = a.StudentId.ToString()
             },
             new DataTableCellModel {
                 Value = a.Course!.FormattedName,
-                Controller = "Users",
+                Controller = "Courses",
                 Action = "Details",
-                RouteId = a.Student!.User!.Id.ToString()
+                RouteId = a.CourseId.ToString()
             }
         ],
         ItemId = a.Id.ToString()
@@ -48,15 +48,15 @@
             },
             new DataTableCellModel {
                 Value = a.Student!.User!.FullName,
-                Controller = "Testimonials",
-                Action = "Details",
-                RouteId = a.Id.ToString()
-            },
-            new DataTableCellModel {
-                Value = a.Course!.FormattedName,
                 Controller = "Students",
                 Action = "Details",
                 RouteId = a.StudentId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Course!.FormattedName,
+                Controller = "Courses",
+                Action = "Details",
+                RouteId = a.CourseId.ToString()
             }
         ],
         ItemId = a.Id.ToString()

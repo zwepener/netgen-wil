@@ -107,7 +107,9 @@
                                             </h5>
                                         </div>
                                         <div class="col-lg-9 col-md-8 col-sm-6 col-6">
-                                            <span>@Html.DisplayFor(model => model.User!.Email)</span>
+                                            <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.User!.Id">
+                                                @Html.DisplayFor(model => model.User!.Email)
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
