@@ -47,7 +47,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Admin");
+                    b.ToTable("Admin", (string)null);
 
                     b.HasData(
                         new
@@ -113,7 +113,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.ToTable("Course");
+                    b.ToTable("Course", (string)null);
 
                     b.HasData(
                         new
@@ -463,7 +463,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("CourseId", "DepartmentId")
                         .IsUnique();
 
-                    b.ToTable("CourseDepartment");
+                    b.ToTable("CourseDepartment", (string)null);
 
                     b.HasData(
                         new
@@ -671,7 +671,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
 
                     b.HasData(
                         new
@@ -744,7 +744,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("CourseId", "StudentId")
                         .IsUnique();
 
-                    b.ToTable("Enrollment");
+                    b.ToTable("Enrollment", (string)null);
 
                     b.HasData(
                         new
@@ -999,7 +999,7 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inquiry");
+                    b.ToTable("Inquiry", (string)null);
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.Instructor", b =>
@@ -1037,7 +1037,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructor", (string)null);
 
                     b.HasData(
                         new
@@ -1127,7 +1127,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("CourseId", "InstructorId")
                         .IsUnique();
 
-                    b.ToTable("InstructorCourse");
+                    b.ToTable("InstructorCourse", (string)null);
 
                     b.HasData(
                         new
@@ -1275,7 +1275,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("InstructorId", "StudentId")
                         .IsUnique();
 
-                    b.ToTable("InstructorStudentTestimonial");
+                    b.ToTable("InstructorStudentTestimonial", (string)null);
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.Student", b =>
@@ -1303,7 +1303,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Student");
+                    b.ToTable("Student", (string)null);
 
                     b.HasData(
                         new
@@ -1351,7 +1351,7 @@ namespace CodeCraft.Data.Migrations
                     b.HasIndex("StudentId", "CourseId")
                         .IsUnique();
 
-                    b.ToTable("StudentCourseTestimonial");
+                    b.ToTable("StudentCourseTestimonial", (string)null);
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.User", b =>
