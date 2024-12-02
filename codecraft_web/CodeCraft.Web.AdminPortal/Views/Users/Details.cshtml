@@ -67,9 +67,12 @@
                         <div class="tab-content">
                             <div id="about-me" class="tab-pane fade active show">
                                 <div class="profile-personal-info">
-                                    <h4 class="text-primary mb-4">
-                                        Personal Information
-                                    </h4>
+                                    <div class="d-flex mw-100 w-100 justify-content-between align-items-center mb-4">
+                                        <h4 class="text-primary">Personal Information</h4>
+                                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-primary">
+                                            <i class="la la-pencil"></i> Edit
+                                        </a>
+                                    </div>
                                     <div class="row mb-4">
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                                             <h5 class="f-w-500">

@@ -61,7 +61,7 @@
                                     }
                                     else
                                     {
-                                        @Html.DisplayNameFor(model => model.Price)
+                                        @Html.DisplayFor(model => model.Price)
                                     }
                                 </span>
                             </li>
@@ -85,13 +85,12 @@
     <div class="col-xl-9 col-xxl-8 col-lg-8">
         <div class="card">
             <div class="card-body">
-                <!-- Edit button ? ? ?
-                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                <div class="d-flex mw-100 w-100 justify-content-between align-items-center">
+                    <h4 class="text-primary">Course Information</h4>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-primary">
+                        <i class="la la-pencil"></i> Edit
+                    </a>
                 </div>
-                -->
-                <h4 class="text-primary">Course Information</h4>
                 <div class="row mb-4 pt-3">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                         <h5 class="f-w-500">
@@ -142,7 +141,7 @@
                         <span>@Html.DisplayFor(model => model.FormattedDuration)</span>
                     </div>
                 </div>
-                @if (Model.Technologies != null)
+                @if (!String.IsNullOrEmpty(Model.Technologies))
                 {
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
@@ -185,19 +184,62 @@
                         <span>@Html.DisplayFor(model => model.ApplicationCloseDate)</span>
                     </div>
                 </div>
-                @if (Model!.Departments.Count > 0)
-                {
-                    <h4 class="text-primary">Course Departments</h4>
-                    <div class="profile-skills pt-2 border-bottom-1 pb-2">
-                        @foreach (Department department in Model!.Departments)
-                        {
-                            <a asp-controller="Departments" asp-action="Details" asp-route-id="@department.Id" class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-3 m-b-10">
-                                @Html.DisplayFor(modelItem => department.Name)
-                            </a>
-                        }
-                    </div>
-                }
             </div>
         </div>
     </div>
 </div>
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "Course Departments",
+    Headers = ["#", "Name", "Code"],
+    Rows = Model.Departments.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Name,
+                Controller = "Departments",
+                Action = "Details",
+                RouteId = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Code,
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList(),
+    MainController = "Departments",
+    ViewingEnabled = true,
+    EditingEnabled = true,
+    DeletingEnabled = true,
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "Course Instructors",
+    Headers = ["#", "Name", "Email"],
+    Rows = Model.Instructors.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.User!.FullName,
+                Controller = "Instructors",
+                Action = "Details",
+                RouteId = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.User!.Email!,
+                Controller = "Users",
+                Action = "Details",
+                RouteId = a.UserId.ToString()
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList(),
+    MainController = "Instructors",
+    ViewingEnabled = true,
+    EditingEnabled = true,
+    DeletingEnabled = true,
+})" />

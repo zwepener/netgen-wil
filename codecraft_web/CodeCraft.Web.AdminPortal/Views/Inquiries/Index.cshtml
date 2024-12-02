@@ -13,7 +13,7 @@
 
 <partial name="_DataTablePartial" model="@(new DataTableModel {
     Title = ViewBag.Title,
-    Headers = ["#", "Email", "Message"],
+    Headers = ["#", "Email", "Created"],
     Rows = Model.Select(i => new DataTableRowModel {
         Cells = [
             new DataTableCellModel {
@@ -23,7 +23,7 @@
                 Value = i.Email,
             },
             new DataTableCellModel {
-                Value = i.Message,
+                Value = i.CreatedAgo,
             }
         ],
         ItemId = i.Id.ToString()

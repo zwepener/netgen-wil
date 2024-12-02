@@ -1,131 +1,130 @@
 ﻿using CodeCraft.Data.Models;
 
-namespace CodeCraft.Web.AdminPortal.Models
+namespace CodeCraft.Web.AdminPortal.Models;
+
+public class DashboardModel
 {
-    public class DashboardModel
+    public List<Admin> Admins { get; set; } = [];
+    public int TotalAdmins
     {
-        public List<Admin> Admins { get; set; } = [];
-        public int TotalAdmins
+        get
         {
-            get
-            {
-                return Admins.Count;
-            }
+            return Admins.Count;
         }
-        public List<Admin> NewAdmins
+    }
+    public List<Admin> NewAdmins
+    {
+        get
         {
-            get
+            List<Admin> result = [];
+            foreach (Admin admin in Admins)
             {
-                List<Admin> result = [];
-                foreach (Admin admin in Admins)
+                if (admin.CreatedAt > DateTime.Now.AddMonths(-1))
                 {
-                    if (admin.CreatedAt > DateTime.Now.AddMonths(-1))
-                    {
-                        result.Add(admin);
-                    }
+                    result.Add(admin);
                 }
-                return result;
             }
+            return result;
         }
-        public int TotalNewAdmins
+    }
+    public int TotalNewAdmins
+    {
+        get
         {
-            get
-            {
-                return NewAdmins.Count;
-            }
+            return NewAdmins.Count;
         }
+    }
 
-        public List<Course> Courses { get; set; } = [];
-        public int TotalCourses
+    public List<Course> Courses { get; set; } = [];
+    public int TotalCourses
+    {
+        get
         {
-            get
-            {
-                return Courses.Count;
-            }
+            return Courses.Count;
         }
-        public List<Course> NewCourses
+    }
+    public List<Course> NewCourses
+    {
+        get
         {
-            get
+            List<Course> result = [];
+            foreach (Course course in Courses)
             {
-                List<Course> result = [];
-                foreach (Course course in Courses)
+                if (course.CreatedAt > DateTime.Now.AddMonths(-1))
                 {
-                    if (course.CreatedAt > DateTime.Now.AddMonths(-1))
-                    {
-                        result.Add(course);
-                    }
+                    result.Add(course);
                 }
-                return result;
             }
+            return result;
         }
-        public int TotalNewCourses
+    }
+    public int TotalNewCourses
+    {
+        get
         {
-            get
-            {
-                return NewCourses.Count;
-            }
+            return NewCourses.Count;
         }
+    }
 
-        public List<Instructor> Instructors { get; set; } = [];
-        public int TotalInstructors
+    public List<Instructor> Instructors { get; set; } = [];
+    public int TotalInstructors
+    {
+        get
         {
-            get
-            {
-                return Instructors.Count;
-            }
+            return Instructors.Count;
         }
-        public List<Instructor> NewInstructors
+    }
+    public List<Instructor> NewInstructors
+    {
+        get
         {
-            get
+            List<Instructor> result = [];
+            foreach (Instructor instructor in Instructors)
             {
-                List<Instructor> result = [];
-                foreach (Instructor instructor in Instructors)
+                if (instructor.CreatedAt > DateTime.Now.AddMonths(-1))
                 {
-                    if (instructor.CreatedAt > DateTime.Now.AddMonths(-1))
-                    {
-                        result.Add(instructor);
-                    }
+                    result.Add(instructor);
                 }
-                return result;
             }
+            return result;
         }
-        public int TotalNewInstructors
+    }
+    public int TotalNewInstructors
+    {
+        get
         {
-            get
-            {
-                return NewInstructors.Count;
-            }
+            return NewInstructors.Count;
         }
+    }
 
-        public List<Student> Students { get; set; } = [];
-        public int TotalStudents
+    public List<Student> Students { get; set; } = [];
+    public int TotalStudents
+    {
+        get
         {
-            get
-            {
-                return Students.Count;
-            }
+            return Students.Count;
         }
-        public List<Student> NewStudents
+    }
+    public List<Student> NewStudents
+    {
+        get
         {
-            get
+            List<Student> result = [];
+            foreach (Student student in Students)
             {
-                List<Student> result = [];
-                foreach (Student student in Students)
+                if (student.CreatedAt > DateTime.Now.AddMonths(-1))
                 {
-                    if (student.CreatedAt > DateTime.Now.AddMonths(-1))
-                    {
-                        result.Add(student);
-                    }
+                    result.Add(student);
                 }
-                return result;
             }
+            return result;
         }
-        public int TotalNewStudents
+    }
+    public int TotalNewStudents
+    {
+        get
         {
-            get
-            {
-                return NewStudents.Count;
-            }
+            return NewStudents.Count;
         }
     }
 }

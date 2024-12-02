@@ -24,6 +24,7 @@ public class DepartmentsController(CodeCraftDbContext context) : Controller
         }
 
         Department? department = await _context.Department
+            .Include(i => i.Courses)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (department == null)
         {

@@ -29,6 +29,7 @@ public class InstructorsController(CodeCraftDbContext context) : Controller
 
         Instructor? instructor = await _context.Instructor
             .Include(i => i.User)
+            .Include(i => i.Courses)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (instructor == null)
         {

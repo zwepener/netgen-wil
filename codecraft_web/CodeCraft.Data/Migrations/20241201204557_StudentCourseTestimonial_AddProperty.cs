@@ -2,32 +2,31 @@
 
 #nullable disable
 
-namespace CodeCraft.Data.Migrations
+namespace CodeCraft.Data.Migrations;
+
+/// <inheritdoc />
+public partial class StudentCourseTestimonial_AddProperty : Migration
 {
     /// <inheritdoc />
-    public partial class StudentCourseTestimonial_AddProperty : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<bool>
-            (
-                name: "IsFeatured",
-                table: "StudentCourseTestimonial",
-                type: "bit",
-                nullable: false,
-                defaultValue: false
-            );
-        }
+        migrationBuilder.AddColumn<bool>
+        (
+            name: "IsFeatured",
+            table: "StudentCourseTestimonial",
+            type: "bit",
+            nullable: false,
+            defaultValue: false
+        );
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn
-            (
-                name: "IsFeatured",
-                table: "StudentCourseTestimonial"
-            );
-        }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropColumn
+        (
+            name: "IsFeatured",
+            table: "StudentCourseTestimonial"
+        );
     }
 }

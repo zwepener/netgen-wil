@@ -27,7 +27,10 @@ public class CoursesController(CodeCraftDbContext context) : Controller
         Course? course = await _context.Course
             .Include(c => c.Students)
             .Include(c => c.Departments)
+            .Include(c => c.Instructors)
+            .ThenInclude(i => i.User)
             .FirstOrDefaultAsync(m => m.Id == id);
+
         if (course == null)
         {
             return NotFound();
