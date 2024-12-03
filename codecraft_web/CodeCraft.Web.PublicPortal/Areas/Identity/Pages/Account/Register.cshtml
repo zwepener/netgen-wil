@@ -4,79 +4,96 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- Background Image -->
+    <img class="wave" src="/img/wave2.png" alt="Background Wave Image">
 
-<div class="row">
-    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.ConfirmPassword" class="form-label"></label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.FirstName" class="form-label"></label>
-                    <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="firstname" />
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.LastName" class="form-label"></label>
-                    <input asp-for="Input.LastName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="lastname" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.DateOfBirth" class="form-label"></label>
-                    <input asp-for="Input.DateOfBirth" class="form-control" aria-required="true" placeholder="yyyy/mm/dd" type="text" />
-                    <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.Gender" class="form-label"></label>
-                    <select asp-for="Input.Gender" class="form-control" aria-required="true">
-                        <option value="Male" selected>Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="form-group">
-                    <label asp-for="Input.PhysicalAddress" class="form-label"></label>
-                    <textarea asp-for="Input.PhysicalAddress" class="form-control mw-100 w-100" rows="5" autocomplete="address" aria-required="true"></textarea>
-                    <span asp-validation-for="Input.PhysicalAddress" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-primary btn-block">
-                    Sign me up
-                </button>
-            </div>
+    <div class="container">
+        <!-- Left Side Image -->
+        <div class="img">
+            <img src="/img/CodeCraft Logo.svg" alt="CodeCraft Logo">
         </div>
-    </form>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+        <!-- Registration Content -->
+        <div class="login-content">
+            <!-- Registration Form -->
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.FirstName" class="form-label">First Name</label>
+                        <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.LastName" class="form-label">Last Name</label>
+                        <input asp-for="Input.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.DateOfBirth" class="form-label">Date of Birth</label>
+                        <input asp-for="Input.DateOfBirth" class="form-control" aria-required="true" placeholder="yyyy/mm/dd" type="text" />
+                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label asp-for="Input.Gender" class="form-label">Gender</label>
+                        <select asp-for="Input.Gender" class="form-control" aria-required="true">
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label asp-for="Input.PhysicalAddress" class="form-label">Physical Address</label>
+                        <textarea asp-for="Input.PhysicalAddress" class="form-control" rows="5" autocomplete="address" aria-required="true"></textarea>
+                        <span asp-validation-for="Input.PhysicalAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-12 mt-4">
+                        <button id="registerSubmit" type="submit" class="btn btn-primary w-100">
+                            Sign me up
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

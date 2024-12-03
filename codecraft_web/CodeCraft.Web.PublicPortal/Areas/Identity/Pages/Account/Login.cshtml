@@ -2,51 +2,70 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Log In";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4 w-100">
-        <section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Animated Login Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- Background Wave Image -->
+    <img class="wave" src="/images/wave2.png" alt="Wave Background">
+
+    <div class="container">
+        <!-- Left Side Image -->
+        
+
+        <!-- Login Content -->
+        <div class="login-content">
             <form id="account" method="post">
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control mw-100 w-100" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control mw-100 w-100" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-</div>
+                <!-- Avatar Image -->
+                <img src="/images/avatar.svg" alt="User Avatar">
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+                <!-- Welcome Title -->
+                <h2 class="title">Welcome</h2>
+
+                <!-- Username Input -->
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Username</h5>
+                        <input asp-for="Input.Email" class="input" type="text" autocomplete="username">
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input asp-for="Input.Password" class="input" type="password" autocomplete="current-password">
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Link -->
+                <a asp-page="./ForgotPassword">Forgot Password?</a>
+
+                <!-- Submit Button -->
+                <input type="submit" class="btn" value="Login">
+            </form>
+            
+            
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>
