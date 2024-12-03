@@ -1,0 +1,33 @@
+name: Build Solution (Debug)
+
+on:
+  pull_request:
+    branches: [ dev ]
+
+env:
+  CONFIGURATION: Debug
+  DOTNET_CORE_VERSION: 8.0.x
+
+jobs:
+  build_portals:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        portal: [ AdminPortal, StudentPortal, PublicPortal ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+
+      - name: Restore ${{ matrix.portal }}
+        run: dotnet restore "codecraft_web/CodeCraft.Web.${{ matrix.portal }}"
+
+      - name: Build ${{ matrix.portal }}
+        run: dotnet build "codecraft_web/CodeCraft.Web.${{ matrix.portal }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Test ${{ matrix.portal }}
+        run: dotnet test "codecraft_web/CodeCraft.Web.${{ matrix.portal }}" --no-build
