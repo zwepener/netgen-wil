@@ -9,6 +9,8 @@
     --dark-color: #00012a;
 }
 
+
+
 body {
     font-family: "Montserrat", system-ui;
     font-weight: 400;
@@ -17,8 +19,10 @@ body {
 }
 
 img {
-    max-width: 100%;
+    max-width: 140%;
 }
+
+
 
 a {
     color: var(--primary-color);

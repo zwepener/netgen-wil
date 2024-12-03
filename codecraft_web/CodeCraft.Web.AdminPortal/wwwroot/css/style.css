@@ -3062,13 +3062,13 @@ fieldset:disabled a.btn {
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #5633ee;
+  background-color: #ff8f16;
   border-color: #4c27ed;
 }
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: #5633ee;
+  background-color: #F58A07;
   border-color: #4c27ed;
   box-shadow: 0 0 0 0.2rem rgba(136, 111, 243, 0.5);
 }
