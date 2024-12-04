@@ -1,0 +1,41 @@
+﻿@model EnrollemntFormViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/enrollment_form.css" />
+}
+
+<div class="modal fade" id="EnrollForm-@Model.FormId" tabindex="-1" aria-labelledby="EnrollForm-@Model.FormId" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="EnrollForm-@Model.FormId">Enrollment Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form asp-controller="Courses" asp-action="Enroll" method="post" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputName" class="form-label">Your Name</label>
+                        <input id="inputName" type="text" class="form-control" placeholder="Enter Name" autocomplete="name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail" class="form-label">Your Email</label>
+                        <input id="inputEmail" type="email" class="form-control" placeholder="Enter Your Email" autocomplete="email" required>
+                    </div>
+                    <div>
+                        <label for="inputCourse" class="form-label">Course</label>
+                        <select id="inputCourse" name="CourseId" class="form-select mw-100 w-100" disabled>
+                            <option value="@Model.CourseId" selected>
+                                @Model.CourseName
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary mw-100 w-100">Enroll</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

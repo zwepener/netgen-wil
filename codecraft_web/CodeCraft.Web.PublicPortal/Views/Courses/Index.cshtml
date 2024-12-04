@@ -137,13 +137,27 @@
                                     </li>
                                 }
                             </ul>
+                            
                             <div class="card-footer d-flex justify-content-end mt-4">
+                                <!-- Old Enrollment Form
                                 <form asp-action="Enroll" method="post">
                                     <input type="text" name="id" value="@course.Id" hidden />
                                     <button type="submit" class="btn px-4 py-2">
                                         Enroll
                                     </button>
                                 </form>
+                                -->
+                                <button type="button" class="btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#EnrollForm-@course.Id">
+                                    Enroll
+                                </button>
+                                <partial name="_EnrollmentFormModalPartial" model="@(
+                                    new EnrollemntFormViewModel()
+                                    { 
+                                        FormId = course.Id,
+                                        CourseId = course.Id,
+                                        CourseName = course.FormattedName
+                                    }
+                                )" />
                             </div>
                         </div>
                     </div>
@@ -152,6 +166,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     <script src="~/js/courses.js" asp-append-version="true"></script>
