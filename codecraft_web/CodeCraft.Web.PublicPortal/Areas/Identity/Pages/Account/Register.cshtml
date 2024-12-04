@@ -1,99 +1,61 @@
 ﻿@page
 @model RegisterModel
+
 @{
     ViewData["Title"] = "Register";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <!-- Background Image -->
-    <img class="wave" src="/img/wave2.png" alt="Background Wave Image">
+@section Styles {
+    <link rel="stylesheet" href="~/css/Register.css">
+}
 
-    <div class="container">
-        <!-- Left Side Image -->
-        <div class="img">
-            <img src="/img/CodeCraft Logo.svg" alt="CodeCraft Logo">
+<section class="container">
+    <header>Registration Form</header>
+    <form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div class="column">
+            <div class="input-box">
+                <label asp-for="Input.FirstName">First Name</label>
+                <input asp-for="Input.FirstName" placeholder="Enter first name" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <label asp-for="Input.LastName">Last Name</label>
+                <input asp-for="Input.LastName" placeholder="Enter last name" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
         </div>
 
-        <!-- Registration Content -->
-        <div class="login-content">
-            <!-- Registration Form -->
-            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.Email" class="form-label">Email</label>
-                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.Password" class="form-label">Password</label>
-                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
-                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.FirstName" class="form-label">First Name</label>
-                        <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
-                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.LastName" class="form-label">Last Name</label>
-                        <input asp-for="Input.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
-                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label asp-for="Input.DateOfBirth" class="form-label">Date of Birth</label>
-                        <input asp-for="Input.DateOfBirth" class="form-control" aria-required="true" placeholder="yyyy/mm/dd" type="text" />
-                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <label asp-for="Input.Gender" class="form-label">Gender</label>
-                        <select asp-for="Input.Gender" class="form-control" aria-required="true">
-                            <option value="Male" selected>Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <label asp-for="Input.PhysicalAddress" class="form-label">Physical Address</label>
-                        <textarea asp-for="Input.PhysicalAddress" class="form-control" rows="5" autocomplete="address" aria-required="true"></textarea>
-                        <span asp-validation-for="Input.PhysicalAddress" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group col-md-12 mt-4">
-                        <button id="registerSubmit" type="submit" class="btn btn-primary w-100">
-                            Sign me up
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div class="input-box">
+            <label asp-for="Input.Email">Email Address</label>
+            <input asp-for="Input.Email" placeholder="Enter email address" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
-    </div>
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
+        <div class="column">
+            <div class="input-box">
+                <label asp-for="Input.DateOfBirth">Birth Date</label>
+                <input asp-for="Input.DateOfBirth" type="date" placeholder="Enter birth date" />
+                <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="select-box">
+                <label asp-for="Input.Gender">Gender</label>
+                <select asp-for="Input.Gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Prefer Not to Say</option>
+                </select>
+            </div>
+        </div>
 
-    <!-- JavaScript -->
-    <script type="text/javascript" src="/js/main.js"></script>
-</body>
-</html>
+        <div class="input-box address">
+            <label asp-for="Input.PhysicalAddress">Physical Address</label>
+            <input asp-for="Input.PhysicalAddress" placeholder="Enter physical address" required />
+            <span asp-validation-for="Input.PhysicalAddress" class="text-danger"></span>
+        </div>
+        <button>Submit</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
