@@ -4,77 +4,148 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<section class="main p-5">
-    <div class="row pt-2">
-        <div id="assignments" class="card mt-4 p-4">
-            <div class="heading">
-                <h5>Upcoming Assignments</h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Assignment</th>
-                            <th>Course Name</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="assignment-list">
-                        <tr>
-                            <td>1</td>
-                            <td>Project Proposal</td>
-                            <td>Web Development Basics</td>
-                            <td>2024-12-05</td>
-                            <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Midterm Report</td>
-                            <td>Advanced Java</td>
-                            <td>2024-12-12</td>
-                            <td><button class="btn btn-success btn-sm" onclick="markAsComplete(this)">Mark as Complete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<div id="main-content" class="flex-grow-1 p-4">
+    <!-- WELCOME MESSAGE -->
+    <div id="home" class="mb-5">
+        <h1>Welcome to your Student Dashboard!</h1>
+        <p>View your current course updates displayed below.</p>
+     </div>
+    <!-- COURSES -->
+    <div id="courses" class="mb-5">
+        <h2>My Courses</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (Course course in Model.Courses) {
+                <!-- Course Card -->
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@course.Name</h5>
+                            <p class="card-text"><strong>Course Code:</strong> @course.Code</p>
+                            <p class="card-text"><strong>Instructor:</strong> John Doe</p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
+    </div>
+    <!-- ASSIGNMENTS -->
+    <div id="assignments" class="mb-5">
+        <h2>Assignments</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Assignment Title</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Download</th>
+                    <th scope="col">Upload Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Assignment 1 -->
+                <tr>
+                    <td>WD101</td> <!-- Course Code -->
+                    <td>Web Development Project</td>
+                    <td>December 10, 2024</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload1" onchange="recordUploadTime(1)" />
+                        <p id="uploadTime1" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 2 -->
+                <tr>
+                    <td>JP202</td> <!-- Course Code -->
+                    <td>Java Programming Assignment 1</td>
+                    <td>December 15, 2024</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload2" onchange="recordUploadTime(2)" />
+                        <p id="uploadTime2" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 3 -->
+                <tr>
+                    <td>DM303</td> <!-- Course Code -->
+                    <td>Database Design Project</td>
+                    <td>December 20, 2024</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload3" onchange="recordUploadTime(3)" />
+                        <p id="uploadTime3" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 4 -->
+                <tr>
+                    <td>WD102</td> <!-- Course Code -->
+                    <td>Responsive Web Design Assignment</td>
+                    <td>December 25, 2024</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload4" onchange="recordUploadTime(4)" />
+                        <p id="uploadTime4" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 5 -->
+                <tr>
+                    <td>JS101</td> <!-- Course Code -->
+                    <td>JavaScript Fundamentals Exercise</td>
+                    <td>December 30, 2024</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload5" onchange="recordUploadTime(5)" />
+                        <p id="uploadTime5" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 6 -->
+                <tr>
+                    <td>CS404</td> <!-- Course Code -->
+                    <td>Computer Science Research Paper</td>
+                    <td>January 5, 2025</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload6" onchange="recordUploadTime(6)" />
+                        <p id="uploadTime6" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 7 -->
+                <tr>
+                    <td>DM304</td> <!-- Course Code -->
+                    <td>Database Queries Assignment</td>
+                    <td>January 10, 2025</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload7" onchange="recordUploadTime(7)" />
+                        <p id="uploadTime7" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+
+                <!-- Assignment 8 -->
+                <tr>
+                    <td>JP203</td> <!-- Course Code -->
+                    <td>Java OOP Project</td>
+                    <td>January 15, 2025</td>
+                    <td><a href="https://example.com/assignment-template.zip" class="btn btn-info" download>Download</a></td>
+                    <td>
+                        <input type="file" class="form-control-file" id="upload8" onchange="recordUploadTime(8)" />
+                        <p id="uploadTime8" class="mt-2" style="display:none;"></p> <!-- Hidden initially -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="row">
-        <div id="courses" class="card mt-4 px-4 pt-4">
-            <div class="heading">
-                <h5>Your Courses</h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Code</th>
-                        </tr>
-                    </thead>
-                    <tbody id="course-list">
-                        @foreach (Course course in Model.Courses) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(model => course.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => course.Code)
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+
+</div>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <script src="~/js/dashboard.js" append-version="true"></script>
+    <script src="~/js/script.js" append-version="true"></script>
 }
