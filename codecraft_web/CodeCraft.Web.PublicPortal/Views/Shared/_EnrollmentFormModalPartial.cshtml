@@ -1,4 +1,4 @@
-﻿@model EnrollemntFormViewModel
+﻿@model EnrollmentFormViewModel
 
 @section Styles {
     <link rel="stylesheet" href="~/css/enrollment_form.css" />
@@ -14,24 +14,26 @@
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-                <form asp-controller="Courses" asp-action="Enroll" method="post">
-                    <div class="mb-3">
-                        <label name="Name" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" placeholder="Enter your name" autocomplete="name" required>
+                <form asp-controller="Courses" asp-action="Enroll" method="post" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputName" class="form-label">Your Name</label>
+                        <input id="inputName" type="text" class="form-control" placeholder="Enter First Name" autocomplete="name" required>
                     </div>
-                    <div class="mb-3">
-                        <label name="Email" class="form-label">Your Email</label>
-                        <input type="email" class="form-control" placeholder="Enter your email" autocomplete="email" required>
+                    <div class="col-md-4">
+                        <label for="inputEmail" class="form-label">Your Email</label>
+                        <input id="inputEmail" type="email" class="form-control" placeholder="Enter your email" autocomplete="email" required>
                     </div>
-                    <div class="mb-3">
-                        <label name="CourseId" class="form-label">Course</label>
-                        <select name="CourseId" class="form-control" disabled>
+                    <div class="col-md-4">
+                        <label for="inputCourse" class="form-label">Course</label>
+                        <select id="inputCourse" name="CourseId" class="form-select" disabled>
                             <option value="@Model.CourseId" selected>
                                 @Model.CourseName
                             </option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary px-4 py-2 w-100">Apply</button>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enroll</button>
+                    </div>
                 </form>
             </div>
         </div>

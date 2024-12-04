@@ -1,0 +1,98 @@
+﻿/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Centered container styling */
+.container {
+    width: 50%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+    /* Header text styles inside the container */
+    .container h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+/* Body background and font styling */
+body {
+    background-color: #00012a;
+    font-family: 'Karla', sans-serif;
+}
+
+/* Placeholder text styling */
+input::placeholder {
+    color: transparent;
+}
+
+input:focus::placeholder {
+    color: gray;
+    font-style: italic;
+}
+
+/* Input container for alignment and spacing */
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Input field styling */
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 2px solid #ccc;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    outline: none;
+}
+
+    /* Input underline animation on focus */
+    input::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #007BFF;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    input:focus::after {
+        width: 100%;
+    }
+
+/* Form control styling */
+.form-control, .form-select {
+    border: none;
+    border-bottom: 1px solid #f3ca16;
+    border-radius: 0;
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #6bd425;
+    border: none;
+    border-radius: 0;
+}
+
+/* Responsive styling for small screens */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        margin-top: 30px;
+        left: 50%;
+        top: 50%;
+        padding-bottom: 40px;
+    }
+}
