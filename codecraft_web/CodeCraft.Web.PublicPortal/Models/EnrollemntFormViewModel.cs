@@ -1,9 +1,10 @@
-﻿using CodeCraft.Data.Models;
-using System.ComponentModel.DataAnnotations;
-
-namespace CodeCraft.Web.PublicPortal.Models;
+﻿namespace CodeCraft.Web.PublicPortal.Models;
 
 public class EnrollemntFormViewModel
 {
-    public List<Course> Courses { get; set; } = [];
+    public required int FormId { get; set; }
+    
+    public required string CourseName { get; set; }
+
+    public required int CourseId { get; set; }
 }

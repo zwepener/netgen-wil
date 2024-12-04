@@ -4,36 +4,34 @@
     <link rel="stylesheet" href="~/css/enrollment_form.css" />
 }
 
-<div class="modal fade" id="enrollmentFormModal" tabindex="-1" aria-labelledby="enrollmentFormModalLabel" aria-hidden="true">
+<div class="modal fade" id="EnrollForm-@Model.FormId" tabindex="-1" aria-labelledby="EnrollForm-@Model.FormId" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="enrollmentFormModalLabel">Enrollment Form</h5>
+                <h5 class="modal-title" id="EnrollForm-@Model.FormId">Enrollment Form</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-                <form asp-controller="Enrollment" asp-action="Enroll" method="post">
+                <form asp-controller="Courses" asp-action="Enroll" method="post">
                     <div class="mb-3">
                         <label name="Name" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" placeholder="Enter your name" required>
+                        <input type="text" class="form-control" placeholder="Enter your name" autocomplete="name" required>
                     </div>
                     <div class="mb-3">
                         <label name="Email" class="form-label">Your Email</label>
-                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                        <input type="email" class="form-control" placeholder="Enter your email" autocomplete="email" required>
                     </div>
                     <div class="mb-3">
-                        <label name="CourseId" class="form-label">Message</label>
-                        <select name="CourseId" class="form-control">
-                            @foreach (Course course in Model.Courses) {
-                                <option value="@course.Id" selected>
-                                    @course.FormattedName
-                                </option>
-                            }
+                        <label name="CourseId" class="form-label">Course</label>
+                        <select name="CourseId" class="form-control" disabled>
+                            <option value="@Model.CourseId" selected>
+                                @Model.CourseName
+                            </option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary px-4 py-2">Apply</button>
+                    <button type="submit" class="btn btn-primary px-4 py-2 w-100">Apply</button>
                 </form>
             </div>
         </div>
