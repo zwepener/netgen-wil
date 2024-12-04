@@ -13,46 +13,80 @@
         @await RenderSectionAsync("Styles", required: false)
     </head>
     <body>
-        <header class="main-header">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <!-- BRAND NAME-->
-                    <a href="#" class="navbar-brand">
-                        <img src="~/images/brand/logo.svg" alt="CodeCraft Logo" />
-                        <h4 class="mb-0"><span class="fw-bold">Code</span>Craft <strong>Student</strong></h4>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-toggle">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a asp-controller="Dashboard" asp-action="Index" class="nav-link">
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#courses" class="nav-link">
-                                    Courses
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                            <a href="#assignments" class="nav-link">
-                                    Assignments
-                                </a>
-                            </li>
-                        </ul>
-                        <partial name="_LoginPartial" />
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <!-- SIDEBAR -->
+        <nav id="sidebar" class="text-white p-3 vh-100">
+            <!-- TOGGLE BUTTON -->
+            <button class="btn btn-sm btn-outline-light  mb-3" id="toggle-btn" onclick="toggleSidebar()">
+                <i class='bx bx-menu'></i>
+            </button>
 
-        <div class="mt-5">
+            <!-- BRANDING -->
+            <div class="nav-brand d-flex align-items-center mb-4">
+                <img src="~/images/brand/logo.svg" alt="CodeCraft Logo" class="logo-img me-2">
+                <h4 class="m-0 sidebar-title"><span class="fw-bold">Code</span>Craft</h4>
+            </div>
+
+            <!-- NAV LINKS -->
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="#home">
+                        <i class='bx bxs-dashboard me-3'></i> 
+                        <span class="link-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#courses">
+                        <i class='bx bxs-book-content me-3'></i> 
+                        <span class="link-text">Courses</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#assignments">
+                        <i class='bx bx-bar-chart-square me-3'></i> 
+                        <span class="link-text">Assignments</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class='bx bxs-user me-3'></i>
+                        <span class="link-text">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- Logout Link -->
+                    <a class="nav-link text-white" href="javascript:void(0)" onclick="document.getElementById('logout-form').submit();">
+                        <i class='bx bx-log-out me-3'></i>
+                        <span class="link-text">Logout</span>
+                    </a>
+                    <!-- Hidden Logout Form -->
+                    <form id="logout-form" method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })" class="d-none"></form>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="d-flex">
             @RenderBody()
         </div>
+
+        <!-- NAV JAVASCRIPT -->
+        <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+
+            sidebar.classList.toggle('collapsed');
+
+            if (sidebar.classList.contains('collapsed')) {
+                mainContent.style.marginLeft = '80px';
+                mainContent.style.width = 'calc(100% - 80px)';
+            } else {
+                mainContent.style.marginLeft = '250px';
+                mainContent.style.width = 'calc(100% - 250px)';
+            }
+        }
+
+        </script>
 
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
