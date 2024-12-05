@@ -1,7 +1,6 @@
 ﻿using CodeCraft.Data;
 using CodeCraft.Data.Models;
 using CodeCraft.Web.PublicPortal.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -115,70 +114,41 @@ public class CoursesController(CodeCraftDbContext context, UserManager<User> use
         return View(coursesViewModel);
     }
 
-    public async Task<IActionResult> Details(int? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var course = await _context.Course
-            .FirstOrDefaultAsync(m => m.Id == id);
-
-        if (course == null)
-        {
-            return NotFound();
-        }
-
-        return View(course);
-    }
-
     [HttpPost]
-    [Authorize]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Enroll(int? id)
+    public async Task<IActionResult> Apply(CourseApplicationFormModel courseApplicationFormModel)
     {
-        if (id == null)
+        if (!ModelState.IsValid)
         {
-            return NotFound();
+            return RedirectToAction(nameof(Index));
         }
 
-        Course? course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+        CourseApplication inputModel = courseApplicationFormModel.Input;
+
+        inputModel.CourseId = courseApplicationFormModel.CourseId;
+
+        Course? course = await _context.Course.FindAsync(inputModel.CourseId);
         if (course == null)
         {
-            return NotFound();
+            ModelState.AddModelError(nameof(CourseApplicationFormModel.Input.CourseId), "Course no longer exists.");
+            return RedirectToAction(nameof(Index));
         }
 
-        User? user = await _userManager.GetUserAsync(User);
+        User? user = await _userManager.FindByEmailAsync(inputModel.Email);
         if (user == null)
         {
-            return RedirectToRoute("/Identity/Account/Login");
+            return Redirect("/Identity/Account/Register");
         }
 
-        Student? student = await _context.Student.FirstOrDefaultAsync(m => m.UserId == user.Id);
-        if (student == null)
+        CourseApplication? existingCourseApplication = await _context.CourseApplication.FirstOrDefaultAsync(i => i.CourseId == inputModel.CourseId && i.Email == inputModel.Email);
+        if (existingCourseApplication != null)
         {
-            student = new()
-            {
-                UserId = user.Id,
-            };
-            await _context.Student.AddAsync(student);
-            await _context.SaveChangesAsync();
+            ModelState.AddModelError(String.Empty, "An application for the specified course already exists for the given email address.");
+            return RedirectToAction(nameof(Index));
         }
 
-        Enrollment? enrollment = await _context.Enrollment.FirstOrDefaultAsync(e => e.StudentId == student.Id);
-        if (enrollment == null)
-        {
-            enrollment = new()
-            {
-                StudentId = student.Id,
-                CourseId = course.Id,
-                RegisterDate = DateTime.Today,
-                AdmitDate = DateTime.Today,
-                GraduateDate = Core.Utils.GetFutureDateTime(DateTime.Today, course.Duration),
-            };
-            await _context.Enrollment.AddAsync(enrollment);
-        }
+        await _context.CourseApplication.AddAsync(inputModel);
+        await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
     }

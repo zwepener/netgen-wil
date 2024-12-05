@@ -4,14 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeCraft.Web.PublicPortal.Controllers
 {
-    public class InstructorsController : Controller
+    public class InstructorsController(CodeCraftDbContext context) : Controller
     {
-        private readonly CodeCraftDbContext _context;
-
-        public InstructorsController(CodeCraftDbContext context)
-        {
-            _context = context;
-        }
+        private readonly CodeCraftDbContext _context = context;
 
         public async Task<IActionResult> Index()
         {
@@ -29,6 +24,7 @@ namespace CodeCraft.Web.PublicPortal.Controllers
             var instructor = await _context.Instructor
                 .Include(i => i.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (instructor == null)
             {
                 return NotFound();

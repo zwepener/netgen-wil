@@ -14,6 +14,7 @@ internal class Configurer
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddUserSecrets<CodeCraftDbContext>();
+
         return builder.Build();
     }
     internal static void RenameDefaultIdentityTables(ModelBuilder builder)
@@ -90,6 +91,12 @@ internal class Configurer
             .HasDefaultValueSql("GETDATE()");
 
         builder
+            .Entity<CourseApplication>()
+            .Property(e => e.CreatedAt)
+            .ValueGeneratedOnAdd()
+            .HasDefaultValueSql("GETDATE()");
+
+        builder
             .Entity<Department>()
             .Property(e => e.CreatedAt)
             .ValueGeneratedOnAdd()
@@ -157,7 +164,7 @@ internal class Configurer
     {
         List<Course> defaultCourses =
         [
-            new Course
+            new()
             {
                 Id = 1,
                 Name = "Python Basics",
@@ -170,7 +177,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 2,
                 Name = "Programming With Python",
@@ -183,7 +190,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 3,
                 Name = "Advanced Python",
@@ -196,7 +203,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 4,
                 Name = "Machine Learning Basics",
@@ -209,7 +216,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 5,
                 Name = "Advanced Machine Learning",
@@ -222,7 +229,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 6,
                 Name = "Understanding Arificial Intelligence",
@@ -235,7 +242,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 7,
                 Name = "Arificial Intelligence Engineering",
@@ -248,7 +255,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 8,
                 Name = "Deep Learning",
@@ -261,7 +268,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 9,
                 Name = "Java Basics",
@@ -274,7 +281,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 10,
                 Name = "Programming With Java",
@@ -287,7 +294,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 11,
                 Name = "Advanced Java",
@@ -300,7 +307,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 12,
                 Name = "Core Web Development",
@@ -313,7 +320,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 13,
                 Name = "Modern Web Design",
@@ -326,7 +333,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 14,
                 Name = "Full-Stack Web Development",
@@ -339,7 +346,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 15,
                 Name = "Database Queries Basics",
@@ -352,7 +359,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 16,
                 Name = "C++ Basics",
@@ -365,7 +372,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 17,
                 Name = "Programming With C++",
@@ -378,7 +385,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 18,
                 Name = "Advanced C++",
@@ -391,7 +398,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 19,
                 Name = "Cyber Security Basics",
@@ -404,7 +411,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 20,
                 Name = "Advanced Cyber Security",
@@ -417,7 +424,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 21,
                 Name = "Offensive Security",
@@ -430,7 +437,7 @@ internal class Configurer
                 ApplicationOpenDate = new DateTime(2024, 6, 30),
                 ApplicationCloseDate = new DateTime(2024, 12, 31),
             },
-            new Course
+            new()
             {
                 Id = 22,
                 Name = "Defensive Security",
@@ -445,30 +452,32 @@ internal class Configurer
             }
         ];
 
+        builder.Entity<Course>().HasData(defaultCourses);
+
         List<Department> defaultDepartments =
         [
-            new Department
+            new()
             {
                 Id = 1,
                 Name = "Information Technology",
                 Code = "IT",
                 Description = "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
             },
-            new Department
+            new()
             {
                 Id = 2,
                 Name = "Machine Learning",
                 Code = "ML",
                 Description = "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
             },
-            new Department
+            new()
             {
                 Id = 3,
                 Name = "Cyber Security",
                 Code = "CS",
                 Description = "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices."
             },
-            new Department
+            new()
             {
                 Id = 4,
                 Name = "Web Development",
@@ -477,183 +486,187 @@ internal class Configurer
             },
         ];
 
+        builder.Entity<Department>().HasData(defaultDepartments);
+
         List<CourseDepartment> defaultCourseCategories =
         [
-            new CourseDepartment
+            new()
             {
                 CourseId = 1,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 2,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 3,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 4,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 4,
                 DepartmentId = 2,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 5,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 5,
                 DepartmentId = 2,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 6,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 6,
                 DepartmentId = 2,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 7,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 7,
                 DepartmentId = 2,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 8,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 8,
                 DepartmentId = 2,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 9,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 10,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 11,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 12,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 12,
                 DepartmentId = 4,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 13,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 13,
                 DepartmentId = 4,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 14,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 14,
                 DepartmentId = 4,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 15,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 16,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 17,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 18,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 19,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 19,
                 DepartmentId = 3,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 20,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 20,
                 DepartmentId = 3,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 21,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 21,
                 DepartmentId = 3,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 22,
                 DepartmentId = 1,
             },
-            new CourseDepartment
+            new()
             {
                 CourseId = 22,
                 DepartmentId = 3,
             }
         ];
 
+        builder.Entity<CourseDepartment>().HasData(defaultCourseCategories);
+
         List<User> defaultUsers =
         [
-            new User
+            new()
             {
                 Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
                 Email = "admin@codecraft.co.za",
@@ -668,7 +681,7 @@ internal class Configurer
                 PhysicalAddress = "Default Address",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
                 Email = "instructor@codecraft.co.za",
@@ -683,7 +696,7 @@ internal class Configurer
                 PhysicalAddress = "Default Address",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
                 Email = "student@codecraft.co.za",
@@ -698,7 +711,7 @@ internal class Configurer
                 PhysicalAddress = "Default Address",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87",
                 Email = "jane.smith@codecraft.co.za",
@@ -713,7 +726,7 @@ internal class Configurer
                 PhysicalAddress = "42 Some St., Cape Town",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab",
                 Email = "michael.johnson@codecraft.co.za",
@@ -728,7 +741,7 @@ internal class Configurer
                 PhysicalAddress = "42 Some St., Johannesburg",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "d7574773-b281-4c29-8e6b-bf818d5680a2",
                 Email = "lisa.roberts@codecraft.co.za",
@@ -743,7 +756,7 @@ internal class Configurer
                 PhysicalAddress = "42 Some St., Durban",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "40c697c6-41ec-42fd-93c9-5624d377b710",
                 Email = "david.khumalo@codecraft.co.za",
@@ -758,7 +771,7 @@ internal class Configurer
                 PhysicalAddress = "42 Some St., Pretoria",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb",
                 Email = "themba.carter@codecraft.co.za",
@@ -773,7 +786,7 @@ internal class Configurer
                 PhysicalAddress = "42 Some St., Port Elizabeth",
                 DateOfBirth = new DateTime(1970, 1, 1),
             },
-            new User
+            new()
             {
                 Id = "76735e5b-52ef-4c2f-b17b-2456ff4b9556",
                 Email = "james.wilson@codecraft.co.za",
@@ -790,18 +803,22 @@ internal class Configurer
             },
         ];
 
+        builder.Entity<User>().HasData(defaultUsers);
+
         List<Admin> defaultAdmins =
         [
-            new Admin
+            new()
             {
                 Id = 1,
                 UserId = "a660cfef-d951-47e4-b40d-2272788f94c1"
             },
         ];
 
+        builder.Entity<Admin>().HasData(defaultAdmins);
+
         List<Instructor> defaultInstructors =
         [
-            new Instructor
+            new()
             {
                 Id = 1,
                 UserId = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
@@ -809,7 +826,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 2,
                 UserId = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87",
@@ -817,7 +834,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 3,
                 UserId = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab",
@@ -825,7 +842,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 4,
                 UserId = "d7574773-b281-4c29-8e6b-bf818d5680a2",
@@ -833,7 +850,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 5,
                 UserId = "40c697c6-41ec-42fd-93c9-5624d377b710",
@@ -841,7 +858,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 6,
                 UserId = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb",
@@ -849,7 +866,7 @@ internal class Configurer
                 Education = "Computer Science, PHD",
                 HireDate = new DateTime(2024, 1, 1),
             },
-            new Instructor
+            new()
             {
                 Id = 7,
                 UserId = "76735e5b-52ef-4c2f-b17b-2456ff4b9556",
@@ -859,132 +876,138 @@ internal class Configurer
             },
         ];
 
+        builder.Entity<Instructor>().HasData(defaultInstructors);
+
         List<InstructorCourse> defaultInstructorCourses =
         [
-            new InstructorCourse
+            new()
             {
                 CourseId = 1,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 2,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 3,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 4,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 5,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 6,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 7,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 8,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 9,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 10,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 11,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 12,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 13,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 14,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 15,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 16,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 17,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 18,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 19,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 20,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 21,
                 InstructorId = 1,
             },
-            new InstructorCourse
+            new()
             {
                 CourseId = 22,
                 InstructorId = 1,
             }
         ];
 
+        builder.Entity<InstructorCourse>().HasData(defaultInstructorCourses);
+
         List<Student> defaultStudents =
         [
-            new Student
+            new()
             {
                 Id = 1,
                 UserId = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
             },
         ];
 
+        builder.Entity<Student>().HasData(defaultStudents);
+
         List<Enrollment> defaultStudentCourses =
         [
-            new Enrollment
+            new()
             {
                 CourseId = 1,
                 StudentId = 1,
@@ -992,7 +1015,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 2,
                 StudentId = 1,
@@ -1000,7 +1023,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 3,
                 StudentId = 1,
@@ -1008,7 +1031,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 4,
                 StudentId = 1,
@@ -1016,7 +1039,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 5,
                 StudentId = 1,
@@ -1024,7 +1047,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 6,
                 StudentId = 1,
@@ -1032,7 +1055,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 7,
                 StudentId = 1,
@@ -1040,7 +1063,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 8,
                 StudentId = 1,
@@ -1048,7 +1071,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 9,
                 StudentId = 1,
@@ -1056,7 +1079,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 10,
                 StudentId = 1,
@@ -1064,7 +1087,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 11,
                 StudentId = 1,
@@ -1072,7 +1095,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 12,
                 StudentId = 1,
@@ -1080,7 +1103,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 13,
                 StudentId = 1,
@@ -1088,7 +1111,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 14,
                 StudentId = 1,
@@ -1096,7 +1119,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 15,
                 StudentId = 1,
@@ -1104,7 +1127,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 16,
                 StudentId = 1,
@@ -1112,7 +1135,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 17,
                 StudentId = 1,
@@ -1120,7 +1143,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 18,
                 StudentId = 1,
@@ -1128,7 +1151,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 19,
                 StudentId = 1,
@@ -1136,7 +1159,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 20,
                 StudentId = 1,
@@ -1144,7 +1167,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 21,
                 StudentId = 1,
@@ -1152,7 +1175,7 @@ internal class Configurer
                 AdmitDate = new DateTime(2025, 1, 1),
                 GraduateDate = new DateTime(2025, 7, 1),
             },
-            new Enrollment
+            new()
             {
                 CourseId = 22,
                 StudentId = 1,
@@ -1162,14 +1185,6 @@ internal class Configurer
             }
         ];
 
-        builder.Entity<Course>().HasData(defaultCourses);
-        builder.Entity<Department>().HasData(defaultDepartments);
-        builder.Entity<CourseDepartment>().HasData(defaultCourseCategories);
-        builder.Entity<User>().HasData(defaultUsers);
-        builder.Entity<Admin>().HasData(defaultAdmins);
-        builder.Entity<Instructor>().HasData(defaultInstructors);
-        builder.Entity<InstructorCourse>().HasData(defaultInstructorCourses);
-        builder.Entity<Student>().HasData(defaultStudents);
         builder.Entity<Enrollment>().HasData(defaultStudentCourses);
     }
 }
@@ -1180,6 +1195,7 @@ public class CodeCraftDbContext(DbContextOptions<CodeCraftDbContext> options) : 
     public DbSet<Inquiry> Inquiry { get; set; } = default!;
     public DbSet<Course> Course { get; set; } = default!;
     public DbSet<Department> Department { get; set; } = default!;
+    public DbSet<CourseApplication> CourseApplication { get; set; } = default!;
     public DbSet<CourseDepartment> CourseDepartment { get; set; } = default!;
     public DbSet<Instructor> Instructor { get; set; } = default!;
     public DbSet<InstructorCourse> InstructorCourse { get; set; } = default!;

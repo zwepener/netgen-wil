@@ -1,0 +1,17 @@
+﻿@model CourseApplicationFormModel
+
+<div class="modal fade" id="CourseApplyForm-@Model.CourseId" tabindex="-1" aria-labelledby="CourseApplyForm-@Model.CourseId" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="CourseApplyForm-@Model.CourseId">Course Application Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <partial name="_CourseApplicationFormPartial" model="@Model" />
+            </div>
+        </div>
+    </div>
+</div>
