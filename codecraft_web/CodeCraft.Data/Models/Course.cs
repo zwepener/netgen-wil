@@ -79,6 +79,9 @@ public class Course
     [Display(Name = "Students")]
     public List<Student> Students { get; } = [];
 
+    [Display(Name = "Applications")]
+    public List<CourseApplication> Applications { get; } = [];
+
     ///
     /// Custom Properties
     ///
