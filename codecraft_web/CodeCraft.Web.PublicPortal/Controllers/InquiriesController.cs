@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CodeCraft.Web.PublicPortal.Controllers;
 
-public class InquiriesController : Controller
+public class InquiriesController(CodeCraftDbContext context) : Controller
 {
-    private readonly CodeCraftDbContext _context;
-
-    public InquiriesController(CodeCraftDbContext context)
-    {
-        _context = context;
-    }
+    private readonly CodeCraftDbContext _context = context;
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -19,11 +14,12 @@ public class InquiriesController : Controller
     {
         if (ModelState.IsValid)
         {
-            _context.Inquiry.Add(inquiry);
+            inquiry.IsResolved = false;
+
+            await _context.Inquiry.AddAsync(inquiry);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
         }
 
-        return PartialView("_ContactFormPartial", inquiry);
+        return RedirectToAction("Index", "Home");
     }
 }
