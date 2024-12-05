@@ -21,7 +21,12 @@ public class DashboardController(UserManager<User> userManager, CodeCraftDbConte
             return Unauthorized();
         }
 
-        Student? student = await _context.Student.Include(s => s.Courses).FirstAsync();
+        Student? student = await _context.Student
+            .Include(s => s.Courses)
+            .ThenInclude(c => c.Instructors)
+            .ThenInclude(i => i.User)
+            .FirstOrDefaultAsync();
+
         if (student == null)
         {
             return NotFound();

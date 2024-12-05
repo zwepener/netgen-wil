@@ -5,11 +5,13 @@
 }
 
 <div id="main-content" class="flex-grow-1 p-4">
+
     <!-- WELCOME MESSAGE -->
     <div id="home" class="mb-5">
         <h1>Welcome to your Student Dashboard!</h1>
         <p>View your current course updates displayed below.</p>
      </div>
+
     <!-- COURSES -->
     <div id="courses" class="mb-5">
         <h2>My Courses</h2>
@@ -19,15 +21,31 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">@course.Name</h5>
-                            <p class="card-text"><strong>Course Code:</strong> @course.Code</p>
-                            <p class="card-text"><strong>Instructor:</strong> John Doe</p>
+                            <h5 class="card-title">
+                                @Html.DisplayFor(model => course.Name)
+                            </h5>
+                            <p class="card-text">
+                                <strong>
+                                    @Html.DisplayNameFor(model => course.Code):
+                                </strong>
+                                @Html.DisplayFor(model => course.Code)
+                            </p>
+                            @if (course.Instructors.Count > 0)
+                            {
+                                <p class="card-text">
+                                    <strong>
+                                        Instructor:
+                                    </strong>
+                                    @Html.DisplayFor(model => course.Instructors.ElementAt(0).User!.FullName)
+                                </p>
+                            }
                         </div>
                     </div>
                 </div>
             }
         </div>
     </div>
+
     <!-- ASSIGNMENTS -->
     <div id="assignments" class="mb-5">
         <h2>Assignments</h2>
@@ -42,6 +60,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <!-- Assignment 1 -->
                 <tr>
                     <td>WD101</td> <!-- Course Code -->
