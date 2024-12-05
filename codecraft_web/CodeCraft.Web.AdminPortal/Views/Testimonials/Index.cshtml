@@ -13,7 +13,7 @@
 
 <partial name="_DataTablePartial" model="@(new DataTableModel {
     Title = "Featured Testimonials: Student ⇢ Course",
-    Headers = ["#", "Student Name", "Course Name"],
+    Headers = ["#", "Student Name", "Course Name", "Comment"],
     Rows = Model.FeaturedStudentCourseTestimonials.Select(a => new DataTableRowModel {
         Cells = [
             new DataTableCellModel {
@@ -30,17 +30,18 @@
                 Controller = "Courses",
                 Action = "Details",
                 RouteId = a.CourseId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
             }
         ],
         ItemId = a.Id.ToString()
-    }).ToList(),
-    ViewingEnabled = true,
-    DeletingEnabled = true,
+    }).ToList()
 })" />
 
 <partial name="_DataTablePartial" model="@(new DataTableModel {
     Title = "Testimonials: Student ⇢ Course",
-    Headers = ["#", "Student Name", "Course Name"],
+    Headers = ["#", "Student Name", "Course Name", "Comment"],
     Rows = Model.StudentCourseTestimonials.Select(a => new DataTableRowModel {
         Cells = [
             new DataTableCellModel {
@@ -57,17 +58,18 @@
                 Controller = "Courses",
                 Action = "Details",
                 RouteId = a.CourseId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
             }
         ],
         ItemId = a.Id.ToString()
-    }).ToList(),
-    ViewingEnabled = true,
-    DeletingEnabled = true,
+    }).ToList()
 })" />
 
 <partial name="_DataTablePartial" model="@(new DataTableModel {
     Title = "Testimonials: Instructor ⇢ Student",
-    Headers = ["#", "Instructor Name", "Student Name"],
+    Headers = ["#", "Instructor Name", "Student Name", "Comment"],
     Rows = Model.InstructorStudentTestimonials.Select(a => new DataTableRowModel {
         Cells = [
             new DataTableCellModel {
@@ -84,10 +86,11 @@
                 Controller = "Students",
                 Action = "Details",
                 RouteId = a.StudentId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
             }
         ],
         ItemId = a.Id.ToString()
-    }).ToList(),
-    ViewingEnabled = true,
-    DeletingEnabled = true,
+    }).ToList()
 })" />
