@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_RootLayout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+
+    @{
+        RenderSection("Styles", required: false);
+    }
+}
+
+<!-- SIDEBAR -->
+<nav id="sidebar" class="text-white p-3 vh-100">
+    <!-- TOGGLE BUTTON -->
+    <button class="btn btn-sm btn-outline-light  mb-3" id="toggle-btn" onclick="toggleSidebar()">
+        <i class='bx bx-menu'></i>
+    </button>
+
+    <!-- BRANDING -->
+    <div class="nav-brand d-flex align-items-center mb-4">
+        <img src="~/images/brand/logo.svg" alt="CodeCraft Logo" class="logo-img me-2">
+        <h4 class="m-0 sidebar-title"><span class="fw-bold">Code</span>Craft</h4>
+    </div>
+
+    <!-- NAV LINKS -->
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-white active" href="#home">
+                <i class='bx bxs-dashboard me-3'></i>
+                <span class="link-text">Home</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#courses">
+                <i class='bx bxs-book-content me-3'></i>
+                <span class="link-text">Courses</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#assignments">
+                <i class='bx bx-bar-chart-square me-3'></i>
+                <span class="link-text">Assignments</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                <i class='bx bxs-user me-3'></i>
+                <span class="link-text">Profile</span>
+            </a>
+        </li>
+        <li>
+            <!-- Logout Link -->
+            <a class="nav-link text-white" href="javascript:void(0)" onclick="document.getElementById('logout-form').submit();">
+                <i class='bx bx-log-out me-3'></i>
+                <span class="link-text">Logout</span>
+            </a>
+            <!-- Hidden Logout Form -->
+            <form id="logout-form" method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Dashboard", new { area = "" })" class="d-none"></form>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="d-flex">
+    @RenderBody()
+</div>
+
+@section Scripts {
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @{
+        await RenderSectionAsync("Scripts", required: false);
+    }
+}

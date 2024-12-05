@@ -1,0 +1,132 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.css" />
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
+}
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = ViewBag.Title,
+    SectionName = "Courses",
+    ActiveName = "Add"
+})" />
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">
+                    @ViewBag.Title
+                </h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Name" class="form-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Code" class="form-label"></label>
+                                <input asp-for="Code" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="form-label"></label>
+                                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="DifficultyLevel" class="form-label"></label>
+                                <select asp-for="DifficultyLevel" class="form-control">
+                                    @foreach (string difficultyLevel in ViewBag.DifficultyLevels)
+                                    {
+                                        <option value="@difficultyLevel">
+                                            @difficultyLevel
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Duration" class="form-label"></label>
+                                <input asp-for="Duration" class="form-control" />
+                                <span asp-validation-for="Duration" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Technologies" class="form-label"></label>
+                                <input asp-for="Technologies" class="form-control" />
+                                <span asp-validation-for="Technologies" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Price" class="form-label"></label>
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="ApplicationOpenDate" class="form-label"></label>
+                                <input asp-for="ApplicationOpenDate" class="datepicker form-control" />
+                                <span asp-validation-for="ApplicationOpenDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="ApplicationCloseDate" class="form-label"></label>
+                                <input asp-for="ApplicationCloseDate" class="datepicker form-control" />
+                                <span asp-validation-for="ApplicationCloseDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Course Photo (N / A)
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group fallback w-100">
+                                <label class="form-label d-block">Course Photo</label>
+                                <input type="file"
+                                       class="dropify"
+                                       data-default-file="" />
+                            </div>
+                        </div>
+                        -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/pickadate/picker.js"></script>
+    <script src="~/lib/pickadate/picker.time.js"></script>
+    <script src="~/lib/pickadate/picker.date.js"></script>
+
+    <script src="~/js/plugins-init/pickadate-init.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

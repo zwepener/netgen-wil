@@ -1,0 +1,40 @@
+﻿@model CourseApplicationFormModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/enrollment_form.css" />
+}
+
+<form asp-controller="Courses" asp-action="Apply" method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input asp-for="CourseId" hidden />
+    <input asp-for="CourseName" hidden />
+
+    <div class="col-md-6">
+        <label asp-for="Input.Name" class="form-label"></label>
+        <input asp-for="Input.Name" class="form-control" placeholder="Enter Your Name" autocomplete="name" required>
+        <span asp-validation-for="Input.Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Input.Email" class="form-label"></label>
+        <input asp-for="Input.Email" type="email" class="form-control" placeholder="Enter Your Email" autocomplete="email" required>
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Input.CourseId" class="form-label">Course</label>
+        <select asp-for="Input.CourseId" class="form-select mw-100 w-100" disabled>
+            <option value="@Model.CourseId" selected>
+                @Model.CourseName
+            </option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary mw-100 w-100">Apply</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

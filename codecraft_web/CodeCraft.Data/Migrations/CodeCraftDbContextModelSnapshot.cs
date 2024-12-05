@@ -17,12 +17,12 @@ namespace CodeCraft.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CodeCraft.Data.Models.ContactInquiry", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.Admin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,20 +32,31 @@ namespace CodeCraft.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasMaxLength(320)
-                        .HasColumnType("nvarchar(320)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactInquiry");
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Admin");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7839),
+                            UserId = "a660cfef-d951-47e4-b40d-2272788f94c1"
+                        });
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.Course", b =>
@@ -56,32 +67,941 @@ namespace CodeCraft.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("ApplicationCloseDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("ApplicationOpenDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("Duration")
-                        .HasColumnType("smallint");
+                    b.Property<string>("DifficultyLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Technologies")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.ToTable("Course");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "PY412",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of computer programming using the Python programming language.",
+                            DifficultyLevel = "Beginner",
+                            Duration = "6m",
+                            Name = "Python Basics",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7294)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "PY512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore more advanced computer programming concepts using the Python programming language.",
+                            DifficultyLevel = "Intermediate",
+                            Duration = "6m",
+                            Name = "Programming With Python",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7305)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "PY522",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the most advanced computer programming concepts using the Python programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Advanced Python",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7308)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "ML512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of Machine Learning using the Python programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Machine Learning Basics",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7311)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "ML522",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the most advanced Machine Learning techniques using the Python programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Advanced Machine Learning",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7314)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "AI521",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of Arificial Intelligence using the Python programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Understanding Arificial Intelligence",
+                            Price = 5000m,
+                            Technologies = "Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7317)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "AI612",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Become a certified Arificial Intelligence Engineer.",
+                            DifficultyLevel = "Major",
+                            Duration = "6m",
+                            Name = "Arificial Intelligence Engineering",
+                            Price = 5000m,
+                            Technologies = "Python,Java,C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7320)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "DL612",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Study the concept of Deep Learning, engineering complex deep neural networks that will revolutionize the modern world.",
+                            DifficultyLevel = "Major",
+                            Duration = "6m",
+                            Name = "Deep Learning",
+                            Price = 5000m,
+                            Technologies = "Python,Java,C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7323)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "JD412",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of computer programming using the Java programming language.",
+                            DifficultyLevel = "Beginner",
+                            Duration = "6m",
+                            Name = "Java Basics",
+                            Price = 5000m,
+                            Technologies = "Java",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7326)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "JD512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore more advanced computer programming concepts using the Java programming language.",
+                            DifficultyLevel = "Intermediate",
+                            Duration = "6m",
+                            Name = "Programming With Java",
+                            Price = 5000m,
+                            Technologies = "Java",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7329)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "JD522",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the most advanced computer programming concepts using the Java programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Advanced Java",
+                            Price = 5000m,
+                            Technologies = "Java",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7345)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CWD412",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Build beautiful and responsive websites using HTML, CSS and JavaScript.",
+                            DifficultyLevel = "Beginner",
+                            Duration = "6m",
+                            Name = "Core Web Development",
+                            Price = 5000m,
+                            Technologies = "HTML,CSS,JavaScript",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7348)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CWD422",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Design mobile-friendly websites using modern CSS techniques.",
+                            DifficultyLevel = "Intermediate",
+                            Duration = "6m",
+                            Name = "Modern Web Design",
+                            Price = 5000m,
+                            Technologies = "React,Vue,Svelte,Tailwind,Bootstrap,Angular",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7351)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CWD512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Become a full-stack developer using MongoDB, Express, React, and Node.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Full-Stack Web Development",
+                            Price = 5000m,
+                            Technologies = "JavaScript,TypeScript,XML,JSON",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7354)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "DBQ412",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Master SQL queries to analyze and manipulate data.",
+                            DifficultyLevel = "Beginner",
+                            Duration = "6m",
+                            Name = "Database Queries Basics",
+                            Price = 5000m,
+                            Technologies = "SQL",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7357)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CPP412",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of computer programming using the C++ programming language.",
+                            DifficultyLevel = "Beginner",
+                            Duration = "6m",
+                            Name = "C++ Basics",
+                            Price = 5000m,
+                            Technologies = "C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7360)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CPP512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore more advanced computer programming concepts using the C++ programming language.",
+                            DifficultyLevel = "Intermediate",
+                            Duration = "6m",
+                            Name = "Programming With C++",
+                            Price = 5000m,
+                            Technologies = "C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7363)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CPP522",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the most advanced computer programming concepts using the C++ programming language.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Advanced C++",
+                            Price = 5000m,
+                            Technologies = "C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7366)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CS512",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the basics of Cyber Security.",
+                            DifficultyLevel = "Intermediate",
+                            Duration = "6m",
+                            Name = "Cyber Security Basics",
+                            Price = 5000m,
+                            Technologies = "Python,C++",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7369)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "CS522",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore the most advanced Cyber Security concepts and tecniques.",
+                            DifficultyLevel = "Advanced",
+                            Duration = "6m",
+                            Name = "Advanced Cyber Security",
+                            Price = 5000m,
+                            Technologies = "C,C++,Assembly,Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7372)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "AS612",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Become a certified Offensive Security specialist.",
+                            DifficultyLevel = "Major",
+                            Duration = "6m",
+                            Name = "Offensive Security",
+                            Price = 5000m,
+                            Technologies = "C,C++,Assembly,Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7375)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ApplicationCloseDate = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ApplicationOpenDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Code = "DS612",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Become a certified Defensive Security specialist.",
+                            DifficultyLevel = "Major",
+                            Duration = "6m",
+                            Name = "Defensive Security",
+                            Price = 5000m,
+                            Technologies = "C,C++,Assembly,Python",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7378)
+                        });
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.CourseCategory", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.CourseApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId", "Email")
+                        .IsUnique();
+
+                    b.ToTable("CourseApplication");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.CourseDepartment", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "DepartmentId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("CourseId", "DepartmentId")
+                        .IsUnique();
+
+                    b.ToTable("CourseDepartment");
+
+                    b.HasData(
+                        new
+                        {
+                            CourseId = 1,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            DepartmentId = 2
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            DepartmentId = 2
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            DepartmentId = 2
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            DepartmentId = 2
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            DepartmentId = 2
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 10,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 11,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 12,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 12,
+                            DepartmentId = 4
+                        },
+                        new
+                        {
+                            CourseId = 13,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 13,
+                            DepartmentId = 4
+                        },
+                        new
+                        {
+                            CourseId = 14,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 14,
+                            DepartmentId = 4
+                        },
+                        new
+                        {
+                            CourseId = 15,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 16,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 17,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 18,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 19,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 19,
+                            DepartmentId = 3
+                        },
+                        new
+                        {
+                            CourseId = 20,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 20,
+                            DepartmentId = 3
+                        },
+                        new
+                        {
+                            CourseId = 21,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 21,
+                            DepartmentId = 3
+                        },
+                        new
+                        {
+                            CourseId = 22,
+                            DepartmentId = 1
+                        },
+                        new
+                        {
+                            CourseId = 22,
+                            DepartmentId = 3
+                        });
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("Department");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "IT",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore a comprehensive range of Information Technology (IT) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of IT. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
+                            Name = "Information Technology",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7504)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "ML",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore a comprehensive range of Machine Learning (ML) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Machine Learning. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
+                            Name = "Machine Learning",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7507)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "CS",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore a comprehensive range of Cyber Security (CS) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Cyber Security. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
+                            Name = "Cyber Security",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7508)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "WD",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Explore a comprehensive range of Web Development (WD) courses designed to equip learners with the knowledge and skills needed to excel in the dynamic field of Web Development. Our curriculum spans from fundamental concepts to advanced technical expertise, ensuring a well-rounded understanding of the latest technologies and industry practices.",
+                            Name = "Web Development",
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7510)
+                        });
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Enrollment", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("AdmitDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("GraduateDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("CourseId", "StudentId")
+                        .IsUnique();
+
+                    b.ToTable("Enrollment");
+
+                    b.HasData(
+                        new
+                        {
+                            CourseId = 1,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8141)
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8143)
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8145)
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8147)
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8149)
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8150)
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8152)
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8154)
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8156)
+                        },
+                        new
+                        {
+                            CourseId = 10,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8158)
+                        },
+                        new
+                        {
+                            CourseId = 11,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8160)
+                        },
+                        new
+                        {
+                            CourseId = 12,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8162)
+                        },
+                        new
+                        {
+                            CourseId = 13,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8163)
+                        },
+                        new
+                        {
+                            CourseId = 14,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8165)
+                        },
+                        new
+                        {
+                            CourseId = 15,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8167)
+                        },
+                        new
+                        {
+                            CourseId = 16,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8169)
+                        },
+                        new
+                        {
+                            CourseId = 17,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8171)
+                        },
+                        new
+                        {
+                            CourseId = 18,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8172)
+                        },
+                        new
+                        {
+                            CourseId = 19,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8174)
+                        },
+                        new
+                        {
+                            CourseId = 20,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8176)
+                        },
+                        new
+                        {
+                            CourseId = 21,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8178)
+                        },
+                        new
+                        {
+                            CourseId = 22,
+                            StudentId = 1,
+                            AdmitDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GraduateDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RegisterDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8180)
+                        });
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Inquiry", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,20 +1011,27 @@ namespace CodeCraft.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsResolved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CourseCategory");
+                    b.ToTable("Inquiry");
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.Instructor", b =>
@@ -115,37 +1042,22 @@ namespace CodeCraft.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Biography")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<short>("Experience")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Experties")
+                    b.Property<string>("Education")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -154,12 +1066,215 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Instructor");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Biography = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat, quis vestibulum sapien maximus.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7867),
+                            UserId = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Biography = "Experienced software engineer specializing in Java and Python programming.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7870),
+                            UserId = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Biography = "Expert in data science and machine learning with 5+ years of teaching experience.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7872),
+                            UserId = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Biography = "Specializes in web development using React and Node.js. Passionate about mentoring.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7873),
+                            UserId = "d7574773-b281-4c29-8e6b-bf818d5680a2"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Biography = "Full-stack developer with expertise in PHP and Laravel. Loves teaching coding fundamentals.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7875),
+                            UserId = "40c697c6-41ec-42fd-93c9-5624d377b710"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Biography = "Creative designer and developer focusing on UI/UX and front-end frameworks like Angular.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7877),
+                            UserId = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Biography = "Senior software developer with extensive experience in C# and .NET development.",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Education = "Computer Science, PHD",
+                            HireDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7878),
+                            UserId = "76735e5b-52ef-4c2f-b17b-2456ff4b9556"
+                        });
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.InstructorTestimonial", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.InstructorCourse", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "InstructorId");
+
+                    b.HasIndex("InstructorId");
+
+                    b.HasIndex("CourseId", "InstructorId")
+                        .IsUnique();
+
+                    b.ToTable("InstructorCourse");
+
+                    b.HasData(
+                        new
+                        {
+                            CourseId = 1,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 10,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 11,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 12,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 13,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 14,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 15,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 16,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 17,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 18,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 19,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 20,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 21,
+                            InstructorId = 1
+                        },
+                        new
+                        {
+                            CourseId = 22,
+                            InstructorId = 1
+                        });
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.InstructorStudentTestimonial", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,12 +1284,12 @@ namespace CodeCraft.Data.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("InstructorId")
                         .HasColumnType("int");
@@ -183,16 +1298,16 @@ namespace CodeCraft.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId");
-
                     b.HasIndex("StudentId");
 
-                    b.ToTable("InstructorTestimonial");
+                    b.HasIndex("InstructorId", "StudentId")
+                        .IsUnique();
+
+                    b.ToTable("InstructorStudentTestimonial");
                 });
 
             modelBuilder.Entity("CodeCraft.Data.Models.Student", b =>
@@ -205,27 +1320,10 @@ namespace CodeCraft.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -234,12 +1332,22 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Student");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8109),
+                            UserId = "efff6fe8-7d05-4adf-8ed1-92ed552c113f"
+                        });
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.StudentTestimonial", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.StudentCourseTestimonial", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,73 +1357,556 @@ namespace CodeCraft.Data.Migrations
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("CourseId");
 
-                    b.ToTable("StudentTestimonial");
+                    b.HasIndex("StudentId", "CourseId")
+                        .IsUnique();
+
+                    b.ToTable("StudentCourseTestimonial");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8221)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8224)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8225)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8226)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8228)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8229)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8230)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8232)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8233)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8234)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8235)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 12,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8237)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 13,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8238)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8239)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8241)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8242)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8243)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8245)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8246)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8247)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8249)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            CourseId = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsFeatured = true,
+                            StudentId = 1,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(8250)
+                        });
                 });
 
-            modelBuilder.Entity("CourseCourseCategory", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.User", b =>
                 {
-                    b.Property<int>("CategoriesId")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoriesId", "CoursesId");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
-                    b.HasIndex("CoursesId");
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("date");
 
-                    b.ToTable("CourseCourseCategory");
-                });
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-            modelBuilder.Entity("CourseInstructor", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("InstructorsId")
-                        .HasColumnType("int");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CoursesId", "InstructorsId");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("InstructorsId");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("CourseInstructor");
-                });
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("CoursesId", "StudentsId");
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                    b.HasIndex("StudentsId");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("CourseStudent");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhysicalAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("User", "AspNetIdentity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a660cfef-d951-47e4-b40d-2272788f94c1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "74014dde-1c98-4848-bf9b-20fbd04f40b1",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            Gender = "Male",
+                            LastName = "Default",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "ADMIN@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "Default Address",
+                            SecurityStamp = "d9f21d1a-d6b2-4b8c-abf6-fbf979e647e6",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7635),
+                            UserName = "admin@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "3fe25d09-a2b3-4b40-9fdf-c2b24455411a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "34ea735d-3749-4492-ad03-9b85accf1fb8",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "instructor@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Instructor",
+                            Gender = "Male",
+                            LastName = "Default",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "INSTRUCTOR@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "INSTRUCTOR@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "Default Address",
+                            SecurityStamp = "dc717ab4-bd3c-4f59-a63e-6dc654ff2721",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7702),
+                            UserName = "instructor@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "efff6fe8-7d05-4adf-8ed1-92ed552c113f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "39f1b927-82bc-4f40-8157-25605970944e",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "student@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Student",
+                            Gender = "Male",
+                            LastName = "Default",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STUDENT@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "STUDENT@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "Default Address",
+                            SecurityStamp = "e030e7f9-3d23-4e7e-be4b-35029b2a8b7d",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7722),
+                            UserName = "student@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "2f5423d9-3322-438a-b9dc-ec1ffdb3db87",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "93b30460-735f-401f-b113-eec9f0dd3752",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jane.smith@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Jane",
+                            Gender = "Female",
+                            LastName = "Smith",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JANE.SMITH@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "JANE.SMITH@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Cape Town",
+                            SecurityStamp = "fcf2afaf-abca-4c5e-8a7f-a689b0dbe13a",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7733),
+                            UserName = "jane.smith@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "41edb5b2-3dd8-4c40-b7db-96f609d2fdab",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "439280be-89ea-4014-a3c4-f9e8f62d3f1b",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "michael.johnson@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Michael",
+                            Gender = "Male",
+                            LastName = "Johnson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MICHAEL.JOHNSON@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "MICHAEL.JOHNSON@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Johannesburg",
+                            SecurityStamp = "6290b377-6365-4f83-a87a-c8911269a3b5",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7743),
+                            UserName = "michael.johnson@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "d7574773-b281-4c29-8e6b-bf818d5680a2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c49525fe-fed7-46f8-9301-784f95dba840",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "lisa.roberts@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Lisa",
+                            Gender = "Female",
+                            LastName = "Roberts",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "LISA.ROBERTS@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "LISA.ROBERTS@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Durban",
+                            SecurityStamp = "d81d6ecf-bd33-48da-9a34-95c6fc4f6061",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7757),
+                            UserName = "lisa.roberts@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "40c697c6-41ec-42fd-93c9-5624d377b710",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6ae793d4-b985-4ca6-b142-053033678aa1",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "david.khumalo@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "David",
+                            Gender = "Male",
+                            LastName = "Khumalo",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DAVID.KHUMALO@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "DAVID.KHUMAL@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Pretoria",
+                            SecurityStamp = "01b161fe-a0c7-416b-ac8b-f10773c8f04a",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7767),
+                            UserName = "david.khumal@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "757d61fd-6c1c-4e4e-a4f4-8da6a37ff1bb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c8e6e47e-1dd5-4721-ba87-447846623282",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "themba.carter@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "Themba",
+                            Gender = "Male",
+                            LastName = "Carter",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "THEMBA.CARTER@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "THEMBA.CARTER@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Port Elizabeth",
+                            SecurityStamp = "1778cb17-b097-4847-80cd-4af9a3978c55",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7780),
+                            UserName = "themba.carter@codecraft.co.za"
+                        },
+                        new
+                        {
+                            Id = "76735e5b-52ef-4c2f-b17b-2456ff4b9556",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d209bd86-efab-4f95-aca2-6fb837d8ed3c",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "james.wilson@codecraft.co.za",
+                            EmailConfirmed = true,
+                            FirstName = "James",
+                            Gender = "Male",
+                            LastName = "Wilson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JAMES.WILSON@CODECRAFT.CO.ZA",
+                            NormalizedUserName = "JAMES.WILSON@CODECRAFT.CO.ZA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMhCQlGvJ2nIuutdo/24eJEwLaqi5L/1x1GVHoJMAeL6fETW0j+oOg0QS+Te+MI+Aw==",
+                            PhoneNumberConfirmed = false,
+                            PhysicalAddress = "42 Some St., Bloemfontein",
+                            SecurityStamp = "7f04e51f-091e-4ff5-a1d1-a312270c88b0",
+                            TwoFactorEnabled = false,
+                            UpdatedAt = new DateTime(2024, 12, 5, 17, 31, 36, 478, DateTimeKind.Utc).AddTicks(7790),
+                            UserName = "james.wilson@codecraft.co.za"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -367,72 +1958,7 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims", "AspNetIdentity");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("User", "AspNetIdentity");
+                    b.ToTable("RoleClaim", "AspNetIdentity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -457,7 +1983,7 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims", "AspNetIdentity");
+                    b.ToTable("UserClaim", "AspNetIdentity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -479,7 +2005,7 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins", "AspNetIdentity");
+                    b.ToTable("UserLogin", "AspNetIdentity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -494,7 +2020,7 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", "AspNetIdentity");
+                    b.ToTable("UserRole", "AspNetIdentity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -513,12 +2039,12 @@ namespace CodeCraft.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens", "AspNetIdentity");
+                    b.ToTable("UserToken", "AspNetIdentity");
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.Instructor", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.Admin", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("CodeCraft.Data.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -527,7 +2053,86 @@ namespace CodeCraft.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.InstructorTestimonial", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.CourseApplication", b =>
+                {
+                    b.HasOne("CodeCraft.Data.Models.Course", "Course")
+                        .WithMany("Applications")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.CourseDepartment", b =>
+                {
+                    b.HasOne("CodeCraft.Data.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeCraft.Data.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Enrollment", b =>
+                {
+                    b.HasOne("CodeCraft.Data.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeCraft.Data.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Instructor", b =>
+                {
+                    b.HasOne("CodeCraft.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.InstructorCourse", b =>
+                {
+                    b.HasOne("CodeCraft.Data.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeCraft.Data.Models.Instructor", "Instructor")
+                        .WithMany()
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.InstructorStudentTestimonial", b =>
                 {
                     b.HasOne("CodeCraft.Data.Models.Instructor", "Instructor")
                         .WithMany()
@@ -548,7 +2153,7 @@ namespace CodeCraft.Data.Migrations
 
             modelBuilder.Entity("CodeCraft.Data.Models.Student", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("CodeCraft.Data.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -557,60 +2162,23 @@ namespace CodeCraft.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CodeCraft.Data.Models.StudentTestimonial", b =>
+            modelBuilder.Entity("CodeCraft.Data.Models.StudentCourseTestimonial", b =>
                 {
-                    b.HasOne("CodeCraft.Data.Models.Student", "Student")
+                    b.HasOne("CodeCraft.Data.Models.Course", "Course")
                         .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeCraft.Data.Models.Student", "Student")
+                        .WithMany("CourseTestimonials")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Course");
+
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("CourseCourseCategory", b =>
-                {
-                    b.HasOne("CodeCraft.Data.Models.CourseCategory", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CodeCraft.Data.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseInstructor", b =>
-                {
-                    b.HasOne("CodeCraft.Data.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CodeCraft.Data.Models.Instructor", null)
-                        .WithMany()
-                        .HasForeignKey("InstructorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.HasOne("CodeCraft.Data.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CodeCraft.Data.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -624,7 +2192,7 @@ namespace CodeCraft.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("CodeCraft.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -633,7 +2201,7 @@ namespace CodeCraft.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("CodeCraft.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -648,7 +2216,7 @@ namespace CodeCraft.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("CodeCraft.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -657,11 +2225,21 @@ namespace CodeCraft.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("CodeCraft.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Course", b =>
+                {
+                    b.Navigation("Applications");
+                });
+
+            modelBuilder.Entity("CodeCraft.Data.Models.Student", b =>
+                {
+                    b.Navigation("CourseTestimonials");
                 });
 #pragma warning restore 612, 618
         }

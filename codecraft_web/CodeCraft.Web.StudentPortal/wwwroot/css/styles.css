@@ -1,0 +1,216 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
+
+
+:root {
+    --primary-color: #6BD425;
+    --secondary-color: #F3CA16;
+    --tertiary-color: #F58A07;
+    --dark-color: #00012A;
+    --text-color: #3D3D3D;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* Sidebar Styling */
+#sidebar {
+    transition: width 0.3s ease;
+    width: 250px;
+    position: fixed;
+    background: var(--dark-color);
+    top: 0;
+    left: 0;
+}
+
+#sidebar.collapsed {
+    width: 80px;
+}
+
+
+#sidebar .logo-img {
+    width: 45px;
+}
+
+#sidebar .sidebar-title {
+    font-family: "Montserrat", system-ui;
+    line-height: 35px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+#sidebar.collapsed .sidebar-title {
+    opacity: 0;
+}
+
+/* Hide text in links when collapsed */
+#sidebar .link-text {
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    font-family: "Montserrat", system-ui;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 45px;
+    margin: 5px;
+}
+#sidebar .nav-link i {
+    font-size: 18px;
+}
+
+#sidebar .nav-link:hover {
+    background-color: var(--primary-color);
+    transition: ease all 0.3s;
+}
+
+#sidebar.collapsed .nav-link:hover {
+    background-color: transparent;
+    
+}
+#sidebar.collapsed .nav-link i:hover {
+    color: #6BD425;
+    transform: scale(1.25);
+}
+
+#sidebar.collapsed .link-text {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Toggle Button Styling */
+#toggle-btn {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 18px;
+}
+
+/* MAIN CONENT */
+#main-content {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    background-color: #F9F6F1;
+}
+
+#main-content.full-width {
+    margin-left: 0;
+}
+
+#home {
+    background: linear-gradient(90deg, rgba(107,212,37,1) 0%, rgba(243,202,22,1) 59%);;
+    padding: 30px;
+    border-radius: 5px;
+}
+#home h1 {
+    font-family: "Montserrat", system-ui;
+    font-size: 38px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+}
+#home p {
+    font-family: "Karla", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#courses {
+    padding: 30px;
+}
+
+#courses h2 {
+    font-family: "Montserrat", system-ui;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+#courses .card {
+    border: 2px solid #3D3D3D;
+    border-radius: 5px;
+    box-shadow: 8px 8px 0 -1px var(--text-color);
+}
+#courses .card:hover {
+    transform: scale(1.02);
+    transition: all .50s ease;
+    box-shadow: 10px 10px 0 -2px var(--primary-color);
+}
+.card-title {
+    text-transform: uppercase;
+    color: var(--text-color);
+    letter-spacing: 1px;
+}
+.card-text {
+    color: var(--text-color);
+    letter-spacing: 1px;
+}
+
+
+#assignments {
+    padding: 30px;
+}
+
+#assignments h2 {
+    font-family: "Montserrat", system-ui;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+/* Customizing the table */
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+.table td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 10px;
+    font-family: "karla", sans-serif;
+    letter-spacing: 1px;
+}
+
+table .btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    border: 0;
+    font-family: "Karla", sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+}
+table .btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+.table th {
+    font-family: "Montserrat", system-ui;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+

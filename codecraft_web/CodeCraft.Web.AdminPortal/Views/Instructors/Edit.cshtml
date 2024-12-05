@@ -1,0 +1,92 @@
+﻿@model Instructor
+
+@{
+    ViewData["Title"] = "Edit Instructor";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.css" />
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
+}
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = ViewBag.Title,
+    SectionName = "Instructors",
+    ActiveName = "Edit"
+})" />
+
+<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    @ViewBag.Title
+                </h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label">
+                                    User Account
+                                </label>
+                                <select asp-for="UserId" class="form-control">
+                                    @foreach (SelectListItem item in ViewBag.Users)
+                                    {
+                                        <option value="@item.Value" selected=@(Model.User!.Email == item.Text)>
+                                            @item.Text
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="HireDate" class="form-label"></label>
+                                <input asp-for="HireDate" class="datepicker form-control" value="@(Model.HireDate.ToString("yyyy/MM/dd"))" />
+                                <span asp-validation-for="HireDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="Education" class="form-label"></label>
+                                <input asp-for="Education" class="form-control" value="@Model.Education" />
+                                <span asp-validation-for="Education" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Profile Picture (TODO)
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group fallback w-100">
+                                <input type="file"
+                                       class="dropify"
+                                       data-default-file="" />
+                            </div>
+                        </div>
+                        -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/pickadate/picker.js"></script>
+    <script src="~/lib/pickadate/picker.time.js"></script>
+    <script src="~/lib/pickadate/picker.date.js"></script>
+
+    <script src="~/js/plugins-init/pickadate-init.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

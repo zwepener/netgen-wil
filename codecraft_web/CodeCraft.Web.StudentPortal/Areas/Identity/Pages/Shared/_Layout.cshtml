@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "/Views/Shared/_RootLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    @{
+        RenderSection("Styles", required: false);
+    }
+}
+
+<div class="container h-100">
+    <div class="row justify-content-center h-100 align-items-center">
+        <div class="col-md-6">
+            <div class="row no-gutters">
+                <div class="col-xl-12">
+                    <div class="auth-form">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @{
+        await RenderSectionAsync("Scripts", required: false);
+    }
+}
+

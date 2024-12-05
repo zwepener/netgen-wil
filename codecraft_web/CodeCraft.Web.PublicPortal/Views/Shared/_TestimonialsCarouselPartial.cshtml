@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StudentCourseTestimonial>
+
+<div class="carousel">
+    <div class="carousel-inner">
+        @foreach (StudentCourseTestimonial testimonial in Model) {
+            <div class="testimonial @if (testimonial == Model.First()) { Html.Encode("active"); }">
+                <div class="img">
+                    <img src="~/images/avatar/default.png" alt="Student">
+                </div>
+                <div class="content">
+                    <p>
+                        @Html.DisplayFor(modelItem => testimonial.Comment)
+                    </p>
+                    <h6>
+                        @Html.DisplayFor(modelItem => testimonial.Student!.User!.FullName)
+                    </h6>
+                    <small>
+                        @Html.DisplayFor(modelItem => testimonial.Course!.FormattedName)
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="testimonial-navigation">
+        <button id="prev" class="carousel-btn">
+            <div class="icon">
+                <i class='bx bx-chevron-left'></i>
+            </div>
+        </button>
+        <button id="next" class="carousel-btn">
+            <div class="icon">
+                <i class='bx bx-chevron-right'></i>
+            </div>
+        </button>
+    </div>
+</div>

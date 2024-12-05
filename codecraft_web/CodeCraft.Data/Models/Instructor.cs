@@ -1,66 +1,84 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Data.Models
+namespace CodeCraft.Data.Models;
+
+[Index(nameof(UserId), IsUnique = true)]
+public class Instructor
 {
-    /// <summary>
-    /// Represents a instructor entity instance.
-    /// </summary>
-    public class Instructor
+    ///
+    /// Table Columns
+    ///
+
+    [Key]
+    [Display(Name = "Instructor ID")]
+    public int Id { get; set; }
+
+    [Required]
+    [Display(Name = "User ID")]
+    public required string UserId { get; set; }
+
+    [Required]
+    [Display(Name = "Education")]
+    public required string Education { get; set; }
+
+    [Display(Name = "Bio")]
+    [DisplayFormat(NullDisplayText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis lacus vitae erat feugiat, quis vestibulum sapien maximus.")]
+    public string? Biography { get; set; }
+
+    [Required]
+    [DataType(DataType.Date)]
+    [Column(TypeName = "date")]
+    [Display(Name = "Hired Date")]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM, yyyy}")]
+    public required DateTime HireDate { get; set; }
+
+    [Display(Name = "Updated At")]
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    [Display(Name = "Created At")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime CreatedAt { get; set; }
+
+    ///
+    /// Relationship Entities
+    ///
+
+    [Display(Name = "User")]
+    public User? User { get; set; }
+
+    [Display(Name = "Courses")]
+    public List<Course> Courses { get; } = [];
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Course Count")]
+    public int CourseCount
     {
-        /// <summary>
-        /// The id of this entity.
-        /// This property can be used to uniquely identify this entity.
-        /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// The user id of the instructor.
-        /// </summary>
-        public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
-        /// <summary>
-        /// The first name of the instructor.
-        /// </summary>
-        [MaxLength(32)]
-        public string FirstName { get; set; } = null!;
-        /// <summary>
-        /// The middle name of the instructor. Can be null.
-        /// </summary>
-        [MaxLength(32)]
-        public string? MiddleName { get; set; }
-        /// <summary>
-        /// The last name of the instructor.
-        /// </summary>
-        [MaxLength(32)]
-        public string LastName { get; set; } = null!;
-        /// <summary>
-        /// The date of birth of the instructor.
-        /// </summary>
-        public DateTime DateOfBirth { get; set; }
-        /// <summary>
-        /// The field of experties this instructor specializes in.
-        /// </summary>
-        [MaxLength(32)]
-        public string Experties { get; set; } = null!;
-        /// <summary>
-        /// The amount of experience this instructor of being an instructor.
-        /// Measured in <c>Years</c>.
-        /// </summary>
-        public sbyte Experience { get; set; }
-        /// <summary>
-        /// A list of courses that this instructor is qualified to teach.
-        /// </summary>
-        public List<Course> Courses { get; } = [];
-        /// <summary>
-        /// The date and time this entity was last updated.
-        /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime UpdatedAt { get; set; }
-        /// <summary>
-        /// The date and time this entity was created.
-        /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; set; }
+        get
+        {
+            return Courses.Count;
+        }
+    }
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
+        }
+    }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
     }
 }

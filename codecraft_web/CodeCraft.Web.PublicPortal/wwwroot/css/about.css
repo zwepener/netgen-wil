@@ -1,0 +1,227 @@
+﻿.hero-section .lead {
+  text-align: justify;
+  font-size: 18px;
+}
+
+.mission-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mission-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3d3d3d;
+  letter-spacing: 4px;
+}
+
+.mission-section h1 .text-highlight {
+  color: #6bd425;
+}
+
+.mission-section .lead {
+  font-size: 18px;
+  font-family: "Karla", sans-serif;
+  font-weight: 500;
+  color: #474747;
+  letter-spacing: 2px;
+  text-align: justify;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Service Section Styles */
+.services-section {
+  background-color: #f9f6f1;
+}
+
+.services-section h2 {
+  padding: 20px; /* Adds padding to give the content some breathing room */
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3d3d3d;
+  letter-spacing: 4px;
+}
+
+.services-section h2 .text-highlight {
+  color: #6bd425;
+}
+
+.steps {
+  padding: 0;
+  margin: 0;
+}
+
+/* Step Styles */
+.step {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.step-title {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+/* Default Circle Styles */
+.circle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+/* Active Circle */
+.step.active .circle {
+  background: linear-gradient(
+    to right,
+    #f3ca16,
+    #6bd425
+  ); /* Gradient Background */
+  border: 2px solid #ddd;
+  border-radius: 50%;
+}
+
+.step .circle:hover {
+  background: linear-gradient(
+    to right,
+    #f3ca16,
+    #6bd425
+  ); /* Gradient Background */
+  border-radius: 50%;
+}
+
+/* Completed Circles (before the active step) */
+.step.completed .circle {
+  background: linear-gradient(to right, #f3ca16, #6bd425); /* Same as active */
+  border: 2px solid #ddd;
+  border-radius: 50%;
+}
+
+/* Inactive Circles (after the active step) */
+.step:not(.active):not(.completed) .circle {
+  background-color: #fff; /* Default white background */
+  border: solid 2px #373737;
+}
+
+.step-title {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Progress Line Container */
+#progress-bar-container {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: #ddd;
+  margin-top: 20px;
+}
+
+/* Progress Line Container */
+#progress-bar-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background-color: #373737;
+  border-radius: 50px;
+  transition: all ease 0.9s;
+  margin-top: 20px;
+}
+
+/* The Progress Line */
+#line-progress {
+  position: absolute;
+  height: 100%;
+  width: 3%; /* Initially 0%; updated dynamically via JavaScript */
+  background: linear-gradient(to right, #f3ca16, #6bd425);
+  z-index: 2;
+  border-radius: 50px;
+  transition: all ease 0.9s;
+}
+
+/* Section Content */
+.section-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  text-align: center;
+  margin-top: 60px; /* Adds more space above the content */
+  margin-bottom: 30px; /* Adds more space below the content */
+  padding: 20px; /* Adds padding to give the content some breathing room */
+  border: 3px solid #373737;
+  background: #fff;
+}
+
+.section-content p {
+  font-size: 18px;
+  font-family: "Karla", sans-serif;
+  letter-spacing: 2px;
+  color: #3d3d3d;
+}
+
+.section-content.active {
+  display: block;
+  opacity: 1;
+}
+
+/* FAQ Section Styling */
+.faq-section {
+  background-color: #f9f6f1;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3d3d3d;
+  letter-spacing: 4px;
+}
+
+.faq-section h2 .text-highlight {
+  color: #6bd425;
+}
+
+.accordion-header {
+  border: 3px solid #373737;
+}
+
+.accordion-button {
+  background-color: #f9f6f1;
+  color: #3d3d3d;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #f3ca16;
+  font-weight: 600;
+  color: #fff;
+}
+
+.accordion-item {
+  margin-bottom: 15px;
+}
+
+.accordion-body {
+  background-color: #fff;
+  font-size: 1rem;
+  font-family: "Karla", sans-serif;
+  letter-spacing: 2px;
+  padding: 15px;
+}

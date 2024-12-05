@@ -1,0 +1,78 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Register.css">
+}
+
+<section class="container">
+    <header>Registration Form</header>
+    <form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <div class="column">
+            <div class="input-box">
+                <label asp-for="Input.FirstName">First Name</label>
+                <input asp-for="Input.FirstName" placeholder="Enter first name" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="input-box">
+                <label asp-for="Input.LastName">Last Name</label>
+                <input asp-for="Input.LastName" placeholder="Enter last name" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <label asp-for="Input.Email">Email Address</label>
+            <input asp-for="Input.Email" type="email" placeholder="Enter email address" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="column">
+            <div class="input-box">
+                <label asp-for="Input.Password">Password</label>
+                <input asp-for="Input.Password" placeholder="Create a password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <input asp-for="Input.ConfirmPassword" placeholder="Confirm password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="input-box">
+                <label asp-for="Input.DateOfBirth">Birth Date</label>
+                <input asp-for="Input.DateOfBirth" type="date" placeholder="Enter birth date" />
+                <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="select-box">
+                <label asp-for="Input.Gender">Gender</label>
+                <select asp-for="Input.Gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Prefer Not to Say</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-box address">
+            <label asp-for="Input.PhysicalAddress">Physical Address</label>
+            <input asp-for="Input.PhysicalAddress" placeholder="Enter physical address" required />
+            <span asp-validation-for="Input.PhysicalAddress" class="text-danger"></span>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

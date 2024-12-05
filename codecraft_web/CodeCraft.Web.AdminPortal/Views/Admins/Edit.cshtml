@@ -1,0 +1,58 @@
+﻿@model Admin
+
+@{
+    ViewData["Title"] = "Edit Admin";
+}
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = ViewBag.Title,
+    SectionName = "Admins",
+    ActiveName = "Edit"
+})" />
+
+<div class="row">
+    <div class="col-xl-12 col-xxl-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    ViewBag.Title
+                </h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label">
+                                    User Account
+                                </label>
+                                <select asp-for="UserId" class="form-control">
+                                    @foreach (SelectListItem item in ViewBag.Users)
+                                    {
+                                        <option value="@item.Value" selected="@(Model.User!.Email == item.Text)">
+                                            @item.Text
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

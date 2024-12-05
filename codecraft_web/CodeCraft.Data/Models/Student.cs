@@ -1,57 +1,81 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CodeCraft.Data.Models
+namespace CodeCraft.Data.Models;
+
+[Index(nameof(UserId), IsUnique = true)]
+public class Student
 {
-    /// <summary>
-    /// Represents a student entity instance.
-    /// </summary>
-    public class Student
+    ///
+    /// Table Columns
+    ///
+
+    [Key]
+    [Display(Name = "Student ID")]
+    public int Id { get; set; }
+
+    [Required]
+    [Display(Name = "User ID")]
+    public required string UserId { get; set; }
+
+    [Display(Name = "Updated At")]
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    [Display(Name = "Created At")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime CreatedAt { get; set; }
+
+    ///
+    /// Relationship Entities
+    ///
+
+    [Display(Name = "User")]
+    public User? User { get; set; }
+
+    [Display(Name = "Courses")]
+    public List<Course> Courses { get; } = [];
+
+    [Display(Name = "Course Testimonials")]
+    public List<StudentCourseTestimonial> CourseTestimonials { get; } = [];
+
+    ///
+    /// Custom Properties
+    ///
+
+    [Display(Name = "Course Count")]
+    public int CourseCount
     {
-        /// <summary>
-        /// The id of this entity.
-        /// This property can be used to uniquely identify this entity.
-        /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// The user id of the student.
-        /// </summary>
-        public string UserId { get; set; } = null!;
-        public IdentityUser User { get; set; } = null!;
-        /// <summary>
-        /// The first name of the student.
-        /// </summary>
-        [MaxLength(32)]
-        public string FirstName { get; set; } = null!;
-        /// <summary>
-        /// The middle name of the student.
-        /// Can be null.
-        /// </summary>
-        [MaxLength(32)]
-        public string? MiddleName { get; set; }
-        /// <summary>
-        /// The last name of the student.
-        /// </summary>
-        [MaxLength(32)]
-        public string LastName { get; set; } = null!;
-        /// <summary>
-        /// A list of courses that the student is enrolled in.
-        /// </summary>
-        public List<Course> Courses { get; } = [];
-        /// <summary>
-        /// The date of birth of the student.
-        /// </summary>
-        public DateTime DateOfBirth { get; set; }
-        /// <summary>
-        /// The date and time this entity was last updated.
-        /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime UpdatedAt { get; set; }
-        /// <summary>
-        /// The date and time this entity was created.
-        /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; set; }
+        get
+        {
+            return Courses.Count;
+        }
+    }
+
+    [Display(Name = "Course Testimonial Count")]
+    public int CourseTestimonialCount
+    {
+        get
+        {
+            return CourseTestimonials.Count;
+        }
+    }
+
+    [Display(Name = "Last Updated")]
+    public string UpdatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(UpdatedAt);
+        }
+    }
+
+    [Display(Name = "Created")]
+    public string CreatedAgo
+    {
+        get
+        {
+            return Core.Utils.TimeAgo(CreatedAt);
+        }
     }
 }

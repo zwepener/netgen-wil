@@ -1,0 +1,99 @@
+﻿.hero-section h1 .text-highlight {
+    color: #6BD425;
+}
+
+.hero-section img {
+    margin-top: 40px;
+}
+
+
+.instructors-section {
+    padding: 60px 0;
+    background-color: #F9F6F1;
+}
+
+.section-heading h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #3D3D3D;
+    letter-spacing: 4px;
+}
+
+    .section-heading h2 .text-highlight {
+        color: #6BD425;
+    }
+
+
+.instructor-card {
+    background-color: #fff;
+    border: 3px solid #373737;
+    box-shadow: 8px 8px 0 -1px #3D3D3D;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .instructor-card:hover {
+        transform: translateY(-5px);
+        transition: all .50s ease;
+        box-shadow: 8px 8px 0 -1px #fcd535;
+    }
+
+.instructor-name {
+    color: #333;
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.instructor-location {
+    color: #888;
+    font-size: 14px;
+    font-family: 'Karla', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px
+}
+
+.instructor-bio h6 {
+    color: #3d3d3d;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px
+}
+
+.instructor-bio p {
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    letter-spacing: 2px;
+    color: #666;
+    text-align: left;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.instructor-qualifications li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    letter-spacing: 2px;
+}
+
+.contact-btn {
+    background-color: #fcd535;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+    .contact-btn:hover {
+        border: 2px solid #3D3D3D;
+        background-color: #fff;
+        color: #3D3D3D;
+        transform: scale(1.01);
+        transition: all .50s ease;
+    }

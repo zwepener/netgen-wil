@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "/Views/Shared/_RootLayout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.css" />
+    <link rel="stylesheet" href="~/lib/pickadate/themes/default.date.css" />
+
+    <style>
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    @{
+        RenderSection("Styles", required: false);
+    }
+}
+
+<div class="authincation h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/pickadate/picker.js"></script>
+    <script src="~/lib/pickadate/picker.time.js"></script>
+    <script src="~/lib/pickadate/picker.date.js"></script>
+
+    <script src="~/js/plugins-init/pickadate-init.js"></script>
+
+    @{
+        await RenderSectionAsync("Scripts", required: false);
+    }
+}

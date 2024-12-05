@@ -3,9 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Web", "CodeCraft.Web\CodeCraft.Web.csproj", "{D5ED0B3B-4936-4AB7-B9CA-E189AC71A57C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Data", "CodeCraft.Data\CodeCraft.Data.csproj", "{FB590774-CC4F-4801-80E4-923403B7D2C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3} = {EB63E97E-663F-477B-AF19-5F95BEC634B3}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Data", "CodeCraft.Data\CodeCraft.Data.csproj", "{69680844-7179-4CC7-96E5-530544D346F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCraft.Web.StudentPortal", "CodeCraft.Web.StudentPortal\CodeCraft.Web.StudentPortal.csproj", "{F33BE0C3-643E-493E-AA3E-80B8F02DF241}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.AdminPortal", "CodeCraft.Web.AdminPortal\CodeCraft.Web.AdminPortal.csproj", "{42C65969-B716-4998-AE50-9F12C60B9DE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.InstructorPortal", "CodeCraft.Web.InstructorPortal\CodeCraft.Web.InstructorPortal.csproj", "{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.PublicPortal", "CodeCraft.Web.PublicPortal\CodeCraft.Web.PublicPortal.csproj", "{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB590774-CC4F-4801-80E4-923403B7D2C0} = {FB590774-CC4F-4801-80E4-923403B7D2C0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Core", "CodeCraft.Core\CodeCraft.Core.csproj", "{EB63E97E-663F-477B-AF19-5F95BEC634B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCraft.Web.Profile", "CodeCraft.Web.Profile\CodeCraft.Web.Profile.csproj", "{662D8D77-79C6-4B1D-B4B9-D0838F6680BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +38,34 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D5ED0B3B-4936-4AB7-B9CA-E189AC71A57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5ED0B3B-4936-4AB7-B9CA-E189AC71A57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5ED0B3B-4936-4AB7-B9CA-E189AC71A57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5ED0B3B-4936-4AB7-B9CA-E189AC71A57C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69680844-7179-4CC7-96E5-530544D346F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69680844-7179-4CC7-96E5-530544D346F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69680844-7179-4CC7-96E5-530544D346F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69680844-7179-4CC7-96E5-530544D346F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB590774-CC4F-4801-80E4-923403B7D2C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33BE0C3-643E-493E-AA3E-80B8F02DF241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C65969-B716-4998-AE50-9F12C60B9DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AAF0CC-9019-44DD-B57F-0FEFBF13B2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF71E6A4-4E4A-4916-AA28-088E36CDBE9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB63E97E-663F-477B-AF19-5F95BEC634B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662D8D77-79C6-4B1D-B4B9-D0838F6680BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662D8D77-79C6-4B1D-B4B9-D0838F6680BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662D8D77-79C6-4B1D-B4B9-D0838F6680BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662D8D77-79C6-4B1D-B4B9-D0838F6680BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

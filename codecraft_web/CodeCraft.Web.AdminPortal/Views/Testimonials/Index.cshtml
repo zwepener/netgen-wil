@@ -1,0 +1,96 @@
+﻿@model TestimonialsViewModel
+
+@{
+    ViewData["Title"] = "All Testimonials";
+}
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = ViewBag.Title,
+    SectionName = "Testimonials",
+    ActiveName = "All"
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "Featured Testimonials: Student ⇢ Course",
+    Headers = ["#", "Student Name", "Course Name", "Comment"],
+    Rows = Model.FeaturedStudentCourseTestimonials.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Student!.User!.FullName,
+                Controller = "Students",
+                Action = "Details",
+                RouteId = a.StudentId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Course!.FormattedName,
+                Controller = "Courses",
+                Action = "Details",
+                RouteId = a.CourseId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList()
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "Testimonials: Student ⇢ Course",
+    Headers = ["#", "Student Name", "Course Name", "Comment"],
+    Rows = Model.StudentCourseTestimonials.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Student!.User!.FullName,
+                Controller = "Students",
+                Action = "Details",
+                RouteId = a.StudentId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Course!.FormattedName,
+                Controller = "Courses",
+                Action = "Details",
+                RouteId = a.CourseId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList()
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "Testimonials: Instructor ⇢ Student",
+    Headers = ["#", "Instructor Name", "Student Name", "Comment"],
+    Rows = Model.InstructorStudentTestimonials.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Instructor!.User!.FullName,
+                Controller = "Instructors",
+                Action = "Details",
+                RouteId = a.InstructorId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Student!.User!.FullName,
+                Controller = "Students",
+                Action = "Details",
+                RouteId = a.StudentId.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Comment
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList()
+})" />

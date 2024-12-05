@@ -1,0 +1,67 @@
+.hero-section {
+  position: relative;
+  /*background: #ffffff;*/
+}
+
+.hero-section h1 .text-highlight {
+  color: #f3ca16;
+}
+
+.hero-section img {
+  margin-top: 40px;
+}
+
+.container h1 .heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: #3d3d3d;
+}
+
+.container h1 .text-highlight {
+  color: #f3ca16;
+}
+
+.card {
+  border: 2px solid #3d3d3d;
+  padding: 15px;
+}
+
+.card-title {
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.list-group {
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.card-footer {
+  background: #fff;
+}
+
+.card-footer .btn {
+  background: #f3ca16;
+  color: #fff;
+  text-transform: uppercase;
+  font: 16px;
+  font-weight: bold;
+  border-radius: 0;
+}
+
+.card-footer .btn:hover {
+  border: 2px solid #3d3d3d;
+  background-color: #fff;
+  color: #3d3d3d;
+  transform: scale(1.01);
+  transition: all 0.5s ease;
+}

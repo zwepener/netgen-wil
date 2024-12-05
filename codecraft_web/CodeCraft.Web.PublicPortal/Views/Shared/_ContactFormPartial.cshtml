@@ -1,0 +1,37 @@
+﻿@model Inquiry
+
+<form asp-controller="Inquiries" asp-action="SubmitInquiry" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row gy-4 gx-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" autocomplete="name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="Message" class="form-label"></label>
+                <textarea asp-for="Message" cols="3" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="colored-btn" type="submit">Send Inquiry</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

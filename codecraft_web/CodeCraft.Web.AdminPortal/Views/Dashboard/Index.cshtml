@@ -1,0 +1,122 @@
+﻿@model CodeCraft.Web.AdminPortal.Models.DashboardModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/jqvmap/css/jqvmap.min.css" />
+    <link rel="stylesheet" href="~/lib/chartist/css/chartist.min.css" />
+}
+
+<div class="row">
+    <div class="col-xl-3 col-xxl-3 col-sm-6">
+        <div class="widget-stat card bg-primary overflow-hidden">
+            <div class="card-header">
+                <h3 class="card-title text-white">Total Students</h3>
+                <h5 class="text-white mb-0">
+                    <i class="fa fa-caret-up"></i> @Html.DisplayFor(model => model.TotalStudents)
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xxl-3 col-sm-6">
+        <div class="widget-stat card bg-success overflow-hidden">
+            <div class="card-header">
+                <h3 class="card-title text-white">New Students</h3>
+                <h5 class="text-white mb-0">
+                    <i class="fa fa-caret-up"></i> @Html.DisplayFor(model => model.TotalNewStudents)
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xxl-3 col-sm-6">
+        <div class="widget-stat card bg-secondary overflow-hidden">
+            <div class="card-header pb-3">
+                <h3 class="card-title text-white">Total Course</h3>
+                <h5 class="text-white mb-0">
+                    <i class="fa fa-caret-up"></i> @Html.DisplayFor(model => model.TotalCourses)
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-xxl-3 col-sm-6">
+        <div class="widget-stat card bg-danger overflow-hidden">
+            <div class="card-header pb-3">
+                <h3 class="card-title text-white">New Courses</h3>
+                <h5 class="text-white mb-0">
+                    <i class="fa fa-caret-up"></i> @Html.DisplayFor(model => model.TotalNewCourses)
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "New Sudents",
+    Headers = ["#", "Name", "Email", "Created"],
+    Rows = Model.Students.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.User!.FullName,
+                Controller = "Students",
+                Action = "Details",
+                RouteId = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.User!.Email ?? "unset",
+                Controller = "Users",
+                Action = "Details",
+                RouteId = a.User!.Id
+            },
+            new DataTableCellModel {
+                Value = a.CreatedAgo
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList(),
+    MainController = "Students",
+    ViewingEnabled = true,
+    EditingEnabled = true,
+    DeletingEnabled = true
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = "New Courses",
+    Headers = ["#", "Name", "Code", "Created"],
+    Rows = Model.Courses.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Name,
+                Controller = "Courses",
+                Action = "Details",
+                RouteId = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Code
+            },
+            new DataTableCellModel {
+                Value = a.CreatedAgo
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList(),
+    MainController = "Courses",
+    ViewingEnabled = true,
+    EditingEnabled = true,
+    DeletingEnabled = true
+})" />
+
+@section Scripts {
+    <script src="~/lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="~/lib/peity/jquery.peity.min.js"></script>
+    <script src="~/lib/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <script src="~/js/dashboard/dashboard-3.js" asp-append-version="true"></script>
+}

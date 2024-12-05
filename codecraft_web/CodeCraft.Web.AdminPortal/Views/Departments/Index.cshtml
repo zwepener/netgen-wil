@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Department>
+
+@{
+    ViewData["Title"] = "All Departments";
+}
+
+<partial name="_BreadCrumbPartial" model="@(new BreadCrumbViewModel
+{
+    Header = ViewBag.Title,
+    SectionName = "Departments",
+    ActiveName = "All"
+})" />
+
+<partial name="_DataTablePartial" model="@(new DataTableModel {
+    Title = ViewBag.Title,
+    Headers = ["#", "Name", "Code"],
+    Rows = Model.Select(a => new DataTableRowModel {
+        Cells = [
+            new DataTableCellModel {
+                Value = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Name,
+                Controller = "Departments",
+                Action = "Details",
+                RouteId = a.Id.ToString()
+            },
+            new DataTableCellModel {
+                Value = a.Code,
+            }
+        ],
+        ItemId = a.Id.ToString()
+    }).ToList(),
+    CreatingEnabled = true,
+    ViewingEnabled = true,
+    EditingEnabled = true,
+    DeletingEnabled = true,
+})" />
