@@ -78,7 +78,7 @@ The system enables administrators, instructors, and students to interact with th
 
 ---
 
-## 👥 Contributors
+## 👥 [Contributors](CONTRIBUTORS.md)
 
 This project was built by a team of 5 students:
 
