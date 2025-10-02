@@ -95,3 +95,8 @@ This project was built by a team of 5 students:
 ## ⚠️ Disclaimer
 This project was created **for educational purposes** as part of a college curriculum.\
 It is **not intended for production use** without additional security, scalability, and performance improvements.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
