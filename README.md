@@ -86,9 +86,9 @@ This project was built by a team of 5 students:
     * [Zandré Wepener](https://github.com/zwepener)
     * [Mzwakhe Khumalo](https://github.com/MZ-Bale)
 * Frontend Team
-    * [Bryslon Van Rooyen](https://github.com/bryslon-vr)
     * [Mmokgo Radebe](https://github.com/mmokgoradebe)
     * [Ikaneng Khaile](https://github.com/LightWay21)
+    * [Bryslon Van Rooyen](https://github.com/bryslon-vr)
  
 ---
 
